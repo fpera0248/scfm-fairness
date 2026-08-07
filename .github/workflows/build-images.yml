@@ -51,8 +51,10 @@ jobs:
           file: docker/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ steps.owner.outputs.name }}/scfm-${{ matrix.model }}:latest
-            ghcr.io/${{ steps.owner.outputs.name }}/scfm-${{ matrix.model }}:${{ github.ref_name }}
+            # scfm-fairness-* prefix: the plain scfm-* packages belong to the frozen
+            # scfm-bias-asi2026 release; publishing over them would break the paper's images.
+            ghcr.io/${{ steps.owner.outputs.name }}/scfm-fairness-${{ matrix.model }}:latest
+            ghcr.io/${{ steps.owner.outputs.name }}/scfm-fairness-${{ matrix.model }}:${{ github.ref_name }}
           build-args: |
             MODEL=${{ matrix.model }}
             ENV_NAME=${{ matrix.env_name }}

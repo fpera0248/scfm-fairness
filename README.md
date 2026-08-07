@@ -1,5 +1,7 @@
 # Demographic Bias in Single-Cell Foundation Models
 
+> **Active successor repo.** This repository continues the single-cell foundation-model fairness work and is where new methods land. It was duplicated with full history from [`scfm-bias-asi2026`](https://github.com/fpera0248/scfm-bias-asi2026), the frozen, citable artifact of the ACM-BCB ASI 2026 paper. To cite or reproduce the published paper, use that repo and its `ghcr.io/fpera0248/scfm-*` images; CI here publishes `scfm-fairness-*` images so the paper's artifacts stay untouched.
+
 Code to reproduce *Demographic Bias in Single-Cell Foundation Models: Evaluation and Mitigation Across Models and Cohorts* (ACM-BCB ASI 2026 workshop). We measure how well scFoundation, Geneformer, and scGPT recover cell types for underrepresented demographic groups, and we test scDesign3 synthetic augmentation as a mitigation.
 
 Cohorts: interstitial lung disease (ILD, ethnicity imbalance 127:1), colorectal cancer (CRC, 17:1), and the Asian Immune Diversity Atlas (AIDA, 8.4:1). Demographic axes: ethnicity (main analysis), sex and age (supplementary). Metrics: iLISI for embedding mixing, worst-group cell-type macro-F1 for recovery.
