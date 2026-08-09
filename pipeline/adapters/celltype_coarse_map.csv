@@ -1,0 +1,540 @@
+cell_type,coarse_label,cells
+B cell,B_cell,207354
+naive B cell,B_cell,168550
+memory B cell,B_cell,150455
+transitional stage B cell,B_cell,35945
+follicular B cell,B_cell,12138
+germinal center B cell,B_cell,8397
+mature B cell,B_cell,8310
+Be cell,B_cell,4500
+class switched memory B cell,B_cell,3710
+unswitched memory B cell,B_cell,411
+immature B cell,B_cell,1
+"naive thymus-derived CD4-positive, alpha-beta T cell",CD4_T,579062
+"central memory CD4-positive, alpha-beta T cell",CD4_T,512225
+"CD4-positive, alpha-beta T cell",CD4_T,361752
+"effector memory CD4-positive, alpha-beta T cell",CD4_T,139245
+regulatory T cell,CD4_T,47909
+"CD4-positive, alpha-beta memory T cell",CD4_T,40347
+"CD4-positive, alpha-beta cytotoxic T cell",CD4_T,32052
+CD4-positive helper T cell,CD4_T,24290
+"CD4-positive, CD25-positive, alpha-beta regulatory T cell",CD4_T,16110
+"CD4-positive, alpha-beta thymocyte",CD4_T,12936
+"effector CD4-positive, alpha-beta T cell",CD4_T,7828
+memory regulatory T cell,CD4_T,7751
+naive regulatory T cell,CD4_T,6506
+helper T cell,CD4_T,4644
+"activated CD4-positive, alpha-beta T cell",CD4_T,4484
+"effector memory CD4-positive, alpha-beta T cell, terminally differentiated",CD4_T,3701
+T follicular helper cell,CD4_T,3140
+T-helper 17 cell,CD4_T,2486
+"lung resident memory CD4-positive, alpha-beta T cell",CD4_T,1859
+T-helper 1 cell,CD4_T,1595
+memory CCR4-positive regulatory T cell,CD4_T,1023
+"effector memory CD8-positive, alpha-beta T cell",CD8_T,236995
+"CD8-positive, alpha-beta T cell",CD8_T,213263
+"naive thymus-derived CD8-positive, alpha-beta T cell",CD8_T,210085
+"CD8-positive, alpha-beta memory T cell",CD8_T,96412
+"CD8-positive, alpha-beta cytotoxic T cell",CD8_T,52793
+"central memory CD8-positive, alpha-beta T cell",CD8_T,26099
+"effector memory CD8-positive, alpha-beta T cell, terminally differentiated",CD8_T,19390
+"activated CD8-positive, alpha-beta T cell",CD8_T,5116
+"CD8-positive, alpha-beta thymocyte",CD8_T,4926
+"lung resident memory CD8-positive, alpha-beta T cell",CD8_T,3886
+"effector CD8-positive, alpha-beta T cell",CD8_T,2272
+"CD8-positive, alpha-beta regulatory T cell",CD8_T,525
+granzyme K-associated CD8 T cell,CD8_T,34
+"CD8-positive, alpha-beta memory T cell, CD45RO-positive",CD8_T,17
+natural killer cell,NK_ILC,350093
+"CD16-positive, CD56-dim natural killer cell, human",NK_ILC,236874
+"group 3 innate lymphoid cell, human",NK_ILC,51874
+"CD16-negative, CD56-bright natural killer cell, human",NK_ILC,24444
+"CD34-negative, CD117-positive innate lymphoid cell, human",NK_ILC,16254
+innate lymphoid cell,NK_ILC,6049
+group 3 innate lymphoid cell,NK_ILC,3023
+group 1 innate lymphoid cell,NK_ILC,2961
+immature innate lymphoid cell,NK_ILC,2227
+hepatic pit cell,NK_ILC,231
+retinal pigment epithelial cell,RPE,125301
+T cell,T_other,154141
+gamma-delta T cell,T_other,66527
+mucosal invariant T cell,T_other,52529
+mature NK T cell,T_other,14706
+mature gamma-delta T cell,T_other,10904
+double negative thymocyte,T_other,2644
+immature NK T cell,T_other,2629
+memory T cell,T_other,1727
+naive T cell,T_other,1616
+CD8aa(I) thymocyte,T_other,1310
+"CD8-alpha alpha positive, gamma-delta intraepithelial T cell",T_other,1303
+mature alpha-beta T cell,T_other,585
+double negative T regulatory cell,T_other,460
+immature alpha-beta T cell,T_other,341
+thymocyte,T_other,319
+cytotoxic T cell,T_other,63
+pro-T cell,T_other,53
+"CD4-negative, CD8-negative, alpha-beta intraepithelial T cell",T_other,17
+preadipocyte,adipocyte_MSC,52482
+mesenchymal stem cell,adipocyte_MSC,31754
+adipocyte,adipocyte_MSC,31408
+mesenchymal stem cell of adipose tissue,adipocyte_MSC,28347
+adipocyte of omentum tissue,adipocyte_MSC,14263
+subcutaneous adipocyte,adipocyte_MSC,12205
+adipocyte of breast,adipocyte_MSC,7183
+fibro/adipogenic progenitor cell,adipocyte_MSC,3302
+epicardial adipocyte,adipocyte_MSC,437
+GABAergic amacrine cell,amacrine,329932
+glycinergic amacrine cell,amacrine,120409
+amacrine cell,amacrine,117076
+starburst amacrine cell,amacrine,17373
+astrocyte,astrocyte,294322
+retinal astrocyte,astrocyte,14586
+astrocyte of the cerebral cortex,astrocyte,2776
+immature astrocyte,astrocyte,2404
+Bergmann glial cell,astrocyte,236
+dendritic cell,dendritic_cell,20482
+CD1c-positive myeloid dendritic cell,dendritic_cell,20003
+conventional dendritic cell,dendritic_cell,19731
+plasmacytoid dendritic cell,dendritic_cell,16721
+myeloid dendritic cell,dendritic_cell,3582
+"dendritic cell, human",dendritic_cell,2541
+CD141-positive myeloid dendritic cell,dendritic_cell,1060
+pre-conventional dendritic cell,dendritic_cell,833
+"myeloid dendritic cell, human",dendritic_cell,543
+"Axl+ dendritic cell, human",dendritic_cell,225
+liver dendritic cell,dendritic_cell,181
+mature conventional dendritic cell,dendritic_cell,122
+Langerhans cell,dendritic_cell,120
+monocyte-derived dendritic cell,dendritic_cell,4
+endothelial cell,endothelial,150877
+blood vessel endothelial cell,endothelial,130392
+endothelial cell of venule,endothelial,68532
+capillary endothelial cell,endothelial,52691
+vein endothelial cell,endothelial,48842
+endothelial cell of lymphatic vessel,endothelial,44032
+fenestrated endothelial cell,endothelial,36777
+endothelial cell of artery,endothelial,28783
+endothelial cell of arteriole,endothelial,26379
+cardiac endothelial cell,endothelial,25150
+endothelial cell of vascular tree,endothelial,9700
+alveolar capillary type 1 endothelial cell,endothelial,2928
+vein endothelial cell of respiratory system,endothelial,2682
+retinal blood vessel endothelial cell,endothelial,2382
+pulmonary artery endothelial cell,endothelial,2216
+vascular lymphangioblast,endothelial,2012
+pulmonary capillary endothelial cell,endothelial,1989
+alveolar capillary type 2 endothelial cell,endothelial,1806
+prostate gland microvascular endothelial cell,endothelial,1547
+endothelial cell of respiratory system lymphatic vessel,endothelial,1322
+endothelial cell of pericentral hepatic sinusoid,endothelial,870
+endothelial cell of uterus,endothelial,494
+lung microvascular endothelial cell,endothelial,225
+endothelial cell of periportal hepatic sinusoid,endothelial,183
+colon endothelial cell,endothelial,137
+kidney capillary endothelial cell,endothelial,100
+cerebral cortex endothelial cell,endothelial,82
+endothelial cell of hepatic sinusoid,endothelial,71
+endothelial tip cell,endothelial,6
+enterocyte,epithelial_GI,50802
+enterocyte of epithelium of small intestine,epithelial_GI,11250
+gut absorptive cell,epithelial_GI,10207
+intestinal epithelial cell,epithelial_GI,6660
+enterocyte of epithelium proper of duodenum,epithelial_GI,6329
+early colonocyte,epithelial_GI,5667
+transit amplifying cell of small intestine,epithelial_GI,5431
+peptic cell,epithelial_GI,4973
+small intestine goblet cell,epithelial_GI,4681
+enterocyte of epithelium proper of ileum,epithelial_GI,4212
+intestinal crypt stem cell of colon,epithelial_GI,3518
+enterocyte of epithelium of large intestine,epithelial_GI,3438
+transit amplifying cell,epithelial_GI,3346
+colonocyte,epithelial_GI,2519
+colon goblet cell,epithelial_GI,2392
+tuft cell of colon,epithelial_GI,2254
+BEST4+ enterocyte,epithelial_GI,2116
+colon epithelial cell,epithelial_GI,1998
+intestine goblet cell,epithelial_GI,1459
+BEST4+ colonocyte,epithelial_GI,1229
+enteroendocrine cell of small intestine,epithelial_GI,979
+intestinal crypt stem cell of small intestine,epithelial_GI,971
+paneth cell of epithelium of small intestine,epithelial_GI,885
+tuft cell of small intestine,epithelial_GI,844
+transit amplifying cell of colon,epithelial_GI,627
+intestinal tuft cell,epithelial_GI,623
+large intestine goblet cell,epithelial_GI,607
+epithelial cell of small intestine,epithelial_GI,339
+type A enteroendocrine cell,epithelial_GI,312
+enteroendocrine cell of colon,epithelial_GI,240
+tuft cell,epithelial_GI,159
+enteroendocrine cell,epithelial_GI,154
+intestinal enteroendocrine cell,epithelial_GI,113
+type D enteroendocrine cell,epithelial_GI,48
+M cell of gut,epithelial_GI,44
+paneth cell of colon,epithelial_GI,44
+type L enteroendocrine cell,epithelial_GI,27
+microfold cell of epithelium of small intestine,epithelial_GI,19
+type EC enteroendocrine cell,epithelial_GI,16
+enterochromaffin-like cell,epithelial_GI,9
+type N enteroendocrine cell,epithelial_GI,3
+lung secretory cell,epithelial_airway,14820
+ciliated cell,epithelial_airway,14135
+ciliated epithelial cell,epithelial_airway,14082
+respiratory tract epithelial cell,epithelial_airway,13809
+club cell,epithelial_airway,8255
+respiratory basal cell,epithelial_airway,7651
+nasal mucosa goblet cell,epithelial_airway,6217
+serous secreting cell of bronchus submucosal gland,epithelial_airway,5470
+seromucus secreting cell,epithelial_airway,5088
+respiratory tract multiciliated cell,epithelial_airway,4462
+basal cell of epithelium of trachea,epithelial_airway,4325
+multiciliated columnar cell of tracheobronchial tree,epithelial_airway,3563
+tracheal goblet cell,epithelial_airway,2392
+respiratory tract suprabasal cell,epithelial_airway,2213
+tracheobronchial serous cell,epithelial_airway,1799
+brush cell of tracheobronchial tree,epithelial_airway,1685
+lung multiciliated epithelial cell,epithelial_airway,1434
+airway submucosal gland duct basal cell,epithelial_airway,1184
+lung goblet cell,epithelial_airway,990
+epithelial cell of lung,epithelial_airway,898
+respiratory tract goblet cell,epithelial_airway,671
+ionocyte,epithelial_airway,571
+deuterosomal cell,epithelial_airway,543
+basal cell of epithelium of bronchus,epithelial_airway,521
+epithelial cell of lower respiratory tract,epithelial_airway,320
+mucus secreting cell of tracheobronchial tree submucosal gland,epithelial_airway,256
+serous cell of epithelium of lobular bronchiole,epithelial_airway,248
+pulmonary neuroendocrine cell,epithelial_airway,242
+pulmonary ionocyte,epithelial_airway,238
+bronchial goblet cell,epithelial_airway,236
+respiratory tract hillock cell,epithelial_airway,204
+multiciliated epithelial cell,epithelial_airway,141
+multiciliated epithelial cell of the bronchus,epithelial_airway,88
+mucus secreting cell of bronchus submucosal gland,epithelial_airway,76
+myoepithelial cell of bronchus submucosal gland,epithelial_airway,49
+serous cell of epithelium of trachea,epithelial_airway,9
+tracheobronchial goblet cell,epithelial_airway,5
+brush cell of trachea,epithelial_airway,3
+pulmonary alveolar type 2 cell,epithelial_alveolar,99563
+pulmonary alveolar type 1 cell,epithelial_alveolar,32471
+pulmonary alveolar epithelial cell,epithelial_alveolar,3178
+bladder urothelial cell,epithelial_kidney_urogenital,22111
+basal cell of prostate epithelium,epithelial_kidney_urogenital,17174
+luminal cell of prostate epithelium,epithelial_kidney_urogenital,9924
+kidney loop of Henle epithelial cell,epithelial_kidney_urogenital,8628
+intermediate cell of urothelium,epithelial_kidney_urogenital,8108
+epithelial cell of urethra,epithelial_kidney_urogenital,6582
+epithelial cell of proximal tubule,epithelial_kidney_urogenital,6386
+basal cell of urothelium,epithelial_kidney_urogenital,5179
+renal intercalated cell,epithelial_kidney_urogenital,4588
+kidney loop of Henle thick ascending limb epithelial cell,epithelial_kidney_urogenital,2189
+umbrella cell of urothelium,epithelial_kidney_urogenital,1489
+kidney distal convoluted tubule epithelial cell,epithelial_kidney_urogenital,838
+kidney collecting duct principal cell,epithelial_kidney_urogenital,592
+kidney connecting tubule epithelial cell,epithelial_kidney_urogenital,397
+kidney collecting duct intercalated cell,epithelial_kidney_urogenital,252
+podocyte,epithelial_kidney_urogenital,232
+renal principal cell,epithelial_kidney_urogenital,199
+parietal epithelial cell,epithelial_kidney_urogenital,140
+renal alpha-intercalated cell,epithelial_kidney_urogenital,124
+renal beta-intercalated cell,epithelial_kidney_urogenital,30
+kidney loop of Henle thin descending limb epithelial cell,epithelial_kidney_urogenital,21
+kidney loop of Henle thin ascending limb epithelial cell,epithelial_kidney_urogenital,7
+luminal epithelial cell of mammary gland,epithelial_mammary,139847
+luminal adaptive secretory precursor cell of mammary gland,epithelial_mammary,91674
+luminal hormone-sensing cell of mammary gland,epithelial_mammary,55456
+mammary gland epithelial cell,epithelial_mammary,32289
+basal-myoepithelial cell of mammary gland,epithelial_mammary,28049
+progenitor cell of mammary luminal epithelium,epithelial_mammary,4301
+lactocyte,epithelial_mammary,1822
+epithelial cell,epithelial_other,324523
+acinar cell of salivary gland,epithelial_other,34433
+secretory cell,epithelial_other,26161
+goblet cell,epithelial_other,20198
+serous secreting cell,epithelial_other,13262
+peg cell,epithelial_other,9787
+glandular secretory epithelial cell,epithelial_other,7637
+thyroid follicular cell,epithelial_other,7302
+acinar cell,epithelial_other,4700
+myoepithelial cell,epithelial_other,4041
+endocrine cell,epithelial_other,3617
+duct epithelial cell,epithelial_other,2862
+fallopian tube secretory epithelial cell,epithelial_other,1733
+mucus secreting cell,epithelial_other,1389
+striated cell of salivary gland,epithelial_other,968
+epithelial cell of uterus,epithelial_other,895
+luminal endometrial multiciliated epithelial cell,epithelial_other,817
+salivary gland cell,epithelial_other,734
+intercalated cell of salivary gland,epithelial_other,518
+supporting cell of vestibular epithelium,epithelial_other,270
+ovarian surface epithelial cell,epithelial_other,171
+vestibular dark cell,epithelial_other,49
+neuroendocrine cell,epithelial_other,44
+neuro-medullary thymic epithelial cell,epithelial_other,34
+taste receptor cell,epithelial_other,19
+Merkel cell,epithelial_other,16
+medullary thymic epithelial cell,epithelial_other,6
+type B pancreatic cell,epithelial_pancreas,26428
+pancreatic A cell,epithelial_pancreas,17124
+pancreatic acinar cell,epithelial_pancreas,16137
+pancreatic ductal cell,epithelial_pancreas,9605
+epithelial cell of exocrine pancreas,epithelial_pancreas,5568
+pancreatic D cell,epithelial_pancreas,2893
+pancreatic PP cell,epithelial_pancreas,768
+PP cell,epithelial_pancreas,485
+pancreatic epsilon cell,epithelial_pancreas,219
+progenitor cell of endocrine pancreas,epithelial_pancreas,2
+basal cell,epithelial_squamous_basal,139251
+stratified epithelial cell,epithelial_squamous_basal,12125
+stratified squamous epithelial cell,epithelial_squamous_basal,6021
+keratinocyte,epithelial_squamous_basal,2574
+keratinizing barrier epithelial cell,epithelial_squamous_basal,820
+epithelial cell of stratum germinativum of esophagus,epithelial_squamous_basal,290
+sebocyte,epithelial_squamous_basal,95
+squamous epithelial cell,epithelial_squamous_basal,66
+suprabasal keratinocyte,epithelial_squamous_basal,45
+basal cell of epidermis,epithelial_squamous_basal,18
+platelet,erythroid_megakaryocyte,22007
+erythroid lineage cell,erythroid_megakaryocyte,13459
+erythroid progenitor cell,erythroid_megakaryocyte,12357
+erythrocyte,erythroid_megakaryocyte,5034
+lung megakaryocyte,erythroid_megakaryocyte,855
+enucleate erythrocyte,erythroid_megakaryocyte,90
+erythroblast,erythroid_megakaryocyte,32
+megakaryocyte,erythroid_megakaryocyte,14
+fibroblast,fibroblast,1040415
+fibroblast of mammary gland,fibroblast,65941
+fibroblast of cardiac tissue,fibroblast,25602
+myofibroblast cell,fibroblast,14431
+alveolar type 1 fibroblast cell,fibroblast,7686
+fibroblast of lung,fibroblast,7427
+thymic fibroblast type 2,fibroblast,2871
+fibroblast of breast,fibroblast,2834
+pancreatic stellate cell,fibroblast,2710
+alveolar adventitial fibroblast,fibroblast,2314
+adventitial fibroblast,fibroblast,1557
+secondary crest myofibroblast,fibroblast,1547
+skin fibroblast,fibroblast,1546
+bronchus fibroblast of lung,fibroblast,1406
+thymic fibroblast type 1,fibroblast,1039
+fibroblast of connective tissue of glandular part of prostate,fibroblast,684
+lung perichondrial fibroblast,fibroblast,411
+fibroblast of connective tissue of nonglandular part of prostate,fibroblast,323
+hepatic stellate cell,fibroblast,295
+fibrocyte,fibroblast,128
+kidney interstitial fibroblast,fibroblast,61
+mesothelial fibroblast,fibroblast,35
+neutrophil,granulocyte_mast,50064
+mast cell,granulocyte_mast,38826
+granulocyte,granulocyte_mast,881
+basophil,granulocyte_mast,715
+basophil mast progenitor cell,granulocyte_mast,35
+eosinophil,granulocyte_mast,1
+periportal region hepatocyte,hepatocyte_biliary,7233
+centrilobular region hepatocyte,hepatocyte_biliary,1760
+hepatocyte,hepatocyte_biliary,1482
+midzonal region hepatocyte,hepatocyte_biliary,1435
+intrahepatic cholangiocyte,hepatocyte_biliary,499
+H1 horizontal cell,horizontal_cell,60806
+retina horizontal cell,horizontal_cell,15222
+H2 horizontal cell,horizontal_cell,10847
+macrophage,macrophage,349731
+alveolar macrophage,macrophage,30691
+lung macrophage,macrophage,12999
+alternatively activated macrophage,macrophage,12725
+inflammatory macrophage,macrophage,9099
+lung interstitial macrophage,macrophage,2127
+tissue-resident macrophage,macrophage,700
+metallothionein-positive alveolar macrophage,macrophage,410
+colon macrophage,macrophage,345
+Kupffer cell,macrophage,272
+elicited macrophage,macrophage,63
+kidney interstitial alternatively activated macrophage,macrophage,8
+melanocyte,melanocyte,205008
+melanocyte of skin,melanocyte,8
+mesothelial cell,mesothelial,61210
+mesothelial cell of pleura,mesothelial,132
+microglial cell,microglia,71575
+central nervous system macrophage,microglia,1775
+meningeal macrophage,microglia,1
+CD14-positive monocyte,monocyte,233765
+classical monocyte,monocyte,158346
+"CD14-positive, CD16-negative classical monocyte",monocyte,124279
+monocyte,monocyte,87513
+"CD14-low, CD16-positive monocyte",monocyte,79044
+non-classical monocyte,monocyte,22723
+intermediate monocyte,monocyte,7601
+"CD14-positive, CD16-positive monocyte",monocyte,275
+Mueller cell,mueller_glia,225861
+neuron,neural_other,41562
+glial cell,neural_other,20989
+retinal progenitor cell,neural_other,11965
+forebrain radial glial cell,neural_other,7701
+neural progenitor cell,neural_other,3710
+cardiac neuron,neural_other,1463
+neural cell,neural_other,861
+central nervous system neuron,neural_other,830
+Cajal-Retzius cell,neural_other,341
+enteroglial cell,neural_other,147
+neuron associated cell,neural_other,53
+macroglial cell,neural_other,19
+radial glial cell,neural_other,12
+ependymal cell,neural_other,5
+glutamatergic neuron,neuron_excitatory,76638
+L2/3 intratelencephalic projecting glutamatergic neuron,neuron_excitatory,34801
+L2/3-6 intratelencephalic projecting glutamatergic neuron,neuron_excitatory,25646
+cerebellar granule cell,neuron_excitatory,12940
+L4 intratelencephalic projecting glutamatergic neuron,neuron_excitatory,8089
+L6b glutamatergic cortical neuron,neuron_excitatory,4318
+L5 intratelencephalic projecting glutamatergic neuron,neuron_excitatory,4100
+L6 intratelencephalic projecting glutamatergic neuron of the primary motor cortex,neuron_excitatory,3346
+L6 corticothalamic-projecting glutamatergic cortical neuron,neuron_excitatory,2625
+corticothalamic-projecting glutamatergic cortical neuron,neuron_excitatory,2143
+L6 intratelencephalic projecting glutamatergic neuron,neuron_excitatory,2008
+intratelencephalic-projecting glutamatergic cortical neuron,neuron_excitatory,1850
+near-projecting glutamatergic cortical neuron,neuron_excitatory,1409
+L4/5 intratelencephalic projecting glutamatergic neuron,neuron_excitatory,951
+L5/6 near-projecting glutamatergic neuron of the primary motor cortex,neuron_excitatory,829
+L5 extratelencephalic projecting glutamatergic cortical neuron,neuron_excitatory,433
+L3 intratelencephalic projecting glutamatergic neuron,neuron_excitatory,107
+inhibitory interneuron,neuron_inhibitory,17526
+GABAergic neuron,neuron_inhibitory,14612
+sst GABAergic cortical interneuron,neuron_inhibitory,13713
+pvalb GABAergic cortical interneuron,neuron_inhibitory,12330
+VIP GABAergic cortical interneuron,neuron_inhibitory,11990
+lamp5 GABAergic cortical interneuron,neuron_inhibitory,7195
+indirect pathway medium spiny neuron,neuron_inhibitory,2401
+direct pathway medium spiny neuron,neuron_inhibitory,2098
+sncg GABAergic cortical interneuron,neuron_inhibitory,1345
+chandelier pvalb GABAergic cortical interneuron,neuron_inhibitory,1221
+caudal ganglionic eminence derived cortical interneuron,neuron_inhibitory,998
+medial ganglionic eminence derived GABAergic cortical interneuron,neuron_inhibitory,612
+medium spiny neuron,neuron_inhibitory,214
+interneuron,neuron_inhibitory,89
+pigmented ciliary epithelial cell,ocular_anterior_segment,255235
+non-pigmented ciliary epithelial cell,ocular_anterior_segment,161583
+keratocyte,ocular_anterior_segment,112805
+trabecular meshwork cell,ocular_anterior_segment,103804
+conjunctival epithelial cell,ocular_anterior_segment,18880
+corneal endothelial cell,ocular_anterior_segment,11433
+corneal epithelial cell,ocular_anterior_segment,4138
+pigmented epithelial cell,ocular_anterior_segment,2709
+oligodendrocyte,oligodendrocyte_lineage,398225
+oligodendrocyte precursor cell,oligodendrocyte_lineage,47800
+committed oligodendrocyte precursor,oligodendrocyte_lineage,1013
+lymphocyte,other,57671
+myeloid cell,other,51042
+unknown,other,34100
+progenitor cell,other,25429
+stem cell,other,20869
+leukocyte,other,16360
+cord blood hematopoietic stem cell,other,9056
+professional antigen presenting cell,other,6295
+mononuclear phagocyte,other,5610
+spermatid,other,4009
+primordial germ cell,other,3948
+spermatocyte,other,3070
+hematopoietic precursor cell,other,2920
+myeloid lineage restricted progenitor cell,other,1951
+myeloid leukocyte,other,1882
+Sertoli cell,other,1192
+hematopoietic cell,other,672
+common myeloid progenitor,other,535
+hematopoietic stem cell,other,528
+cell,other,463
+malignant cell,other,344
+neoplastic cell,other,150
+mononuclear leukocyte,other,133
+peripheral blood mononuclear cell,other,131
+male germ cell,other,116
+common lymphoid progenitor,other,100
+inflammatory cell,other,91
+spermatogonium,other,64
+abnormal cell,other,50
+embryonic stem cell,other,34
+oocyte,other,18
+Leydig cell,other,10
+mesenchymal cell,other,8
+pericyte,pericyte_perivascular,149808
+perivascular cell,pericyte_perivascular,37412
+mural cell,pericyte_perivascular,20169
+adventitial cell,pericyte_perivascular,10311
+lung pericyte,pericyte_perivascular,2218
+vascular leptomeningeal cell,pericyte_perivascular,1111
+brain vascular cell,pericyte_perivascular,927
+renal interstitial pericyte,pericyte_perivascular,180
+mesangial cell,pericyte_perivascular,19
+retinal rod cell,photoreceptor,1106089
+retinal cone cell,photoreceptor,122941
+S cone cell,photoreceptor,7906
+eye photoreceptor cell,photoreceptor,837
+plasma cell,plasma_cell,64217
+IgA plasma cell,plasma_cell,43495
+plasmablast,plasma_cell,13070
+IgG plasma cell,plasma_cell,6281
+IgM plasma cell,plasma_cell,2438
+IgA plasmablast,plasma_cell,66
+IgG plasmablast,plasma_cell,20
+flat midget bipolar cell,retinal_bipolar,134256
+retinal bipolar neuron,retinal_bipolar,101963
+rod bipolar cell,retinal_bipolar,100098
+invaginating midget bipolar cell,retinal_bipolar,96899
+diffuse bipolar 2 cell,retinal_bipolar,64412
+diffuse bipolar 1 cell,retinal_bipolar,47702
+diffuse bipolar 4 cell,retinal_bipolar,44825
+diffuse bipolar 3b cell,retinal_bipolar,33501
+giant bipolar cell,retinal_bipolar,24209
+diffuse bipolar 3a cell,retinal_bipolar,19961
+diffuse bipolar 6 cell,retinal_bipolar,18077
+cone retinal bipolar cell,retinal_bipolar,9562
+ON-blue cone bipolar cell,retinal_bipolar,2892
+diffuse bipolar 4a cell,retinal_bipolar,1346
+diffuse bipolar 5 cell,retinal_bipolar,1307
+diffuse bipolar 4b cell,retinal_bipolar,209
+OFF midget ganglion cell,retinal_ganglion,195382
+ON midget ganglion cell,retinal_ganglion,148289
+retinal ganglion cell,retinal_ganglion,48383
+OFFx cell,retinal_ganglion,15458
+OFF parasol ganglion cell,retinal_ganglion,10099
+ON parasol ganglion cell,retinal_ganglion,6196
+Schwann cell,schwann_cell,163683
+non-myelinating Schwann cell,schwann_cell,22982
+myelinating Schwann cell,schwann_cell,8421
+ciliary muscle cell,smooth_muscle,219784
+smooth muscle cell,smooth_muscle,58975
+vascular associated smooth muscle cell,smooth_muscle,40000
+blood vessel smooth muscle cell,smooth_muscle,31103
+microcirculation associated smooth muscle cell,smooth_muscle,5096
+smooth muscle cell of the pulmonary artery,smooth_muscle,1789
+uterine smooth muscle cell,smooth_muscle,878
+myometrial cell,smooth_muscle,741
+tracheobronchial smooth muscle cell,smooth_muscle,422
+smooth muscle cell of prostate,smooth_muscle,212
+bronchial smooth muscle cell,smooth_muscle,86
+peritubular myoid cell,smooth_muscle,67
+bronchiolar smooth muscle cell,smooth_muscle,53
+cardiac muscle cell,striated_muscle,36706
+regular ventricular cardiac myocyte,striated_muscle,23145
+regular atrial cardiac myocyte,striated_muscle,8392
+ventricular cardiac muscle cell,striated_muscle,5602
+cell of skeletal muscle,striated_muscle,3851
+fast muscle cell,striated_muscle,1763
+skeletal muscle fiber,striated_muscle,1288
+skeletal muscle satellite stem cell,striated_muscle,1091
+slow muscle cell,striated_muscle,1078
+muscle cell,striated_muscle,867
+skeletal muscle satellite cell,striated_muscle,534
+tongue muscle cell,striated_muscle,127
+stromal cell,stromal_other,158489
+stromal cell of ovary,stromal_other,39288
+chondrocyte,stromal_other,8671
+decidual cell,stromal_other,4487
+granulosa cell,stromal_other,1746
+theca cell,stromal_other,1490
+stromal cell of pancreas,stromal_other,1232
+stromal cell of endometrium,stromal_other,351
+tendon cell,stromal_other,95
+interstitial cell of Cajal,stromal_other,71
+kidney interstitial cell,stromal_other,30
+follicular dendritic cell,stromal_other,14
+connective tissue cell,stromal_other,4
+reticular cell,stromal_other,3
