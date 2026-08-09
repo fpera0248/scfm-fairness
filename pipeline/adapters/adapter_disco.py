@@ -67,6 +67,8 @@ import pathlib
 import re
 import shutil
 import sys
+import time
+import urllib.error
 import urllib.request
 from collections import Counter
 
@@ -196,12 +198,63 @@ def fetch(url, dest, offline=False, retries=3):
     return None
 
 
+def fetch_resumable(url, dest, offline=False, max_rounds=800):
+    """Range-resume download for DISCO's flaky file endpoints.
+
+    The server silently closes large transfers after ~0.1-1 MB (verified
+    2026-08-09: 20 MB h5s arrive truncated at random offsets on every node
+    AND from outside the cluster) but it honors Range requests, so we
+    reconnect and append until it answers 416 (= past EOF, file complete).
+    The .part file survives failed runs, so progress is never lost.
+    """
+    dest = pathlib.Path(dest)
+    if dest.exists() and dest.stat().st_size > 0:
+        return dest
+    if offline:
+        return None
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    stall = 0
+    for round_ in range(max_rounds):
+        have = tmp.stat().st_size if tmp.exists() else 0
+        headers = {"User-Agent": "scfm-adapter/1.0"}
+        if have:
+            headers["Range"] = f"bytes={have}-"
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=300) as r:
+                if have and getattr(r, "status", 200) == 200:
+                    tmp.unlink()  # server ignored Range -> restart clean
+                    have = 0
+                with open(tmp, "ab" if have else "wb") as f:
+                    shutil.copyfileobj(r, f, length=1 << 20)
+        except urllib.error.HTTPError as e:
+            if e.code == 416 and have:  # requested range past EOF: complete
+                tmp.rename(dest)
+                return dest
+            log(f"resume round {round_ + 1} HTTP {e.code} for {url}")
+        except Exception:  # noqa: BLE001 - expected mid-stream drops; keep going
+            pass
+        new = tmp.stat().st_size if tmp.exists() else 0
+        stall = stall + 1 if new == have else 0
+        if stall >= 10:
+            log(f"resume: no progress after {stall} rounds "
+                f"({new:,} bytes) for {url}; keeping .part for rerun")
+            return None
+        if round_ % 50 == 49:
+            log(f"resume {dest.name}: {new:,} bytes after {round_ + 1} rounds")
+        time.sleep(0.5)
+    log(f"resume: round budget exhausted for {url}; keeping .part for rerun")
+    return None
+
+
 def fetch_h5(project, sample, cache, offline):
     """Fetch the raw 10x h5 and sanity-check the HDF5 magic. A corrupt cached
     file (mid-stream abort) is deleted and refetched once."""
     dest = cache / project / f"{sample}.h5"
     for _ in range(2):
-        p = fetch(RAW_H5_URL.format(project=project, sample=sample), dest, offline)
+        p = fetch_resumable(RAW_H5_URL.format(project=project, sample=sample),
+                            dest, offline)
         if p is None:
             return None
         with open(p, "rb") as f:
