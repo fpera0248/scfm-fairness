@@ -215,6 +215,7 @@ def fetch_resumable(url, dest, offline=False, max_rounds=800):
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".part")
     stall = 0
+    expected = None
     for round_ in range(max_rounds):
         have = tmp.stat().st_size if tmp.exists() else 0
         headers = {"User-Agent": "scfm-adapter/1.0"}
@@ -226,6 +227,9 @@ def fetch_resumable(url, dest, offline=False, max_rounds=800):
                 if have and getattr(r, "status", 200) == 200:
                     tmp.unlink()  # server ignored Range -> restart clean
                     have = 0
+                cr = r.headers.get("Content-Range", "")  # 'bytes a-b/total'
+                if "/" in cr and cr.rsplit("/", 1)[1].isdigit():
+                    expected = int(cr.rsplit("/", 1)[1])
                 with open(tmp, "ab" if have else "wb") as f:
                     shutil.copyfileobj(r, f, length=1 << 20)
         except urllib.error.HTTPError as e:
@@ -236,6 +240,9 @@ def fetch_resumable(url, dest, offline=False, max_rounds=800):
         except Exception:  # noqa: BLE001 - expected mid-stream drops; keep going
             pass
         new = tmp.stat().st_size if tmp.exists() else 0
+        if expected is not None and new >= expected:
+            tmp.rename(dest)
+            return dest
         stall = stall + 1 if new == have else 0
         if stall >= 10:
             log(f"resume: no progress after {stall} rounds "
@@ -267,13 +274,19 @@ def fetch_h5(project, sample, cache, offline):
     return None
 
 
+FETCH_FAILED = "__FETCH_FAILED__"
+
+
 def fetch_celltypes(sample, cache, offline):
-    """Fetch CELLiD annotations -> {barcode: (cell_type, score)} or None.
-    Handles the no-annotation case (HTTP error / non-TSV body) gracefully."""
+    """Fetch CELLiD annotations -> {barcode: (cell_type, score)}, None for a
+    verified no-annotation response (non-TSV body), or FETCH_FAILED when the
+    download could not be completed (caller must NOT write the sample --
+    the toolkit endpoint truncates at ~110 KB/connection like the rest of
+    the API, so an incomplete TSV would silently drop most labels)."""
     dest = cache / "celltype" / f"{sample}.tsv"
-    p = fetch(CELLTYPE_URL.format(sample=sample), dest, offline)
+    p = fetch_resumable(CELLTYPE_URL.format(sample=sample), dest, offline)
     if p is None:
-        return None
+        return FETCH_FAILED
     ann = {}
     with open(p, encoding="utf-8", errors="replace") as f:
         header = f.readline().rstrip("\n").split("\t")
@@ -524,6 +537,11 @@ def process_sample(item, args, gene_map, report, first_check):
     row["n_genes_out"] = len(uniq_ens)
 
     ann = fetch_celltypes(sample, args.cache, args.offline)
+    if ann == FETCH_FAILED:
+        row["status"] = "ERROR_celltype_fetch"
+        log(f"{sample}: cell-type TSV could not be completed -> not writing "
+            f"(rerun resumes)")
+        return
     barcodes = [str(b) for b in ad0.obs_names]
     if ann is None:
         cts, scores = [""] * len(barcodes), [np.nan] * len(barcodes)
