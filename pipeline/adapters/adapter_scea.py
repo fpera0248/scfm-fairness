@@ -47,6 +47,8 @@ import pathlib
 import re
 import shutil
 import sys
+import time
+import urllib.error
 import urllib.request
 from collections import Counter, defaultdict
 
@@ -130,8 +132,17 @@ def log(msg):
 # Fetch helpers
 
 
-def fetch(url, dest, offline=False):
-    """Download url -> dest (atomic, cached). Returns dest or None."""
+THROTTLE = 1.0  # polite inter-request delay: EBI intermittently refuses
+                # connections from clients that hammer it (observed 2026-08-09)
+
+
+def fetch(url, dest, offline=False, retries=8):
+    """Download url -> dest (atomic, cached). Returns dest or None.
+
+    Refused/reset connections back off exponentially (EBI rate-limits);
+    404/410 are permanent and give up immediately (feeds the sdrf.txt
+    fallback without burning the retry budget).
+    """
     dest = pathlib.Path(dest)
     if dest.exists() and dest.stat().st_size > 0:
         return dest
@@ -139,14 +150,20 @@ def fetch(url, dest, offline=False):
         return None
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".part")
-    for attempt in range(3):
+    for attempt in range(retries):
+        time.sleep(THROTTLE if attempt == 0 else min(90, 5 * 2 ** (attempt - 1)))
         try:
             with urllib.request.urlopen(url, timeout=120) as r, open(tmp, "wb") as f:
                 shutil.copyfileobj(r, f, length=1 << 20)
             tmp.rename(dest)
             return dest
+        except urllib.error.HTTPError as e:
+            if e.code in (404, 410):
+                log(f"fetch: {url} -> HTTP {e.code} (permanent), giving up")
+                break
+            log(f"fetch attempt {attempt + 1}/{retries} failed for {url}: {e}")
         except Exception as e:  # noqa: BLE001 - retry then surface
-            log(f"fetch attempt {attempt + 1}/3 failed for {url}: {e}")
+            log(f"fetch attempt {attempt + 1}/{retries} failed for {url}: {e}")
     if tmp.exists():
         tmp.unlink()
     return None
