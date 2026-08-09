@@ -1,0 +1,149 @@
+"""Per-group evaluation + honest model selection.
+
+Modes:
+  select : score EVERY epoch checkpoint on the run's donor-held validation set;
+           pick the one with the best WORST-CLASS accuracy (LaBonte rule).
+  final  : evaluate ONE checkpoint on a metadata-bearing dataset (eval_donor
+           holdout or an external set); per-group macro-F1 + worst-group +
+           donor-level stratified bootstrap CIs.
+"""
+import argparse
+import json
+import pathlib
+
+import numpy as np
+import pandas as pd
+import torch
+from datasets import load_from_disk
+from sklearn.metrics import accuracy_score, f1_score
+from torch.utils.data import DataLoader
+from transformers import BertForSequenceClassification
+
+try:
+    from geneformer import DataCollatorForCellClassification as Collator
+except ImportError as e:
+    raise SystemExit(f"geneformer package required: {e}")
+
+
+def predict(model_dir, ds, batch=64):
+    model = BertForSequenceClassification.from_pretrained(model_dir).cuda().eval()
+    coll = Collator()
+    keep = ds.remove_columns(
+        [c for c in ds.column_names if c not in ("input_ids", "length", "label")])
+    dl = DataLoader(keep, batch_size=batch, collate_fn=coll)
+    preds = []
+    with torch.no_grad():
+        for b in dl:
+            logits = model(input_ids=b["input_ids"].cuda(),
+                           attention_mask=b["attention_mask"].cuda()).logits
+            preds.append(logits.argmax(-1).cpu().numpy())
+    del model
+    torch.cuda.empty_cache()
+    return np.concatenate(preds)
+
+
+def pergroup_table(df):
+    rows = []
+    for g, sub in df.groupby("group"):
+        rows.append({"group": g, "n_cells": len(sub),
+                     "n_donors": sub.donor_key.nunique(),
+                     "accuracy": accuracy_score(sub.label, sub.pred),
+                     "macro_f1": f1_score(sub.label, sub.pred, average="macro")})
+    t = pd.DataFrame(rows).sort_values("macro_f1")
+    return t
+
+
+def worst_class_acc(df):
+    per_class = df.groupby("label").apply(lambda s: accuracy_score(s.label, s.pred))
+    return float(per_class.min())
+
+
+def donor_bootstrap(df, n_boot, seed=0):
+    rng = np.random.default_rng(seed)
+    out = {}
+    for g, sub in df.groupby("group"):
+        donors = sub.donor_key.unique()
+        by_donor = {d: s for d, s in sub.groupby("donor_key")}
+        stats = []
+        for _ in range(n_boot):
+            pick = rng.choice(donors, size=len(donors), replace=True)
+            boot = pd.concat([by_donor[d] for d in pick])
+            stats.append(f1_score(boot.label, boot.pred, average="macro"))
+        lo, hi = np.percentile(stats, [2.5, 97.5])
+        out[g] = (float(lo), float(hi))
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("mode", choices=["select", "final"])
+    ap.add_argument("--run-dir", required=True, help="finetune output dir")
+    ap.add_argument("--dataset", help="final mode: metadata-bearing dataset dir")
+    ap.add_argument("--checkpoint", help="final mode: explicit checkpoint path")
+    ap.add_argument("--bootstrap", type=int, default=1000)
+    ap.add_argument("--batch", type=int, default=64)
+    args = ap.parse_args()
+
+    run = pathlib.Path(args.run_dir)
+    cfg = json.loads((run / "run_config.json").read_text())
+
+    if args.mode == "select":
+        val = load_from_disk(str(run / "val_with_meta"))
+        meta = pd.DataFrame({"group": val["group"],
+                             "donor_key": val["donor_key"],
+                             "label": val["label"]})
+        results = []
+        for ck in sorted((run / "checkpoints").glob("checkpoint-*"),
+                         key=lambda p: int(p.name.split("-")[1])):
+            df = meta.copy()
+            df["pred"] = predict(str(ck), val, args.batch)
+            res = {"checkpoint": ck.name,
+                   "overall_macro_f1": f1_score(df.label, df.pred, average="macro"),
+                   "worst_class_acc": worst_class_acc(df),
+                   "worst_group_f1": pergroup_table(df).macro_f1.min()}
+            results.append(res)
+            print(res, flush=True)
+        tab = pd.DataFrame(results)
+        tab.to_csv(run / "selection_table.csv", index=False)
+        best = tab.loc[tab.worst_class_acc.idxmax()]
+        (run / "selected.json").write_text(json.dumps(
+            {"checkpoint": best.checkpoint,
+             "rule": "max worst_class_acc on donor-held validation"}, indent=2))
+        print(f"SELECTED {best.checkpoint} (worst-class acc "
+              f"{best.worst_class_acc:.4f})", flush=True)
+    else:
+        ck = args.checkpoint or (run / "checkpoints" /
+                                 json.loads((run / "selected.json").read_text())["checkpoint"])
+        ds = load_from_disk(args.dataset)
+        # align the eval set to the run's label space: map cell_type -> coarse ->
+        # label id with the run's own map; drop cells outside the trained space
+        labels = cfg["labels"]
+        label2id = {l: i for i, l in enumerate(labels)}
+        coarse = pd.read_csv(pathlib.Path(cfg["coarse_map"]))
+        c2l = dict(zip(coarse.cell_type, coarse.coarse_label))
+        ds = ds.map(lambda b: {"coarse": [c2l.get(c, "DROP") for c in b["cell_type"]]},
+                    batched=True)
+        n0 = len(ds)
+        ds = ds.filter(lambda b: [c in label2id for c in b["coarse"]], batched=True)
+        if len(ds) < n0:
+            print(f"note: dropped {n0 - len(ds):,}/{n0:,} eval cells outside "
+                  f"the trained label space", flush=True)
+        ds = ds.map(lambda b: {"label": [label2id[c] for c in b["coarse"]]},
+                    batched=True)
+        df = pd.DataFrame({"group": ds["group"], "donor_key": ds["donor_key"],
+                           "label": ds["label"]})
+        df["pred"] = predict(str(ck), ds, args.batch)
+        table = pergroup_table(df)
+        cis = donor_bootstrap(df, args.bootstrap)
+        table["ci_low"] = table.group.map(lambda g: cis[g][0])
+        table["ci_high"] = table.group.map(lambda g: cis[g][1])
+        outp = run / f"final_eval_{pathlib.Path(args.dataset).name}.csv"
+        table.to_csv(outp, index=False)
+        print(table.to_string(index=False), flush=True)
+        print(f"worst group: {table.iloc[0].group} "
+              f"(macro-F1 {table.iloc[0].macro_f1:.4f} "
+              f"CI [{table.iloc[0].ci_low:.4f},{table.iloc[0].ci_high:.4f}])", flush=True)
+
+
+if __name__ == "__main__":
+    main()
