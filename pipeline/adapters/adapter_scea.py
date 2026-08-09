@@ -172,25 +172,70 @@ def open_maybe_gz(path):
 # SDRF
 
 
+def parse_full_sdrf(path):
+    """Fallback for experiments without a condensed SDRF: parse the wide
+    <EXP>.sdrf.txt into the same {assay_id: {attr: value}} shape.
+
+    attr names = lowercased Characteristics[...] / Factor Value[...] names
+    (Characteristics wins when both exist, header order). Assay id preference
+    mirrors what condensed SDRFs use: Comment[ENA_RUN] > Assay Name >
+    Scan Name > Source Name. First value per assay wins (one row per file).
+    """
+    with open_maybe_gz(path) as f:
+        reader = csv.reader(f, delimiter="\t")
+        header = next(reader, None)
+        if not header:
+            return None
+        attr_idx = {}
+        for i, h in enumerate(header):
+            m = re.match(r"(?:characteristics|factor ?value)\s*\[(.+)\]\s*$",
+                         h.strip(), re.I)
+            if m:
+                attr_idx.setdefault(m.group(1).strip().lower(), i)
+        low = [h.strip().lower() for h in header]
+        id_cols = [low.index(c) for c in
+                   ("comment[ena_run]", "assay name", "scan name", "source name")
+                   if c in low]
+        if not id_cols or not attr_idx:
+            return None
+        assays = defaultdict(dict)
+        for row in reader:
+            aid = next((row[i].strip() for i in id_cols
+                        if i < len(row) and row[i].strip()), None)
+            if not aid:
+                continue
+            for name, i in attr_idx.items():
+                if i < len(row) and row[i].strip():
+                    assays[aid].setdefault(name, row[i].strip())
+    return dict(assays) or None
+
+
 def load_sdrf(acc, sdrf_dir, cache, offline=False):
     """Parse condensed SDRF -> {assay_id: {attr_name: value}} (last one wins).
 
     Prefers a pre-downloaded copy in --sdrf-dir, else fetches into cache.
+    Experiments without a condensed SDRF on the FTP (6 of the 18) fall back
+    to the wide <EXP>.sdrf.txt.
     """
     fname = f"{acc}.condensed-sdrf.tsv"
     path = pathlib.Path(sdrf_dir) / fname if sdrf_dir else None
     if path is None or not path.exists():
         path = fetch(f"{FTP_BASE}/{acc}/{fname}", cache / fname, offline)
-    if path is None:
+    if path is not None:
+        assays = defaultdict(dict)
+        with open_maybe_gz(path) as f:
+            for row in csv.reader(f, delimiter="\t"):
+                if len(row) < 6:
+                    continue
+                assay, attr_name, value = row[2], row[4].strip().lower(), row[5].strip()
+                assays[assay][attr_name] = value
+        return dict(assays)
+    full = fetch(f"{FTP_BASE}/{acc}/{acc}.sdrf.txt",
+                 cache / f"{acc}.sdrf.txt", offline)
+    if full is None:
         return None
-    assays = defaultdict(dict)
-    with open_maybe_gz(path) as f:
-        for row in csv.reader(f, delimiter="\t"):
-            if len(row) < 6:
-                continue
-            assay, attr_name, value = row[2], row[4].strip().lower(), row[5].strip()
-            assays[assay][attr_name] = value
-    return dict(assays)
+    log(f"{acc}: no condensed SDRF -> using full sdrf.txt fallback")
+    return parse_full_sdrf(full)
 
 
 def assay_annotations(acc, sdrf, report):
@@ -353,6 +398,17 @@ def process_experiment(acc, args, report):
     if args.dry_run:
         row["status"] = "dry_run"
         return row
+    if args.fetch_only:
+        # network stage for the login node: populate the cache, no parsing.
+        # The compute-node run then passes --offline and touches no network.
+        ok = all(fetch_first(acc, sufs, args.cache / acc, args.offline) is not None
+                 for sufs in ([".aggregated_counts.mtx.gz", ".aggregated_counts.mtx"],
+                              [".aggregated_counts.mtx_rows.gz", ".aggregated_counts.mtx_rows"],
+                              [".aggregated_counts.mtx_cols.gz", ".aggregated_counts.mtx_cols"]))
+        row["status"] = "fetched" if ok else "ERROR_fetch_incomplete"
+        if not ok:
+            log(f"{acc}: matrix files incomplete after fetch")
+        return row
 
     loaded = load_matrix(acc, args.cache / acc, args.offline)
     if loaded is None:
@@ -449,6 +505,10 @@ def main(argv=None):
                     help="max cells per h5ad part (default 100000)")
     ap.add_argument("--dry-run", action="store_true",
                     help="SDRF accounting only; no matrix downloads, no h5ads")
+    ap.add_argument("--fetch-only", action="store_true",
+                    help="download SDRFs + matrix files into --cache and stop "
+                         "(network stage; run on a node with EBI egress, then "
+                         "process on a compute node with --offline)")
     ap.add_argument("--keep-unknown-disease", action="store_true",
                     help="keep assays whose SDRF has no disease attribute "
                          "(default: drop them; healthy-only policy)")

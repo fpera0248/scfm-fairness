@@ -33,9 +33,10 @@ features.tsv.gz) is effectively REQUIRED for real runs. The adapter still
 verifies the namespace per sample (loudly on the first one) and uses
 Ensembl ids directly if a sample ever ships them.
 
-Sample metadata comes from the cached toolkit dump (tab-separated despite
-its .json name; scratchpad/disco_sample_metadata.json). If the file is
-missing and not --offline, it is re-fetched from {API}/toolkit/getSampleMetadata.
+Sample metadata comes from the versioned toolkit dump snapshot
+(disco_sample_metadata.tsv beside this script; 5,940 samples, 2026-08-09).
+If the file is missing and not --offline it is re-fetched live, but the live
+endpoint now returns a truncated ~511-row page -- prefer the snapshot.
 
 Outputs under --out:
   h5ad_parts/<project>/<sample>.h5ad   one part per sample (cells x genes,
@@ -76,9 +77,10 @@ RAW_H5_URL = API_BASE + "/download/getRawH5/{project}/{sample}"
 CELLTYPE_URL = API_BASE + "/toolkit/getCellTypeSample?sampleId={sample}"
 METADATA_URL = API_BASE + "/toolkit/getSampleMetadata"
 
-DEFAULT_METADATA = pathlib.Path(
-    "/private/tmp/claude-501/-Users-fperaltacastro-scfm-release/"
-    "5bd13e3c-42df-40d8-8644-bb7cdbe852fd/scratchpad/disco_sample_metadata.json")
+# Full toolkit dump snapshot (5,940 samples, fetched 2026-08-09), versioned
+# next to this script. The live getSampleMetadata endpoint now returns a
+# truncated ~511-row page, so the snapshot is authoritative for v1.
+DEFAULT_METADATA = pathlib.Path(__file__).resolve().parent / "disco_sample_metadata.tsv"
 
 PROVENANCE = "disco_race_freetext"
 CELLTYPE_PROVENANCE = "predicted:CELLiD"
