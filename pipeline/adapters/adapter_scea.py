@@ -19,6 +19,10 @@ https://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-
 
 Assay-id join: SMART-like experiments have matrix cols == SDRF assay ids;
 droplet experiments have cols like '<ASSAY>-<ACGTBARCODE>' -> prefix match.
+Some experiments embed a different id layer in the matrix cols than the
+condensed SDRF assay ids (e.g. ENA run accessions vs. HCA bundle ids); when
+<10% of cells match directly, the wide <EXP>.sdrf.txt (which carries all id
+layers per row) is used to build an alias map and rescue the join.
 
 Ethnicity attr names seen across the 18: 'ethnic group' (17), 'ancestry
 category' (E-ENAD-27); matched by regex. Donor attr: 'individual' (fallback:
@@ -352,6 +356,100 @@ def match_cells(cell_ids, ann):
     return out
 
 
+ALIAS_COMMENT_RE = re.compile(r"^comment\s*\[[^\]]*(?:run|sample|biosd)[^\]]*\]$", re.I)
+ALIAS_PLAIN_HEADERS = {"assay name", "scan name", "source name"}
+
+
+def build_assay_aliases(full_sdrf_path, condensed_assay_ids):
+    """Map every other id layer of the wide sdrf.txt onto the condensed
+    assay ids.
+
+    The canonical key column is whichever column's values best overlap
+    condensed_assay_ids. Every other id-bearing column (Comment[...] with
+    RUN/SAMPLE/BioSD in the name, or Assay Name / Scan Name / Source Name)
+    contributes alias -> canonical-assay-id entries (first wins on conflict,
+    empty values skipped). Returns (aliases, key_column_header) or ({}, None).
+    """
+    condensed = set(condensed_assay_ids)
+    with open_maybe_gz(full_sdrf_path) as f:
+        reader = csv.reader(f, delimiter="\t")
+        header = next(reader, None)
+        if not header:
+            return {}, None
+        rows = [r for r in reader if any(c.strip() for c in r)]
+    if not rows:
+        return {}, None
+    key_i, key_n = None, 0
+    for i in range(len(header)):
+        vals = {r[i].strip() for r in rows if i < len(r) and r[i].strip()}
+        n = len(vals & condensed)
+        if n > key_n:
+            key_i, key_n = i, n
+    if key_i is None:
+        return {}, None
+    alias_cols = []
+    for i, h in enumerate(header):
+        if i == key_i:
+            continue
+        hl = h.strip().lower()
+        if hl in ALIAS_PLAIN_HEADERS or ALIAS_COMMENT_RE.match(hl):
+            alias_cols.append(i)
+    aliases = {}
+    for r in rows:
+        aid = r[key_i].strip() if key_i < len(r) else ""
+        if not aid:
+            continue
+        for i in alias_cols:
+            v = r[i].strip() if i < len(r) else ""
+            if v:
+                aliases.setdefault(v, aid)
+    return aliases, header[key_i].strip()
+
+
+def match_cells_via_aliases(cell_ids, aliases, ann):
+    """match_cells, but col ids resolve through the wide-SDRF alias map:
+    exact alias, then the stem after a trailing '-<digits>', then the prefix
+    before a trailing 10x barcode. Resolved assay ids must exist in ann."""
+    out = []
+    for i, cid in enumerate(cell_ids):
+        aid = aliases.get(cid)
+        if aid is None:
+            stem = re.sub(r"-\d+$", "", cid)
+            aid = aliases.get(stem)
+            if aid is None and "-" in stem:
+                prefix, suffix = stem.rsplit("-", 1)
+                if BARCODE_RE.match(suffix):
+                    aid = aliases.get(prefix)
+        if aid is not None and aid in ann:
+            out.append((i, cid, aid))
+    return out
+
+
+def rescue_match(acc, cells, matched, sdrf, ann, args, exp_report):
+    """<10% of matrix cells matched the condensed assay ids directly: the
+    matrix cols embed another id layer (ENA run, BioSD sample, ...). Build
+    the wide-sdrf alias map and re-match; direct matches are kept as-is."""
+    full = fetch(f"{FTP_BASE}/{acc}/{acc}.sdrf.txt",
+                 args.cache / "sdrf" / f"{acc}.sdrf.txt", args.offline)
+    if full is None:
+        log(f"{acc}: alias-map rescue unavailable ({acc}.sdrf.txt not in "
+            f"cache and not fetched)")
+        return matched
+    aliases, key_col = build_assay_aliases(full, sdrf.keys())
+    if not aliases:
+        log(f"{acc}: alias-map rescue found no usable id columns in sdrf.txt")
+        return matched
+    by_col = {i: (i, cid, aid) for i, cid, aid in matched}
+    for i, cid, aid in match_cells_via_aliases(cells, aliases, ann):
+        by_col.setdefault(i, (i, cid, aid))
+    out = [by_col[i] for i in sorted(by_col)]
+    log(f"{acc}: alias-map rescue matched {len(out)}/{len(cells)}")
+    exp_report["rescue_used"] = True
+    exp_report["alias_key_column"] = key_col
+    exp_report["n_matched_after_rescue"] = len(out)
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Per-experiment pipeline
 
@@ -422,6 +520,12 @@ def process_experiment(acc, args, report):
                  for sufs in ([".aggregated_counts.mtx.gz", ".aggregated_counts.mtx"],
                               [".aggregated_counts.mtx_rows.gz", ".aggregated_counts.mtx_rows"],
                               [".aggregated_counts.mtx_cols.gz", ".aggregated_counts.mtx_cols"]))
+        # also prefetch the small wide sdrf.txt so the --offline compute run
+        # can use the alias-map rescue if the condensed-assay join fails
+        if fetch(f"{FTP_BASE}/{acc}/{acc}.sdrf.txt",
+                 args.cache / "sdrf" / f"{acc}.sdrf.txt", args.offline) is None:
+            log(f"{acc}: WARNING {acc}.sdrf.txt prefetch failed "
+                f"(alias-map rescue unavailable offline)")
         row["status"] = "fetched" if ok else "ERROR_fetch_incomplete"
         if not ok:
             log(f"{acc}: matrix files incomplete after fetch")
@@ -436,6 +540,8 @@ def process_experiment(acc, args, report):
     row["n_matrix_cells"] = len(cells)
 
     matched = match_cells(cells, ann)
+    if len(matched) < 0.10 * len(cells):
+        matched = rescue_match(acc, cells, matched, sdrf, ann, args, exp_report)
     row["n_matched"] = len(matched)
     if len(matched) < 0.5 * len(cells):
         log(f"{acc}: WARNING only {len(matched)}/{len(cells)} matrix cells "
