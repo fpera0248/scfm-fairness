@@ -3,6 +3,7 @@
 #SBATCH -J bibm_ft
 #SBATCH -p gpu
 #SBATCH --gres=gpu:1
+#SBATCH --constraint=l40s|a6000|a40
 #SBATCH -n 12
 #SBATCH --mem=192G
 #SBATCH -t 48:00:00
@@ -19,6 +20,6 @@ conda run --no-capture-output -n geneformer310 python finetune_geneformer.py \
   --tokenized /oscar/scratch/fperalta/bibm_corpus/tokenized_v2 \
   --coarse-map celltype_coarse_map.csv \
   --model-dir ~/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M \
-  --outdir /oscar/scratch/fperalta/bibm_ft/${ARM}_seed${SEED}
+  --outdir /oscar/scratch/fperalta/bibm_ft/${ARM}_seed${SEED} --batch 24 --grad-accum 2 --epochs 4 --max-cells 250000
 conda run --no-capture-output -n geneformer310 python eval_pergroup.py select \
   --run-dir /oscar/scratch/fperalta/bibm_ft/${ARM}_seed${SEED}

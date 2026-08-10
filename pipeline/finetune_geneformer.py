@@ -182,7 +182,7 @@ def main():
         logging_steps=200,
         bf16=torch.cuda.is_bf16_supported(),
         fp16=not torch.cuda.is_bf16_supported(),
-        gradient_checkpointing=True,
+        gradient_checkpointing=False,
         # reentrant checkpointing + frozen bottom layers silently yields
         # grad=None for ALL checkpointed layers (verified empirically) --
         # non-reentrant keeps layers 12-23 training
