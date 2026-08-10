@@ -161,6 +161,11 @@ def main():
     keep = ["input_ids", "length", "label"]
     train = train.remove_columns([c for c in train.column_names if c not in keep])
     val_t = val.remove_columns([c for c in val.column_names if c not in keep])
+    # shuffle/select leave an indices mapping: every batch then gathers
+    # random rows through indirection over the full arrow set on network
+    # scratch (~8.5s/step observed). Materialize contiguously.
+    train = train.flatten_indices(num_proc=8)
+    val_t = val_t.flatten_indices(num_proc=8)
     # persist val WITH metadata for post-hoc per-group selection
     val.save_to_disk(str(out / "val_with_meta"))
 
