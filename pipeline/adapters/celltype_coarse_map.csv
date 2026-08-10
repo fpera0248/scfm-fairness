@@ -538,3 +538,43 @@ kidney interstitial cell,stromal_other,30
 follicular dendritic cell,stromal_other,14
 connective tissue cell,stromal_other,4
 reticular cell,stromal_other,3
+CD14 monocyte,monocyte
+CD16 NK cell,NK_ILC
+Memory CD4 T cell,CD4_T
+CD16 monocyte,monocyte
+Naive CD8 T cell,CD8_T
+Gamma delta T cell,T_other
+Naive B cell,B_cell
+NK cell,NK_ILC
+MHCII high CD14 monocyte,monocyte
+GZMB CD8 T cell,CD8_T
+Memory B cell,B_cell
+GZMK CD8 T cell,CD8_T
+cDC2,dendritic_cell
+MAIT cell,T_other
+L2/3 excitatory neuron,neuron_excitatory
+Megakaryocyte,erythroid_megakaryocyte
+Pyramidal neuron,neuron_excitatory
+L5 excitatory neuron,neuron_excitatory
+CD4 T cell,CD4_T
+pDC,dendritic_cell
+CD56 NK cell,NK_ILC
+Mesothelial cell,mesothelial
+CD8 T cell,CD8_T
+Dendritic cell,dendritic_cell
+Cycling T/NK cell,T_other
+PVALB inhibitory neuron,neuron_inhibitory
+Protoplasmic astrocyte,astrocyte
+Red blood cell,erythroid_megakaryocyte
+Renal epithelial cell (distal tubule),epithelial_kidney_urogenital
+Monocyte,monocyte
+GZMK+IL7R+ CD8 T cell,CD8_T
+VIP inhibitory neuron,neuron_inhibitory
+INF-activated T cell,T_other
+Treg cell,CD4_T
+GZMK+IL7R- CD8 T cell,CD8_T
+LYVE1 macrophage,macrophage
+cDC1,dendritic_cell
+L4 excitatory neuron,neuron_excitatory
+PLCH1 L4/5 excitatory neuron,neuron_excitatory
+Naive CD4 T cell,CD4_T
