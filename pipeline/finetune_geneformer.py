@@ -5,8 +5,10 @@ per-epoch checkpoints (worst-class accuracy on the donor-held validation split,
 never the average) — the LaBonte rule, kept out of the training loop on purpose.
 """
 import argparse
+import collections
 import json
 import pathlib
+import pickle
 
 import numpy as np
 import pandas as pd
@@ -23,6 +25,18 @@ except ImportError as e:
 ARMS = {"balanced": "arm_balanced", "matched": "arm_matched",
         "proportional": "arm_proportional"}
 VAL_DONOR_FRAC = 0.10
+DEFAULT_TOKEN_DICT = str(pathlib.Path.home() / "data/fperalta/Geneformer/"
+                         "geneformer_repo/geneformer/token_dictionary_gc104M.pkl")
+
+
+def make_collator(token_dict_path):
+    """Newer geneformer requires token_dictionary=; older takes no kwarg."""
+    try:
+        with open(token_dict_path, "rb") as f:
+            td = pickle.load(f)
+        return Collator(token_dictionary=td)
+    except TypeError:
+        return Collator()
 
 
 def load_coarse_map(path):
@@ -45,6 +59,8 @@ def main():
                     help="bottom encoder layers to freeze (V2-316M has 24)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--max-cells", type=int, default=0, help="0 = full arm")
+    ap.add_argument("--token-dict", default=DEFAULT_TOKEN_DICT,
+                    help="Geneformer token dictionary pkl for the collator")
     args = ap.parse_args()
 
     out = pathlib.Path(args.outdir)
@@ -81,8 +97,46 @@ def main():
     if args.max_cells and len(train) > args.max_cells:
         train = train.shuffle(seed=args.seed).select(range(args.max_cells))
 
+    # class-coverage guard: a class with no TRAIN support can never be
+    # learned and pins worst-class metrics to 0 forever -> drop it loudly
+    # from both splits and remap ids
+    present = sorted(set(train["label"]))
+    if len(present) < len(labels):
+        missing = [labels[i] for i in range(len(labels)) if i not in set(present)]
+        print(f"dropping {len(missing)} classes with no train support: "
+              f"{missing}", flush=True)
+        keepset = set(present)
+        remap = {old: new for new, old in enumerate(present)}
+        labels = [labels[i] for i in present]
+        train = train.filter(lambda b: [l in keepset for l in b["label"]],
+                             batched=True, num_proc=8)
+        val = val.filter(lambda b: [l in keepset for l in b["label"]],
+                         batched=True, num_proc=8)
+        train = train.map(lambda b: {"label": [remap[l] for l in b["label"]]},
+                          batched=True, num_proc=8)
+        val = val.map(lambda b: {"label": [remap[l] for l in b["label"]]},
+                      batched=True, num_proc=8)
+
+    # the ILD exclusion happened AFTER arm sampling, so balanced/matched arms
+    # carry a small per-group skew -> re-equalize train counts to the floor
+    if args.arm in ("balanced", "matched"):
+        counts = collections.Counter(train["group"])
+        floor = min(counts.values())
+        if max(counts.values()) > floor:
+            print(f"re-equalizing groups to {floor:,}/group "
+                  f"(pre: {dict(sorted(counts.items()))})", flush=True)
+            gcol = train["group"]
+            rng2 = np.random.default_rng(args.seed + 1)
+            keep_idx = []
+            for g in counts:
+                gi = np.flatnonzero(np.asarray(gcol) == g)
+                keep_idx.extend(rng2.choice(gi, size=floor, replace=False).tolist())
+            train = train.select(sorted(keep_idx))
+
     (out / "run_config.json").write_text(json.dumps({
-        **vars(args), "n_train": len(train), "n_val": len(val),
+        **vars(args),
+        "coarse_map": str(pathlib.Path(args.coarse_map).resolve()),
+        "n_train": len(train), "n_val": len(val),
         "n_labels": len(labels), "labels": labels,
         "n_val_donors": len(val_donors)}, indent=2))
     print(f"arm={args.arm} train={len(train):,} val={len(val):,} "
@@ -124,13 +178,17 @@ def main():
         bf16=torch.cuda.is_bf16_supported(),
         fp16=not torch.cuda.is_bf16_supported(),
         gradient_checkpointing=True,
+        # reentrant checkpointing + frozen bottom layers silently yields
+        # grad=None for ALL checkpointed layers (verified empirically) --
+        # non-reentrant keeps layers 12-23 training
+        gradient_checkpointing_kwargs={"use_reentrant": False},
         dataloader_num_workers=4,
         seed=args.seed,
         report_to=[],
     )
     trainer = Trainer(model=model, args=targs, train_dataset=train,
                       eval_dataset=val_t, compute_metrics=metrics,
-                      data_collator=Collator())
+                      data_collator=make_collator(args.token_dict))
     trainer.train()
     print("TRAINING COMPLETE", flush=True)
 

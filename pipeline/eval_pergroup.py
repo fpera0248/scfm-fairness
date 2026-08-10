@@ -10,6 +10,7 @@ Modes:
 import argparse
 import json
 import pathlib
+import pickle
 
 import numpy as np
 import pandas as pd
@@ -25,9 +26,31 @@ except ImportError as e:
     raise SystemExit(f"geneformer package required: {e}")
 
 
-def predict(model_dir, ds, batch=64):
+DEFAULT_TOKEN_DICT = str(pathlib.Path.home() / "data/fperalta/Geneformer/"
+                         "geneformer_repo/geneformer/token_dictionary_gc104M.pkl")
+
+
+def make_collator(token_dict_path):
+    """Newer geneformer requires token_dictionary=; older takes no kwarg."""
+    try:
+        with open(token_dict_path, "rb") as f:
+            td = pickle.load(f)
+        return Collator(token_dictionary=td)
+    except TypeError:
+        return Collator()
+
+
+def common_label_set(df):
+    """Classes present in EVERY group's y_true -- the only set on which
+    per-group macro-F1 numbers are commensurable for ranking groups."""
+    sets = [set(sub.label.unique()) for _, sub in df.groupby("group")]
+    common = sorted(set.intersection(*sets)) if sets else []
+    return common or sorted(df.label.unique())
+
+
+def predict(model_dir, ds, batch=64, token_dict=None):
     model = BertForSequenceClassification.from_pretrained(model_dir).cuda().eval()
-    coll = Collator()
+    coll = make_collator(token_dict or DEFAULT_TOKEN_DICT)
     keep = ds.remove_columns(
         [c for c in ds.column_names if c not in ("input_ids", "length", "label")])
     dl = DataLoader(keep, batch_size=batch, collate_fn=coll)
@@ -43,13 +66,17 @@ def predict(model_dir, ds, batch=64):
 
 
 def pergroup_table(df):
+    common = common_label_set(df)
     rows = []
     for g, sub in df.groupby("group"):
         rows.append({"group": g, "n_cells": len(sub),
                      "n_donors": sub.donor_key.nunique(),
                      "accuracy": accuracy_score(sub.label, sub.pred),
-                     "macro_f1": f1_score(sub.label, sub.pred, average="macro")})
-    t = pd.DataFrame(rows).sort_values("macro_f1")
+                     "macro_f1": f1_score(sub.label, sub.pred, average="macro"),
+                     # fixed common-class set: the number groups are RANKED on
+                     "macro_f1_common": f1_score(sub.label, sub.pred,
+                                                 labels=common, average="macro")})
+    t = pd.DataFrame(rows).sort_values("macro_f1_common")
     return t
 
 
@@ -60,6 +87,7 @@ def worst_class_acc(df):
 
 def donor_bootstrap(df, n_boot, seed=0):
     rng = np.random.default_rng(seed)
+    common = common_label_set(df)
     out = {}
     for g, sub in df.groupby("group"):
         donors = sub.donor_key.unique()
@@ -68,7 +96,8 @@ def donor_bootstrap(df, n_boot, seed=0):
         for _ in range(n_boot):
             pick = rng.choice(donors, size=len(donors), replace=True)
             boot = pd.concat([by_donor[d] for d in pick])
-            stats.append(f1_score(boot.label, boot.pred, average="macro"))
+            stats.append(f1_score(boot.label, boot.pred,
+                                  labels=common, average="macro"))
         lo, hi = np.percentile(stats, [2.5, 97.5])
         out[g] = (float(lo), float(hi))
     return out
@@ -95,26 +124,47 @@ def main():
         results = []
         for ck in sorted((run / "checkpoints").glob("checkpoint-*"),
                          key=lambda p: int(p.name.split("-")[1])):
+            if not (ck / "config.json").exists():
+                print(f"skipping incomplete checkpoint dir {ck.name}", flush=True)
+                continue
             df = meta.copy()
-            df["pred"] = predict(str(ck), val, args.batch)
+            df["pred"] = predict(str(ck), val, args.batch,
+                                 token_dict=cfg.get("token_dict"))
             res = {"checkpoint": ck.name,
                    "overall_macro_f1": f1_score(df.label, df.pred, average="macro"),
                    "worst_class_acc": worst_class_acc(df),
-                   "worst_group_f1": pergroup_table(df).macro_f1.min()}
+                   "worst_group_f1": pergroup_table(df).macro_f1_common.min()}
             results.append(res)
             print(res, flush=True)
+        if not results:
+            raise SystemExit("no complete checkpoints found under checkpoints/")
         tab = pd.DataFrame(results)
         tab.to_csv(run / "selection_table.csv", index=False)
-        best = tab.loc[tab.worst_class_acc.idxmax()]
+        # worst-class acc first; overall macro-F1 breaks ties (all-zero
+        # worst-class ties are near-certain with rare classes)
+        best = tab.sort_values(["worst_class_acc", "overall_macro_f1"]).iloc[-1]
         (run / "selected.json").write_text(json.dumps(
             {"checkpoint": best.checkpoint,
-             "rule": "max worst_class_acc on donor-held validation"}, indent=2))
+             "rule": "max worst_class_acc on donor-held validation; "
+                     "ties broken by overall macro-F1"}, indent=2))
         print(f"SELECTED {best.checkpoint} (worst-class acc "
               f"{best.worst_class_acc:.4f})", flush=True)
     else:
         ck = args.checkpoint or (run / "checkpoints" /
                                  json.loads((run / "selected.json").read_text())["checkpoint"])
         ds = load_from_disk(args.dataset)
+        # the full tokenized corpus carries train+holdout together: keep ONLY
+        # the eval_donor holdout, or every number is leakage-inflated.
+        # External sets (no 'split' column) pass through untouched.
+        if "split" in ds.column_names:
+            n0 = len(ds)
+            ds = ds.filter(lambda b: [s == "eval_donor" for s in b["split"]],
+                           batched=True)
+            print(f"holdout filter: kept {len(ds):,}/{n0:,} eval_donor cells",
+                  flush=True)
+            if len(ds) == 0:
+                raise SystemExit("dataset has a 'split' column but no "
+                                 "eval_donor cells -- wrong dataset?")
         # align the eval set to the run's label space: map cell_type -> coarse ->
         # label id with the run's own map; drop cells outside the trained space
         labels = cfg["labels"]
@@ -132,7 +182,8 @@ def main():
                     batched=True)
         df = pd.DataFrame({"group": ds["group"], "donor_key": ds["donor_key"],
                            "label": ds["label"]})
-        df["pred"] = predict(str(ck), ds, args.batch)
+        df["pred"] = predict(str(ck), ds, args.batch,
+                             token_dict=cfg.get("token_dict"))
         table = pergroup_table(df)
         cis = donor_bootstrap(df, args.bootstrap)
         table["ci_low"] = table.group.map(lambda g: cis[g][0])
@@ -141,7 +192,7 @@ def main():
         table.to_csv(outp, index=False)
         print(table.to_string(index=False), flush=True)
         print(f"worst group: {table.iloc[0].group} "
-              f"(macro-F1 {table.iloc[0].macro_f1:.4f} "
+              f"(common-class macro-F1 {table.iloc[0].macro_f1_common:.4f} "
               f"CI [{table.iloc[0].ci_low:.4f},{table.iloc[0].ci_high:.4f}])", flush=True)
 
 
