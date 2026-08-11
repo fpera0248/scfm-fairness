@@ -166,6 +166,10 @@ def main():
     # scratch (~8.5s/step observed). Materialize contiguously.
     train = train.flatten_indices(num_proc=8)
     val_t = val_t.flatten_indices(num_proc=8)
+    # in-loop Trainer eval is only a progress curve; selection happens post-hoc
+    # on val_with_meta -- cap the per-epoch eval cost
+    if len(val_t) > 30000:
+        val_t = val_t.shuffle(seed=0).select(range(30000)).flatten_indices()
     # persist val WITH metadata for post-hoc per-group selection
     val.save_to_disk(str(out / "val_with_meta"))
 
