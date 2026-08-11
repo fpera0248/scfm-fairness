@@ -111,6 +111,10 @@ def main():
     ap.add_argument("--checkpoint", help="final mode: explicit checkpoint path")
     ap.add_argument("--bootstrap", type=int, default=1000)
     ap.add_argument("--batch", type=int, default=64)
+    ap.add_argument("--max-val-cells", type=int, default=60000,
+                    help="select mode: subsample the validation set to this "
+                         "many cells for checkpoint scoring (0 = all; full-set "
+                         "scoring costs hours per checkpoint on big corpora)")
     args = ap.parse_args()
 
     run = pathlib.Path(args.run_dir)
@@ -118,6 +122,10 @@ def main():
 
     if args.mode == "select":
         val = load_from_disk(str(run / "val_with_meta"))
+        if args.max_val_cells and len(val) > args.max_val_cells:
+            val = val.shuffle(seed=0).select(range(args.max_val_cells))
+            val = val.flatten_indices()
+            print(f"selection val subsampled to {len(val):,} cells", flush=True)
         meta = pd.DataFrame({"group": val["group"],
                              "donor_key": val["donor_key"],
                              "label": val["label"]})
