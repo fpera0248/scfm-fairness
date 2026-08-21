@@ -96,12 +96,27 @@ def main():
     args = ap.parse_args()
     c = args.cohort
 
+    if (S / f"probe_{c}.csv").exists():
+        print(f"{c}: probe_{c}.csv already exists, skipping", flush=True)
+        return
+
     ds = load_from_disk(str(S / f"{c}_eval.dataset"))
     if len(ds) > args.max_cells:
         ds = ds.shuffle(seed=0).select(range(args.max_cells)).flatten_indices()
     ds = ds.map(lambda b: {"label": [0] * len(b["cell_type"])}, batched=True)
     ctypes = np.asarray(ds["cell_type"])
     groups = np.asarray(ds["group"])
+
+    # stratified split needs >=2 cells per class; drop singleton cell types
+    vc = pd.Series(ctypes).value_counts()
+    keep_types = set(vc[vc >= 2].index)
+    if len(keep_types) < len(vc):
+        mask = np.array([t in keep_types for t in ctypes])
+        print(f"dropping {int((~mask).sum())} cells in "
+              f"{len(vc) - len(keep_types)} singleton cell types", flush=True)
+        ds = ds.select(np.flatnonzero(mask).tolist())
+        ctypes, groups = ctypes[mask], groups[mask]
+
     print(f"{c}: {len(ds):,} cells, {len(set(ctypes))} cell types, "
           f"{len(set(groups))} groups", flush=True)
 
