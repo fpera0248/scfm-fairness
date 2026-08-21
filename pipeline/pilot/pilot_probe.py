@@ -53,9 +53,10 @@ def make_collator(path):
         return Collator()
 
 
-def embed(model_dir, ds, batch=48, token_dict=DEFAULT_TOKEN_DICT):
-    model = BertForSequenceClassification.from_pretrained(
-        model_dir, output_hidden_states=True).cuda().eval()
+def embed(model_dir, ds, batch=16, token_dict=DEFAULT_TOKEN_DICT):
+    # take ONLY the final encoder layer via model.bert(...).last_hidden_state --
+    # output_hidden_states=True materializes all 25 layers and OOMs a shared GPU
+    model = BertForSequenceClassification.from_pretrained(model_dir).cuda().eval()
     coll = make_collator(token_dict)
     keep = ds.remove_columns(
         [c for c in ds.column_names if c not in ("input_ids", "length", "label")])
@@ -64,7 +65,7 @@ def embed(model_dir, ds, batch=48, token_dict=DEFAULT_TOKEN_DICT):
     with torch.no_grad():
         for b in dl:
             ids, mask = b["input_ids"].cuda(), b["attention_mask"].cuda()
-            h = model(input_ids=ids, attention_mask=mask).hidden_states[-1]
+            h = model.bert(input_ids=ids, attention_mask=mask).last_hidden_state
             m = mask.unsqueeze(-1).float()
             out.append(((h * m).sum(1) / m.sum(1)).float().cpu().numpy())
     del model
@@ -89,7 +90,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cohort", required=True, choices=["ild", "crc", "aida"])
     ap.add_argument("--model-dir", required=True, help="pretrained backbone dir")
-    ap.add_argument("--batch", type=int, default=48)
+    ap.add_argument("--batch", type=int, default=16)
     ap.add_argument("--max-cells", type=int, default=9000)
     ap.add_argument("--test-frac", type=float, default=0.30)
     args = ap.parse_args()
