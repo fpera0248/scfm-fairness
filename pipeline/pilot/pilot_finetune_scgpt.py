@@ -201,12 +201,20 @@ def main():
     src_file = (pathlib.Path(args.init_from) / "best_model.pt"
                 if args.init_from else mdir / "best_model.pt")
     pre_sd = torch.load(src_file, map_location="cpu")
+    # the whole-human checkpoint was trained with flash-attn (fused Wqkv);
+    # vanilla nn.MultiheadAttention names them in_proj_* -- remap or the
+    # partial loader silently drops EVERY attention projection
+    pre_sd = {k.replace("self_attn.Wqkv.weight", "self_attn.in_proj_weight")
+               .replace("self_attn.Wqkv.bias", "self_attn.in_proj_bias"): v
+              for k, v in pre_sd.items()}
     msd = model.state_dict()
     loadable = {k: v for k, v in pre_sd.items()
                 if k in msd and v.shape == msd[k].shape}
     msd.update(loadable)
     model.load_state_dict(msd)
-    print(f"loaded {len(loadable)}/{len(msd)} tensors from {src_file}", flush=True)
+    unl = [k for k in msd if k not in loadable and "cls_decoder" not in k]
+    print(f"loaded {len(loadable)}/{len(msd)} tensors from {src_file}; "
+          f"non-head unloaded: {unl[:10]}", flush=True)
     if args.freeze_layers > 0:
         for p in model.encoder.parameters():
             p.requires_grad = False
