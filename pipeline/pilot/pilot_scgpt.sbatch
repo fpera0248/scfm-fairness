@@ -10,11 +10,15 @@
 # Geneformer arms. Same data, labels, and metrics.
 set -euo pipefail
 module load miniforge3/25.3.0-3 2>/dev/null || true
+source "$(dirname $(which conda))/../etc/profile.d/conda.sh"
+conda activate scgpt310
+export PYTHONNOUSERSITE=1
+export LD_PRELOAD=/users/fperalta/.conda/envs/scgpt310/lib/libstdc++.so.6
 cd /oscar/home/fperalta/data/fperalta
 PIPE=$HOME/data/fperalta/scfm-fairness/pipeline/pilot
 C=${COHORT:-aida}
 R=/oscar/scratch/fperalta/pilot_repair/runs_scgpt/$C
-RUNPY="conda run --no-capture-output -n scgpt310 python"
+RUNPY="python"
 
 arm() { # name cond [init]
   local o=$R/$1
