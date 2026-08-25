@@ -31,4 +31,6 @@ echo "=== scGPT cohort $C ==="
 arm P prop
 arm B ba
 arm P2BA ba "$R/P"
+arm P2BU bu "$R/P"
+arm P2DS ds "$R/P"
 echo "SCGPT COHORT $C COMPLETE"
