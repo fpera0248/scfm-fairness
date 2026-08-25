@@ -2,6 +2,7 @@
 #SBATCH -J pilot_scgpt
 #SBATCH -p gpu
 #SBATCH --gres=gpu:1
+#SBATCH --constraint=a40|a6000
 #SBATCH -n 4
 #SBATCH --mem=64G
 #SBATCH -t 48:00:00
