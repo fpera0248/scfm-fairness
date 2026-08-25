@@ -30,7 +30,11 @@ from scgpt.preprocess import Preprocessor
 S = pathlib.Path("/oscar/scratch/fperalta/pilot_repair")
 ROOT = pathlib.Path.home() / "data/fperalta/scfoundation"
 GF_ASSETS = pathlib.Path.home() / "data/fperalta/Geneformer/geneformer_repo/geneformer"
-PAD_TOKEN, PAD_VALUE, MAX_LEN = "<pad>", -2, 3001
+PAD_TOKEN, PAD_VALUE = "<pad>", -2
+# scGPT's own cell-type recipe (and the ASI workflow) uses ~1200 HVGs, NOT the
+# full gene panel: attention memory scales with seq_len^2, so 3001 genes needs
+# ~6x more VRAM and only fits on 48GB cards. 1200 HVGs runs on any GPU.
+DEFAULT_HVG = 1200
 
 ILD = ROOT / "augmentedv4/ethnicity_scfoundation_workflow"
 CRC = ROOT / "augmented_CRC/ethnicity_scfoundation_workflow"
@@ -85,22 +89,29 @@ def load_pilot(path, tag, vocab, e2s):
     return a
 
 
-def preprocess(a):
+def preprocess(a, n_hvg=None, gene_subset=None):
+    """gene_subset: use this exact gene list (so every arm shares one gene space).
+    n_hvg: else select this many HVGs."""
+    if gene_subset is not None:
+        keep = [g for g in gene_subset if g in a.var_names]
+        a = a[:, keep].copy()
     pre = Preprocessor(use_key="X", filter_gene_by_counts=False,
                        filter_cell_by_counts=False, normalize_total=1e4,
                        result_normed_key="X_normed", log1p=True,
-                       result_log1p_key="X_log1p", subset_hvg=False,
+                       result_log1p_key="X_log1p",
+                       subset_hvg=(n_hvg if gene_subset is None else False),
+                       hvg_flavor="seurat_v3",
                        binning=51, result_binned_key="X_binned")
     pre(a, batch_key=None)
     return a
 
 
-def tokenize(a, vocab):
+def tokenize(a, vocab, max_len):
     genes = a.var_names.tolist()
     gene_ids = np.array(vocab(genes), dtype=int)
     counts = a.layers["X_binned"]
     counts = counts.A if hasattr(counts, "A") else np.asarray(counts)
-    return tokenize_and_pad_batch(counts, gene_ids, max_len=MAX_LEN, vocab=vocab,
+    return tokenize_and_pad_batch(counts, gene_ids, max_len=max_len, vocab=vocab,
                                   pad_token=PAD_TOKEN, pad_value=PAD_VALUE,
                                   append_cls=True, include_zero_gene=False)
 
@@ -140,6 +151,8 @@ def main():
                     help="bottom encoder layers to freeze (whole-human has 12)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--val-donor-frac", type=float, default=0.15)
+    ap.add_argument("--n-hvg", type=int, default=DEFAULT_HVG,
+                    help="highly variable genes = sequence length (scGPT recipe)")
     args = ap.parse_args()
 
     out = pathlib.Path(args.outdir)
@@ -159,8 +172,20 @@ def main():
     labels = json.loads((S / f"{c}_labels.json").read_text())
     label2id = {l: i for i, l in enumerate(labels)}
 
-    train_a = preprocess(load_pilot(FILES[c][args.cond], args.cond, vocab, e2s))
-    eval_a = preprocess(load_pilot(FILES[c]["eval"], "eval", vocab, e2s))
+    # ONE gene space for every arm of a cohort: HVGs are always selected from the
+    # imbalanced (prop) file, so P / B / P2BA / P2BU / P2DS stay comparable and
+    # no eval data influences gene selection.
+    hvg_src = preprocess(load_pilot(FILES[c]["prop"], "prop", vocab, e2s),
+                         n_hvg=args.n_hvg)
+    genes = hvg_src.var_names.tolist()
+    del hvg_src
+    max_len = len(genes) + 1
+    print(f"gene space: {len(genes)} HVGs (seq len {max_len})", flush=True)
+
+    train_a = preprocess(load_pilot(FILES[c][args.cond], args.cond, vocab, e2s),
+                         gene_subset=genes)
+    eval_a = preprocess(load_pilot(FILES[c]["eval"], "eval", vocab, e2s),
+                        gene_subset=genes)
     for a, nm in [(train_a, "train"), (eval_a, "eval")]:
         keep = a.obs["cell_type"].astype(str).isin(label2id).to_numpy()
         print(f"{nm}: keep {keep.sum():,}/{a.n_obs:,} in label space", flush=True)
@@ -181,8 +206,8 @@ def main():
         is_trn = ~is_val
     print(f"train={is_trn.sum():,} val={is_val.sum():,}", flush=True)
 
-    tok_all = tokenize(train_a, vocab)
-    tok_eval = tokenize(eval_a, vocab)
+    tok_all = tokenize(train_a, vocab, max_len)
+    tok_eval = tokenize(eval_a, vocab, max_len)
     g_t, v_t = tok_all["genes"][is_trn], tok_all["values"][is_trn]
     y_t = torch.tensor(y_all[is_trn], dtype=torch.long)
     g_v, v_v = tok_all["genes"][is_val], tok_all["values"][is_val]

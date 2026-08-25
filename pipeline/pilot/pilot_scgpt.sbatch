@@ -2,7 +2,6 @@
 #SBATCH -J pilot_scgpt
 #SBATCH -p gpu
 #SBATCH --gres=gpu:1
-#SBATCH --constraint=a40|a6000
 #SBATCH -n 4
 #SBATCH --mem=64G
 #SBATCH -t 48:00:00
@@ -25,7 +24,7 @@ arm() { # name cond [init]
   local o=$R/$1
   if [ -f "$o/final_eval_pergroup.csv" ]; then echo "skip $1 (done)"; return; fi
   $RUNPY "$PIPE/pilot_finetune_scgpt.py" --cohort $C --cond $2 \
-    ${3:+--init-from "$3"} --outdir "$o" --epochs 16 --batch 16 --freeze-layers 0 --seed 0
+    ${3:+--init-from "$3"} --outdir "$o" --epochs 16 --batch 32 --freeze-layers 0 --seed 0
 }
 
 echo "=== scGPT cohort $C ==="
