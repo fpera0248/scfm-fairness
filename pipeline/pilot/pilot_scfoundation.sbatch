@@ -14,7 +14,12 @@ PIPE=$HOME/data/fperalta/scfm-fairness/pipeline/pilot
 # weights come from HF Hub via modelgenerator; keep the cache OFF the home quota
 export HF_HOME=/oscar/scratch/fperalta/hf_cache
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-RUNPY="conda run --no-capture-output -n scfoundation_gpu python"
+source "$(dirname $(which conda))/../etc/profile.d/conda.sh"
+conda activate scfoundation_gpu
+export PYTHONNOUSERSITE=1
+# same CXXABI fix the ASI scGPT slurm scripts use: preload the ENV's libstdc++
+export LD_PRELOAD=/users/fperalta/.conda/envs/scfoundation_gpu/lib/libstdc++.so.6
+RUNPY="python"
 for C in aida crc ild; do
   echo "=== scFoundation $C ==="
   $RUNPY "$PIPE/pilot_scfoundation.py" --cohort $C || echo "  $C FAILED, continuing"
