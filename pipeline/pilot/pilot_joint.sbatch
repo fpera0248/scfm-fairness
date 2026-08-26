@@ -16,6 +16,7 @@ PIPE=$HOME/data/fperalta/scfm-fairness/pipeline/pilot
 EVALPY=$HOME/data/fperalta/scfm-fairness/pipeline/eval_pergroup.py
 S=/oscar/scratch/fperalta/pilot_repair
 MODEL=${GF_MODEL_DIR:-$HOME/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M}
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 RUNPY="conda run --no-capture-output -n geneformer310 python"
 
 for C in crc aida ild; do
@@ -29,7 +30,7 @@ for C in crc aida ild; do
   $RUNPY "$PIPE/pilot_finetune.py" --tokenized "$S/${C}_bj.dataset" \
     --labels-json "$S/${C}_labels.json" --coarse-map "$S/${C}_identity_map.csv" \
     --model-dir "$MODEL" --init-from "$INIT" --outdir "$O" \
-    --epochs 8 --lr 1e-5 --batch 24 --grad-accum 2 --seed 0
+    --epochs 8 --lr 1e-5 --batch 12 --grad-accum 4 --seed 0
   touch "$O/DONE"
 
   $RUNPY "$EVALPY" select --run-dir "$O" --batch 64
