@@ -37,12 +37,21 @@ import scipy.sparse as sp
 import torch
 from sklearn.metrics import f1_score
 
-from modelgenerator.cell.utils import align_genes, load_backbone_gene_list
+import pickle
 
 S = pathlib.Path("/oscar/scratch/fperalta/pilot_repair")
 ROOT = pathlib.Path.home() / "data/fperalta/scfoundation"
 EMB_DIM = 768
-BACKBONE = "modelgenerator.backbones.scfoundation"
+
+# modelgenerator's own load_backbone_gene_list() routes symbol->Ensembl through
+# bionty, which fetches an ontology from S3 and dies in this env (no s3fs, and
+# compute nodes have no outbound network). The panel TSV and Geneformer's
+# name->id pickle are both already on disk, so map locally and stay offline.
+_MG = pathlib.Path(
+    "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/"
+    "modelgenerator")
+PANEL_TSV = _MG / "cell/gene_lists/OS_scRNA_gene_index.19264.tsv"
+NAME_ID_PKL = _MG / "huggingface_models/geneformer/gene_name_id_dict_gc95M.pkl"
 
 ILD = ROOT / "augmentedv4/ethnicity_scfoundation_workflow"
 CRC = ROOT / "augmented_CRC/ethnicity_scfoundation_workflow"
@@ -66,6 +75,40 @@ FILES = {
 }
 
 
+def load_panel():
+    """scFoundation's 19,264 gene symbols, in the order the model indexes them."""
+    panel = pd.read_csv(PANEL_TSV, sep="\t")["gene_name"].astype(str).to_numpy()
+    name2id = pickle.load(open(NAME_ID_PKL, "rb"))
+    id2name = {v: k for k, v in name2id.items()}
+    return panel, id2name
+
+
+def build_projector(var_names, panel, id2name):
+    """Sparse (n_our_genes x 19264) matrix placing each gene in its model column.
+
+    Genes we can't map, and panel genes we don't carry, simply stay zero -- the
+    backbone masks on `x > 0`, so absent genes cost nothing but coverage.
+    """
+    sym = np.array([id2name.get(str(g), "") for g in var_names])
+    pos = {s: i for i, s in enumerate(panel)}
+    tgt = np.array([pos.get(s, -1) for s in sym])
+    keep = tgt >= 0
+    # one source gene per model column, first occurrence wins (deterministic)
+    seen, rows, cols = set(), [], []
+    for src_i in np.flatnonzero(keep):
+        t = tgt[src_i]
+        if t in seen:
+            continue
+        seen.add(t)
+        rows.append(src_i)
+        cols.append(t)
+    P = sp.csr_matrix((np.ones(len(rows), dtype=np.float32), (rows, cols)),
+                      shape=(len(var_names), len(panel)))
+    print(f"  gene alignment: {len(rows):,}/{len(panel):,} panel genes covered "
+          f"({100 * len(rows) / len(panel):.1f}%)", flush=True)
+    return P
+
+
 def get_backbone(task):
     for attr in ("backbone", "model"):
         b = getattr(task, attr, None)
@@ -74,7 +117,7 @@ def get_backbone(task):
     raise SystemExit("could not locate scFoundation backbone on the Embed task")
 
 
-def embed_file(backbone, device, path, tag, cohort, ref_genes):
+def embed_file(backbone, device, path, tag, cohort, panel, id2name):
     cache = S / f"scfa_{cohort}_{tag}.npz"   # scfa = scFoundation ALIGNED
     a = ad.read_h5ad(path)
     src = (a.obs["source"].astype(str).to_numpy()
@@ -90,9 +133,9 @@ def embed_file(backbone, device, path, tag, cohort, ref_genes):
         print(f"  {tag}: cached aligned embeddings {E.shape}", flush=True)
         return E, grp, ct, src
 
-    # var_names are already Ensembl IDs, so ensembl_field=None uses them directly
-    a = align_genes(a, ref_genes, ensembl_field=None)
+    P = build_projector(a.var_names.to_numpy(), panel, id2name)
     X = sp.csr_matrix(a.X) if not sp.issparse(a.X) else a.X.tocsr()
+    X = (X.astype(np.float32) @ P).tocsr()   # -> (n_cells, 19264) in model order
     n = a.n_obs
     free = torch.cuda.mem_get_info()[0] / 1024**3 if device == "cuda" else 0
     bs = 32 if free > 20 else 16 if free > 10 else 8
@@ -176,15 +219,16 @@ def main():
     from modelgenerator.tasks import Embed
     task = Embed.from_config({"model.backbone": "scfoundation"}).to(device).eval()
     backbone = get_backbone(task)
-    ref_genes = load_backbone_gene_list(BACKBONE)
-    print(f"scFoundation loaded; reference panel = {len(ref_genes)} genes", flush=True)
+    panel, id2name = load_panel()
+    print(f"scFoundation loaded; reference panel = {len(panel)} genes", flush=True)
 
     labels = json.loads((S / f"{c}_labels.json").read_text())
     l2i = {l: i for i, l in enumerate(labels)}
 
     data = {}
     for tag in ["prop", "ba", "bu", "ds", "eval"]:
-        E, grp, ct, src = embed_file(backbone, device, FILES[c][tag], tag, c, ref_genes)
+        E, grp, ct, src = embed_file(backbone, device, FILES[c][tag], tag, c,
+                                     panel, id2name)
         collapse_report(E, tag)
         keep = np.array([t in l2i for t in ct])
         data[tag] = {"E": E[keep], "g": grp[keep], "ct": ct[keep],
