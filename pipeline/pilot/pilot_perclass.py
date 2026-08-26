@@ -25,7 +25,7 @@ except ImportError as e:
 S = pathlib.Path("/oscar/scratch/fperalta/pilot_repair")
 DEFAULT_TOKEN_DICT = str(pathlib.Path.home() / "data/fperalta/Geneformer/"
                          "geneformer_repo/geneformer/token_dictionary_gc104M.pkl")
-ARMS = ["P", "B", "P2BA", "P2BU", "P2DS"]
+ARMS = ["P", "B", "P2BA", "P2BU", "P2DS", "P2BJ"]
 
 
 def make_collator(path):
