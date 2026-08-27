@@ -15,6 +15,7 @@ resampling — those are reported, not silently skipped.
 import argparse
 import collections
 import json
+import os
 import pathlib
 import shutil
 
@@ -123,8 +124,13 @@ def main():
     # keep the h5ad: Geneformer trains from the tokenized copy, but scGPT and
     # scFoundation read h5ad directly, and P2BJ has to exist for all three models
     # or it cannot appear in a cross-model comparison
+    # Write via a pid-unique temp + atomic rename. The scGPT and scFoundation
+    # drivers both build this on demand and can reach the same cohort at once;
+    # a half-written h5ad passes their `[ -f ]` check and then fails to load.
     keep = S / f"{c}_bj.h5ad"
-    b.write_h5ad(keep)
+    tmp = S / f".{c}_bj.h5ad.{os.getpid()}.tmp"
+    b.write_h5ad(tmp)
+    os.replace(tmp, keep)
     print(f"  h5ad kept for the non-Geneformer models: {keep}", flush=True)
     if args.h5ad_only:
         print(f"H5AD ONLY: {keep}", flush=True)
