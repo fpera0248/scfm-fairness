@@ -1,0 +1,256 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5237674
+##  Job Name : pilot_scgpt
+##  Nodelist : gpu2107
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Tue Aug 25 01:24:18 PM EDT 2026
+###############################################################################
+=== scGPT cohort aida ===
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Subsetting highly variable genes ...
+scGPT - WARNING - No batch_key is provided, will use all cells for HVG selection.
+scGPT - INFO - Binning data ...
+gene space: 1200 HVGs (seq len 1201)
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 2,497/2,497 in label space
+eval: keep 12,500/12,500 in label space
+train=2,127 val=370
+loaded 159/169 tensors from /users/fperalta/data/fperalta/fresh_scGPT/scGPT_human/best_model.pt; non-head unloaded: []
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+{'epoch': 1, 'loss': 1.523546333633252, 'val_acc': 0.3783783783783784, 'val_macro_f1': 0.1395976435035056, 'val_worst_class': 0.0, 'secs': 14}
+{'epoch': 2, 'loss': 0.9197266711227929, 'val_acc': 0.3162162162162162, 'val_macro_f1': 0.16087632585470163, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 3, 'loss': 0.7730890841626409, 'val_acc': 0.3108108108108108, 'val_macro_f1': 0.19824942303621448, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 4, 'loss': 0.6733299849638298, 'val_acc': 0.41621621621621624, 'val_macro_f1': 0.1974522389649391, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 5, 'loss': 0.5954545149162634, 'val_acc': 0.41621621621621624, 'val_macro_f1': 0.2250278012770643, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 6, 'loss': 0.49659585152099384, 'val_acc': 0.4027027027027027, 'val_macro_f1': 0.17116895026354118, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 7, 'loss': 0.3861570310459208, 'val_acc': 0.3162162162162162, 'val_macro_f1': 0.2176302837352674, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 8, 'loss': 0.33050521018344964, 'val_acc': 0.3675675675675676, 'val_macro_f1': 0.25445843716808125, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 9, 'loss': 0.2941149041167836, 'val_acc': 0.33513513513513515, 'val_macro_f1': 0.21478578028304127, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 10, 'loss': 0.24960210641373448, 'val_acc': 0.36486486486486486, 'val_macro_f1': 0.341848638098896, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 11, 'loss': 0.23376098569871775, 'val_acc': 0.34594594594594597, 'val_macro_f1': 0.28021991014446673, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 12, 'loss': 0.17762177821193167, 'val_acc': 0.34864864864864864, 'val_macro_f1': 0.2946578785618773, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 13, 'loss': 0.12292800168159293, 'val_acc': 0.2918918918918919, 'val_macro_f1': 0.16591297348223935, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 14, 'loss': 0.11587578618426377, 'val_acc': 0.4189189189189189, 'val_macro_f1': 0.3768880167740626, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 15, 'loss': 0.12487097229780768, 'val_acc': 0.3216216216216216, 'val_macro_f1': 0.23555243378084795, 'val_worst_class': 0.0, 'secs': 13}
+{'epoch': 16, 'loss': 0.11549553293873792, 'val_acc': 0.2648648648648649, 'val_macro_f1': 0.2779316293907741, 'val_worst_class': 0.0, 'secs': 13}
+SELECTED epoch 14
+              group  n_cells  macro_f1_common
+singaporean chinese     1387         0.121157
+           japanese     3043         0.158503
+  singaporean malay     1131         0.176407
+ singaporean indian     1248         0.181044
+             korean     3896         0.313998
+               thai     1336         0.323191
+             indian      459         0.375049
+worst group: singaporean chinese (0.1212)
+SCGPT ARM COMPLETE
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Subsetting highly variable genes ...
+scGPT - WARNING - No batch_key is provided, will use all cells for HVG selection.
+scGPT - INFO - Binning data ...
+gene space: 1200 HVGs (seq len 1201)
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 5,649/5,649 in label space
+eval: keep 12,500/12,500 in label space
+train=5,272 val=377
+loaded 159/169 tensors from /users/fperalta/data/fperalta/fresh_scGPT/scGPT_human/best_model.pt; non-head unloaded: []
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+{'epoch': 1, 'loss': 1.3154270883762476, 'val_acc': 0.23076923076923078, 'val_macro_f1': 0.15188772762489908, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 2, 'loss': 0.7996463685324697, 'val_acc': 0.35013262599469497, 'val_macro_f1': 0.3226693472181411, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 3, 'loss': 0.6015939383795768, 'val_acc': 0.38726790450928383, 'val_macro_f1': 0.31081255642393657, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 4, 'loss': 0.5084099183479945, 'val_acc': 0.22811671087533156, 'val_macro_f1': 0.15513308515986865, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 5, 'loss': 0.4383039325927243, 'val_acc': 0.23342175066312998, 'val_macro_f1': 0.20379696032090514, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 6, 'loss': 0.3700163580703013, 'val_acc': 0.20424403183023873, 'val_macro_f1': 0.15578865583451904, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 7, 'loss': 0.2969437711166613, 'val_acc': 0.2413793103448276, 'val_macro_f1': 0.12802053338081645, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 8, 'loss': 0.27459096375739933, 'val_acc': 0.2546419098143236, 'val_macro_f1': 0.18740433277641835, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 9, 'loss': 0.24923147705355378, 'val_acc': 0.2917771883289125, 'val_macro_f1': 0.18704090611295773, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 10, 'loss': 0.2113870532393004, 'val_acc': 0.27586206896551724, 'val_macro_f1': 0.24226126245678856, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 11, 'loss': 0.2104901844579162, 'val_acc': 0.22546419098143236, 'val_macro_f1': 0.12815727443297484, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 12, 'loss': 0.1693580295523685, 'val_acc': 0.27851458885941643, 'val_macro_f1': 0.18746350560260808, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 13, 'loss': 0.16949230522820444, 'val_acc': 0.26525198938992045, 'val_macro_f1': 0.240179545311347, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 14, 'loss': 0.13271296599766974, 'val_acc': 0.3076923076923077, 'val_macro_f1': 0.21227104567157973, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 15, 'loss': 0.1307546426908988, 'val_acc': 0.2493368700265252, 'val_macro_f1': 0.18511238556145757, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 16, 'loss': 0.1224120335201874, 'val_acc': 0.26790450928381965, 'val_macro_f1': 0.1969057345469887, 'val_worst_class': 0.0, 'secs': 25}
+SELECTED epoch 2
+              group  n_cells  macro_f1_common
+singaporean chinese     1387         0.062276
+  singaporean malay     1131         0.083981
+ singaporean indian     1248         0.091713
+           japanese     3043         0.114981
+               thai     1336         0.201481
+             korean     3896         0.257948
+             indian      459         0.425082
+worst group: singaporean chinese (0.0623)
+SCGPT ARM COMPLETE
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Subsetting highly variable genes ...
+scGPT - WARNING - No batch_key is provided, will use all cells for HVG selection.
+scGPT - INFO - Binning data ...
+gene space: 1200 HVGs (seq len 1201)
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 5,649/5,649 in label space
+eval: keep 12,500/12,500 in label space
+train=5,272 val=377
+loaded 169/169 tensors from /oscar/scratch/fperalta/pilot_repair/runs_scgpt/aida/P/best_model.pt; non-head unloaded: []
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+{'epoch': 1, 'loss': 0.8464623102636049, 'val_acc': 0.35543766578249336, 'val_macro_f1': 0.2901064934929547, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 2, 'loss': 0.5650072692018566, 'val_acc': 0.29708222811671087, 'val_macro_f1': 0.2063887047356256, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 3, 'loss': 0.4651513842470718, 'val_acc': 0.38461538461538464, 'val_macro_f1': 0.27979256247679785, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 4, 'loss': 0.39381919309045327, 'val_acc': 0.2891246684350133, 'val_macro_f1': 0.2651504895657109, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 5, 'loss': 0.34263071286858937, 'val_acc': 0.3395225464190981, 'val_macro_f1': 0.2630525985268149, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 6, 'loss': 0.2972457821170489, 'val_acc': 0.35543766578249336, 'val_macro_f1': 0.3072923237671308, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 7, 'loss': 0.2581755960529501, 'val_acc': 0.35013262599469497, 'val_macro_f1': 0.31946756912087904, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 8, 'loss': 0.22338178330524402, 'val_acc': 0.3156498673740053, 'val_macro_f1': 0.2262835891938425, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 9, 'loss': 0.1919255604120818, 'val_acc': 0.3421750663129973, 'val_macro_f1': 0.26991034008336434, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 10, 'loss': 0.16902933141329524, 'val_acc': 0.27055702917771884, 'val_macro_f1': 0.16755466159107837, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 11, 'loss': 0.1613596437555371, 'val_acc': 0.363395225464191, 'val_macro_f1': 0.3068623940804392, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 12, 'loss': 0.13317680511849397, 'val_acc': 0.35809018567639256, 'val_macro_f1': 0.25917118286895724, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 13, 'loss': 0.13479394920339638, 'val_acc': 0.2546419098143236, 'val_macro_f1': 0.15906740464714633, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 14, 'loss': 0.11729960540365993, 'val_acc': 0.2864721485411141, 'val_macro_f1': 0.26830100222213465, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 15, 'loss': 0.12022436594195438, 'val_acc': 0.35278514588859416, 'val_macro_f1': 0.2956259404855965, 'val_worst_class': 0.0, 'secs': 25}
+{'epoch': 16, 'loss': 0.11385518674117824, 'val_acc': 0.2838196286472148, 'val_macro_f1': 0.21091665051005357, 'val_worst_class': 0.0, 'secs': 25}
+SELECTED epoch 7
+              group  n_cells  macro_f1_common
+  singaporean malay     1131         0.120306
+           japanese     3043         0.122872
+ singaporean indian     1248         0.141182
+singaporean chinese     1387         0.142772
+               thai     1336         0.194715
+             korean     3896         0.255946
+             indian      459         0.557932
+worst group: singaporean malay (0.1203)
+SCGPT ARM COMPLETE
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Subsetting highly variable genes ...
+scGPT - WARNING - No batch_key is provided, will use all cells for HVG selection.
+scGPT - INFO - Binning data ...
+gene space: 1200 HVGs (seq len 1201)
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 5,453/5,453 in label space
+eval: keep 12,500/12,500 in label space
+train=4,546 val=907
+loaded 169/169 tensors from /oscar/scratch/fperalta/pilot_repair/runs_scgpt/aida/P/best_model.pt; non-head unloaded: []
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+{'epoch': 1, 'loss': 0.5418913176843336, 'val_acc': 0.46747519294377066, 'val_macro_f1': 0.2929069432884905, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 2, 'loss': 0.29920988418552635, 'val_acc': 0.3395810363836825, 'val_macro_f1': 0.2870659329686148, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 3, 'loss': 0.19419686682522297, 'val_acc': 0.4718853362734289, 'val_macro_f1': 0.38522545186315943, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 4, 'loss': 0.13685869678555357, 'val_acc': 0.4520396912899669, 'val_macro_f1': 0.31448774242302613, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 5, 'loss': 0.11823334949175743, 'val_acc': 0.4520396912899669, 'val_macro_f1': 0.36364623884708286, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 6, 'loss': 0.08301436512444454, 'val_acc': 0.41345093715545755, 'val_macro_f1': 0.319672180749331, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 7, 'loss': 0.0636330988735182, 'val_acc': 0.43991179713340683, 'val_macro_f1': 0.3233333715782323, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 8, 'loss': 0.0781571876755883, 'val_acc': 0.5104740904079382, 'val_macro_f1': 0.4009964310066221, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 9, 'loss': 0.054695375216066495, 'val_acc': 0.47519294377067256, 'val_macro_f1': 0.34733264137809106, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 10, 'loss': 0.05119118713440009, 'val_acc': 0.4421168687982359, 'val_macro_f1': 0.29766821314357556, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 11, 'loss': 0.051723120659199005, 'val_acc': 0.4421168687982359, 'val_macro_f1': 0.3325653094142945, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 12, 'loss': 0.0472485058048701, 'val_acc': 0.42668136714443217, 'val_macro_f1': 0.26536036816361763, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 13, 'loss': 0.04748607835882194, 'val_acc': 0.5049614112458655, 'val_macro_f1': 0.35073121912469873, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 14, 'loss': 0.048131862124696806, 'val_acc': 0.3715545755237045, 'val_macro_f1': 0.28493098933737, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 15, 'loss': 0.04742756201657695, 'val_acc': 0.41345093715545755, 'val_macro_f1': 0.2801328862318628, 'val_worst_class': 0.0, 'secs': 23}
+{'epoch': 16, 'loss': 0.057763471045666474, 'val_acc': 0.278941565600882, 'val_macro_f1': 0.17353399105540304, 'val_worst_class': 0.0, 'secs': 23}
+SELECTED epoch 8
+              group  n_cells  macro_f1_common
+singaporean chinese     1387         0.136991
+           japanese     3043         0.166971
+  singaporean malay     1131         0.197351
+ singaporean indian     1248         0.238068
+               thai     1336         0.274874
+             korean     3896         0.308579
+             indian      459         0.323091
+worst group: singaporean chinese (0.1370)
+SCGPT ARM COMPLETE
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Subsetting highly variable genes ...
+scGPT - WARNING - No batch_key is provided, will use all cells for HVG selection.
+scGPT - INFO - Binning data ...
+gene space: 1200 HVGs (seq len 1201)
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 637/637 in label space
+eval: keep 12,500/12,500 in label space
+train=538 val=99
+loaded 169/169 tensors from /oscar/scratch/fperalta/pilot_repair/runs_scgpt/aida/P/best_model.pt; non-head unloaded: []
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+{'epoch': 1, 'loss': 1.1232768893241882, 'val_acc': 0.494949494949495, 'val_macro_f1': 0.3763861138861139, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 2, 'loss': 0.6261258475920733, 'val_acc': 0.4444444444444444, 'val_macro_f1': 0.2787695964166553, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 3, 'loss': 0.3393996024833006, 'val_acc': 0.48484848484848486, 'val_macro_f1': 0.33844942935852024, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 4, 'loss': 0.25382309406995773, 'val_acc': 0.47474747474747475, 'val_macro_f1': 0.35141806722689073, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 5, 'loss': 0.13840688545914256, 'val_acc': 0.3434343434343434, 'val_macro_f1': 0.262312925170068, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 6, 'loss': 0.13839522820404349, 'val_acc': 0.43434343434343436, 'val_macro_f1': 0.2547560904703762, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 7, 'loss': 0.13519880460465655, 'val_acc': 0.29292929292929293, 'val_macro_f1': 0.199024567091794, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 8, 'loss': 0.08164557069540024, 'val_acc': 0.35353535353535354, 'val_macro_f1': 0.261038961038961, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 9, 'loss': 0.057289762312875074, 'val_acc': 0.30303030303030304, 'val_macro_f1': 0.2566226783968719, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 10, 'loss': 0.05061794483267209, 'val_acc': 0.3333333333333333, 'val_macro_f1': 0.29993075086022053, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 11, 'loss': 0.06520448704524075, 'val_acc': 0.29292929292929293, 'val_macro_f1': 0.28289738430583505, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 12, 'loss': 0.053208452978116626, 'val_acc': 0.48484848484848486, 'val_macro_f1': 0.416517884997638, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 13, 'loss': 0.04977416975752396, 'val_acc': 0.3838383838383838, 'val_macro_f1': 0.36375046142488, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 14, 'loss': 0.05516998657463666, 'val_acc': 0.5050505050505051, 'val_macro_f1': 0.3647139045165362, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 15, 'loss': 0.039519217851407384, 'val_acc': 0.3434343434343434, 'val_macro_f1': 0.23374002772499014, 'val_worst_class': 0.0, 'secs': 3}
+{'epoch': 16, 'loss': 0.023515532573904183, 'val_acc': 0.5656565656565656, 'val_macro_f1': 0.43937629399585915, 'val_worst_class': 0.0, 'secs': 3}
+SELECTED epoch 16
+              group  n_cells  macro_f1_common
+           japanese     3043         0.076220
+singaporean chinese     1387         0.100707
+  singaporean malay     1131         0.115597
+               thai     1336         0.137366
+             korean     3896         0.218382
+ singaporean indian     1248         0.225916
+             indian      459         0.393022
+worst group: japanese (0.0762)
+SCGPT ARM COMPLETE
+SCGPT COHORT aida COMPLETE

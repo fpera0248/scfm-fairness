@@ -1,0 +1,36 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5425785
+##  Job Name : probe_scgpt
+##  Nodelist : gpu1501
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Thu Aug 27 05:47:01 PM EDT 2026
+###############################################################################
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+ENV_OK 2.1.2+cu121 True
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Subsetting highly variable genes ...
+scGPT - WARNING - No batch_key is provided, will use all cells for HVG selection.
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+aida: probing 6,000 cells, 32 classes
+checkpoint: 163 tensors, 24 Wqkv keys (flash-attn layout, rename REQUIRED)
+pad '<pad>' = id 60694; id 0 = gene 'A1BG'; pad covers 63.4% of positions
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+  pretrained       logreg 0.750  knn 0.661  (majority-class 0.156, 28 classes, n=5,991)
+  pretrained WRONG-mask logreg 0.726  knn 0.597  (majority-class 0.156, 28 classes, n=5,991)
+  qkv-scrambled    logreg 0.571  knn 0.510  (majority-class 0.156, 28 classes, n=5,991)
+  random-init      logreg 0.594  knn 0.403  (majority-class 0.156, 28 classes, n=5,991)
+PROBE COMPLETE

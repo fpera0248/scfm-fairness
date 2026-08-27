@@ -1,0 +1,8 @@
+group,B cell,"CD14-low, CD16-positive monocyte",CD14-positive monocyte,CD141-positive myeloid dendritic cell,"CD16-negative, CD56-bright natural killer cell, human","CD16-positive, CD56-dim natural killer cell, human",CD1c-positive myeloid dendritic cell,"CD4-positive, alpha-beta T cell","CD4-positive, alpha-beta cytotoxic T cell","CD8-positive, alpha-beta T cell","CD8-positive, alpha-beta cytotoxic T cell","CD8-positive, alpha-beta memory T cell",T cell,"central memory CD4-positive, alpha-beta T cell",double negative T regulatory cell,"effector memory CD4-positive, alpha-beta T cell",gamma-delta T cell,hematopoietic stem cell,innate lymphoid cell,mature B cell,memory B cell,mucosal invariant T cell,myeloid cell,naive B cell,"naive thymus-derived CD4-positive, alpha-beta T cell","naive thymus-derived CD8-positive, alpha-beta T cell",natural killer cell,plasma cell,plasmacytoid dendritic cell,platelet,pre-conventional dendritic cell,regulatory T cell
+indian,20,0,0,0,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0,0,0,0,20,0,0,0,20,0,0,20,0,0
+japanese,0,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,0,20,20,20,20,20,20,20,20,20,20,20,20,20,20
+korean,20,20,20,0,20,20,20,20,20,20,20,20,20,20,0,20,20,0,20,20,20,20,20,20,20,20,20,0,20,20,20,20
+singaporean chinese,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,0,20,0,20,20,20,20,20,20,20,20,20,20,20,20
+singaporean indian,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,0,20,20,20,20,20,20,20,20,20,20,20,20,20,20
+singaporean malay,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,0,20,20,20,20,20,20,20,20,20,20,0,20,20,20
+thai,20,20,20,0,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20

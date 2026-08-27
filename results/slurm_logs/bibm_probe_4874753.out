@@ -1,0 +1,36 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4874753
+##  Job Name : bibm_probe
+##  Nodelist : gpu1501
+##      CPUs : 4
+##  Mem/Node : 49152 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Thu Aug 13 09:56:29 AM EDT 2026
+###############################################################################
+re-equalizing groups to 49,377/group (pre: {'African': 50478, 'EastSEAsian': 50785, 'European': 49940, 'HispanicLatino': 49377, 'SouthAsian': 49420})
+arm=balanced train=246,885 val=157,410 labels=45 val_donors=246
+{'loss': 2.3998, 'grad_norm': 2.7682743072509766, 'learning_rate': 4.951399688958009e-05, 'epoch': 0.04}
+{'loss': 1.178, 'grad_norm': 1.5859774351119995, 'learning_rate': 4.902799377916018e-05, 'epoch': 0.08}
+{'loss': 0.7683, 'grad_norm': 2.14389967918396, 'learning_rate': 4.854199066874028e-05, 'epoch': 0.12}
+{'loss': 0.6009, 'grad_norm': 2.644716262817383, 'learning_rate': 4.805598755832038e-05, 'epoch': 0.16}
+{'loss': 0.5054, 'grad_norm': 2.336873769760132, 'learning_rate': 4.756998444790047e-05, 'epoch': 0.19}
+{'loss': 0.4693, 'grad_norm': 1.9683712720870972, 'learning_rate': 4.708398133748056e-05, 'epoch': 0.23}
+{'loss': 0.4312, 'grad_norm': 2.1380627155303955, 'learning_rate': 4.6597978227060656e-05, 'epoch': 0.27}
+{'loss': 0.4058, 'grad_norm': 2.102088451385498, 'learning_rate': 4.6111975116640746e-05, 'epoch': 0.31}
+{'loss': 0.3861, 'grad_norm': 1.2564386129379272, 'learning_rate': 4.5625972006220844e-05, 'epoch': 0.35}
+{'loss': 0.3568, 'grad_norm': 2.484269142150879, 'learning_rate': 4.5139968895800934e-05, 'epoch': 0.39}
+{'loss': 0.3638, 'grad_norm': 1.3975492715835571, 'learning_rate': 4.465396578538103e-05, 'epoch': 0.43}
+{'loss': 0.3291, 'grad_norm': 2.186333417892456, 'learning_rate': 4.416796267496112e-05, 'epoch': 0.47}
+{'loss': 0.3378, 'grad_norm': 1.5069020986557007, 'learning_rate': 4.368195956454121e-05, 'epoch': 0.51}
+{'loss': 0.3331, 'grad_norm': 2.378831386566162, 'learning_rate': 4.31959564541213e-05, 'epoch': 0.54}
+{'loss': 0.3186, 'grad_norm': 1.9351842403411865, 'learning_rate': 4.27099533437014e-05, 'epoch': 0.58}
+{'loss': 0.3085, 'grad_norm': 1.6752045154571533, 'learning_rate': 4.22239502332815e-05, 'epoch': 0.62}
+{'loss': 0.3041, 'grad_norm': 1.4456369876861572, 'learning_rate': 4.173794712286159e-05, 'epoch': 0.66}
+{'loss': 0.2992, 'grad_norm': 2.1346633434295654, 'learning_rate': 4.125194401244168e-05, 'epoch': 0.7}
+{'loss': 0.3031, 'grad_norm': 1.9064531326293945, 'learning_rate': 4.0765940902021775e-05, 'epoch': 0.74}
+{'loss': 0.3032, 'grad_norm': 1.0883984565734863, 'learning_rate': 4.0279937791601866e-05, 'epoch': 0.78}
+{'loss': 0.2995, 'grad_norm': 1.3598535060882568, 'learning_rate': 3.979393468118196e-05, 'epoch': 0.82}
+{'loss': 0.3008, 'grad_norm': 1.6474978923797607, 'learning_rate': 3.9307931570762054e-05, 'epoch': 0.86}
+{'loss': 0.2841, 'grad_norm': 2.1931400299072266, 'learning_rate': 3.882192846034215e-05, 'epoch': 0.89}
+{'loss': 0.2861, 'grad_norm': 1.9829925298690796, 'learning_rate': 3.833592534992224e-05, 'epoch': 0.93}
+{'loss': 0.2725, 'grad_norm': 1.549626350402832, 'learning_rate': 3.784992223950233e-05, 'epoch': 0.97}

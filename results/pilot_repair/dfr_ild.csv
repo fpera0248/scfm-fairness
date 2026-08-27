@@ -1,0 +1,4 @@
+cohort,backbone,head,worst_group,worst_group_f1
+ild,pretrained,DFR_balanced_on_ba,native american,0.77421739432456
+ild,P,DFR_balanced_on_ba,native american,0.7949481437563659
+ild,P,plain_on_prop_control,hispanic or latin,0.7844225345698164

@@ -1,0 +1,15 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4988163
+##  Job Name : sel_probe
+##  Nodelist : gpu1501
+##      CPUs : 4
+##  Mem/Node : 32768 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Sat Aug 15 02:27:47 PM EDT 2026
+###############################################################################
+selection val subsampled to 60,000 cells
+{'checkpoint': 'checkpoint-5144', 'overall_macro_f1': 0.8957320263614572, 'worst_class_acc': 0.4200956937799043, 'worst_group_f1': np.float64(0.8409422383344266)}
+{'checkpoint': 'checkpoint-10288', 'overall_macro_f1': 0.8996714972106618, 'worst_class_acc': 0.3062200956937799, 'worst_group_f1': np.float64(0.81513499418456)}
+{'checkpoint': 'checkpoint-15432', 'overall_macro_f1': 0.90432462633023, 'worst_class_acc': 0.3397129186602871, 'worst_group_f1': np.float64(0.8189640315607966)}
+{'checkpoint': 'checkpoint-20572', 'overall_macro_f1': 0.9044977168501327, 'worst_class_acc': 0.3354066985645933, 'worst_group_f1': np.float64(0.8183468591887664)}
+SELECTED checkpoint-5144 (worst-class acc 0.4201)

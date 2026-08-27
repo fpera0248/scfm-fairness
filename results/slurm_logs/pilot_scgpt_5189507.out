@@ -1,0 +1,60 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5189507
+##  Job Name : pilot_scgpt
+##  Nodelist : gpu2107
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Mon Aug 24 07:52:31 PM EDT 2026
+###############################################################################
+=== scGPT cohort aida ===
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 2,497/2,497 in label space
+eval: keep 12,500/12,500 in label space
+train=2,127 val=370
+loaded 159/169 tensors from /users/fperalta/data/fperalta/fresh_scGPT/scGPT_human/best_model.pt; non-head unloaded: []
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_finetune_scgpt.py", line 288, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_finetune_scgpt.py", line 242, in main
+    out_d = model(g, v, src_key_padding_mask=g.eq(pad_id), CLS=True)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py", line 345, in forward
+    transformer_output = self._encode(
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py", line 194, in _encode
+    output = self.transformer_encoder(
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py", line 387, in forward
+    output = mod(output, src_mask=mask, is_causal=is_causal, src_key_padding_mask=src_key_padding_mask_for_layers)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py", line 707, in forward
+    x = self.norm1(x + self._sa_block(x, src_mask, src_key_padding_mask, is_causal=is_causal))
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py", line 715, in _sa_block
+    x = self.self_attn(x, x, x,
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/activation.py", line 1241, in forward
+    attn_output, attn_output_weights = F.multi_head_attention_forward(
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/functional.py", line 5440, in multi_head_attention_forward
+    attn_output = scaled_dot_product_attention(q, k, v, attn_mask, dropout_p, is_causal)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.25 GiB. GPU 0 has a total capacty of 23.56 GiB of which 1.67 GiB is free. Including non-PyTorch memory, this process has 21.86 GiB memory in use. Of the allocated memory 21.51 GiB is allocated by PyTorch, and 59.47 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

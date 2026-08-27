@@ -1,0 +1,45 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5116837
+##  Job Name : pilot_probe
+##  Nodelist : gpu2104
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Thu Aug 20 08:24:21 PM EDT 2026
+###############################################################################
+crc: 8,572 cells, 9 cell types, 4 groups
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'arm': 'pretrained', 'probe_celltype_acc': 0.96850699844479, 'probe_celltype_macro_f1': 0.950862254345947, 'balanced_probe_worst_group': 'african american', 'balanced_probe_worst_group_f1': 0.9446090534979423, 'n_train': 6000, 'n_test': 2572}
+  pretrained per-group balanced-probe F1: {'african american': 0.945, 'asian': 0.977, 'european american': 0.951, 'hispanic or latin': 0.973}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'arm': 'P', 'probe_celltype_acc': 0.9720062208398134, 'probe_celltype_macro_f1': 0.9531897179508457, 'balanced_probe_worst_group': 'african american', 'balanced_probe_worst_group_f1': 0.9408624955814776, 'n_train': 6000, 'n_test': 2572}
+  P per-group balanced-probe F1: {'african american': 0.941, 'asian': 0.963, 'european american': 0.955, 'hispanic or latin': 0.973}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'arm': 'B', 'probe_celltype_acc': 0.973561430793157, 'probe_celltype_macro_f1': 0.9575565942044597, 'balanced_probe_worst_group': 'asian', 'balanced_probe_worst_group_f1': 0.9585506641199836, 'n_train': 6000, 'n_test': 2572}
+  B per-group balanced-probe F1: {'african american': 0.989, 'asian': 0.959, 'european american': 0.963, 'hispanic or latin': 0.98}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'arm': 'P2BA', 'probe_celltype_acc': 0.9751166407465007, 'probe_celltype_macro_f1': 0.9589880276104525, 'balanced_probe_worst_group': 'african american', 'balanced_probe_worst_group_f1': 0.9408624955814776, 'n_train': 6000, 'n_test': 2572}
+  P2BA per-group balanced-probe F1: {'african american': 0.941, 'asian': 0.963, 'european american': 0.962, 'hispanic or latin': 0.973}
+WROTE probe_crc.csv + probe_perclass_crc.csv
+aida: 9,000 cells, 32 cell types, 7 groups
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_probe.py", line 159, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_probe.py", line 110, in main
+    tr, te = train_test_split(idx, test_size=args.test_frac, random_state=0,
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/model_selection/_split.py", line 2940, in train_test_split
+    train, test = next(cv.split(X=arrays[0], y=stratify))
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/model_selection/_split.py", line 1927, in split
+    for train, test in self._iter_indices(X, y, groups):
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/model_selection/_split.py", line 2342, in _iter_indices
+    raise ValueError(
+ValueError: The least populated class in y has only 1 member, which is too few. The minimum number of groups for any class cannot be less than 2.
+ERROR conda.cli.main_run:execute(125): `conda run python /users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_probe.py --cohort aida --model-dir /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M` failed. (See above for error)

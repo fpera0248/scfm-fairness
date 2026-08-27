@@ -1,0 +1,22 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5427189
+##  Job Name : scfa_ft
+##  Nodelist : gpu1506
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Thu Aug 27 06:20:06 PM EDT 2026
+###############################################################################
+ENV_OK 2.2.0+cu118 True
+########## scFoundation full fine-tune: aida ##########
+=== aida P (cond=prop) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+train 2,497 cells / eval 12,500 cells
+train=2,127 val=370 (589 real donors)
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32

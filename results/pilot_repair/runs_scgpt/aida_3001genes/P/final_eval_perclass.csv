@@ -1,0 +1,33 @@
+cell_type,n_cells,accuracy
+B cell,107,0.028037383177570093
+"CD14-low, CD16-positive monocyte",423,0.8605200945626478
+CD14-positive monocyte,1932,0.4808488612836439
+CD141-positive myeloid dendritic cell,5,0.8
+"CD16-negative, CD56-bright natural killer cell, human",63,0.015873015873015872
+"CD16-positive, CD56-dim natural killer cell, human",1576,0.7956852791878173
+CD1c-positive myeloid dendritic cell,131,0.732824427480916
+"CD4-positive, alpha-beta T cell",361,0.5263157894736842
+"CD4-positive, alpha-beta cytotoxic T cell",102,0.22549019607843138
+"CD8-positive, alpha-beta T cell",579,0.231433506044905
+"CD8-positive, alpha-beta cytotoxic T cell",493,0.1359026369168357
+"CD8-positive, alpha-beta memory T cell",263,0.5019011406844106
+T cell,564,0.2074468085106383
+"central memory CD4-positive, alpha-beta T cell",1130,0.42212389380530974
+double negative T regulatory cell,3,0.0
+"effector memory CD4-positive, alpha-beta T cell",233,0.2875536480686695
+gamma-delta T cell,320,0.40625
+hematopoietic stem cell,2,0.0
+innate lymphoid cell,6,0.0
+mature B cell,51,0.0
+memory B cell,338,0.9615384615384616
+mucosal invariant T cell,219,0.0958904109589041
+myeloid cell,263,0.11406844106463879
+naive B cell,335,0.23582089552238805
+"naive thymus-derived CD4-positive, alpha-beta T cell",1525,0.6983606557377049
+"naive thymus-derived CD8-positive, alpha-beta T cell",851,0.099882491186839
+natural killer cell,235,0.05106382978723404
+plasma cell,18,0.0
+plasmacytoid dendritic cell,30,0.16666666666666666
+platelet,178,0.0
+pre-conventional dendritic cell,7,0.14285714285714285
+regulatory T cell,157,0.08280254777070063

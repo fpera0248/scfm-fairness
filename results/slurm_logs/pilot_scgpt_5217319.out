@@ -1,0 +1,140 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5217319
+##  Job Name : pilot_scgpt
+##  Nodelist : gpu1505
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Tue Aug 25 07:04:13 AM EDT 2026
+###############################################################################
+=== scGPT cohort aida ===
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 2,497/2,497 in label space
+eval: keep 12,500/12,500 in label space
+train=2,127 val=370
+loaded 159/169 tensors from /users/fperalta/data/fperalta/fresh_scGPT/scGPT_human/best_model.pt; non-head unloaded: []
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+{'epoch': 1, 'loss': 1.4435403342533828, 'val_acc': 0.42702702702702705, 'val_macro_f1': 0.17956775757565985, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 2, 'loss': 0.9426109739264151, 'val_acc': 0.2945945945945946, 'val_macro_f1': 0.1777340194437422, 'val_worst_class': 0.0, 'secs': 145}
+{'epoch': 3, 'loss': 0.7981724337975782, 'val_acc': 0.3081081081081081, 'val_macro_f1': 0.17950019823499605, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 4, 'loss': 0.6655533714850146, 'val_acc': 0.4810810810810811, 'val_macro_f1': 0.27836546587133876, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 5, 'loss': 0.5487585061586889, 'val_acc': 0.5162162162162162, 'val_macro_f1': 0.29159605825369667, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 6, 'loss': 0.4681452046099462, 'val_acc': 0.5135135135135135, 'val_macro_f1': 0.3182189062251357, 'val_worst_class': 0.0, 'secs': 145}
+{'epoch': 7, 'loss': 0.37561213561242685, 'val_acc': 0.5081081081081081, 'val_macro_f1': 0.34374414865206143, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 8, 'loss': 0.31163404328062344, 'val_acc': 0.5081081081081081, 'val_macro_f1': 0.41175902777565754, 'val_worst_class': 0.0, 'secs': 145}
+{'epoch': 9, 'loss': 0.2730755130340226, 'val_acc': 0.4837837837837838, 'val_macro_f1': 0.32317358902634574, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 10, 'loss': 0.22870402399422532, 'val_acc': 0.5243243243243243, 'val_macro_f1': 0.41393381644215194, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 11, 'loss': 0.1863092883013861, 'val_acc': 0.41081081081081083, 'val_macro_f1': 0.3630099629720389, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 12, 'loss': 0.18236062510457254, 'val_acc': 0.35135135135135137, 'val_macro_f1': 0.3076708386377568, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 13, 'loss': 0.16825265756500116, 'val_acc': 0.5432432432432432, 'val_macro_f1': 0.33755865529956575, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 14, 'loss': 0.09147867332195121, 'val_acc': 0.5648648648648649, 'val_macro_f1': 0.38561244620326424, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 15, 'loss': 0.10504133673997498, 'val_acc': 0.5081081081081081, 'val_macro_f1': 0.3648819519526225, 'val_worst_class': 0.0, 'secs': 146}
+{'epoch': 16, 'loss': 0.08150610431225243, 'val_acc': 0.5702702702702702, 'val_macro_f1': 0.4323696606180997, 'val_worst_class': 0.0, 'secs': 146}
+SELECTED epoch 16
+              group  n_cells  macro_f1_common
+             indian      459         0.033544
+  singaporean malay     1131         0.096193
+ singaporean indian     1248         0.105051
+           japanese     3043         0.112995
+singaporean chinese     1387         0.140027
+               thai     1336         0.171996
+             korean     3896         0.186669
+worst group: indian (0.0335)
+SCGPT ARM COMPLETE
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 5,649/5,649 in label space
+eval: keep 12,500/12,500 in label space
+train=5,272 val=377
+loaded 159/169 tensors from /users/fperalta/data/fperalta/fresh_scGPT/scGPT_human/best_model.pt; non-head unloaded: []
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+{'epoch': 1, 'loss': 1.2578367126710488, 'val_acc': 0.4535809018567639, 'val_macro_f1': 0.3567970375469672, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 2, 'loss': 0.7828691671517762, 'val_acc': 0.53315649867374, 'val_macro_f1': 0.3760970334696179, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 3, 'loss': 0.6377294072034684, 'val_acc': 0.3978779840848806, 'val_macro_f1': 0.35096955093324256, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 4, 'loss': 0.5259530672069752, 'val_acc': 0.5305039787798409, 'val_macro_f1': 0.338312077160933, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 5, 'loss': 0.46480075046984537, 'val_acc': 0.4376657824933687, 'val_macro_f1': 0.3367960357250928, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 6, 'loss': 0.3762869994522947, 'val_acc': 0.5013262599469496, 'val_macro_f1': 0.33128169272722896, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 7, 'loss': 0.3199479920422715, 'val_acc': 0.4535809018567639, 'val_macro_f1': 0.37957810941375275, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 8, 'loss': 0.2777793519311782, 'val_acc': 0.4535809018567639, 'val_macro_f1': 0.40854692732732645, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 9, 'loss': 0.2660920704178738, 'val_acc': 0.493368700265252, 'val_macro_f1': 0.39725727074897593, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 10, 'loss': 0.22379297673081358, 'val_acc': 0.5464190981432361, 'val_macro_f1': 0.392749356658253, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 11, 'loss': 0.19825746464564212, 'val_acc': 0.5517241379310345, 'val_macro_f1': 0.3908980417113471, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 12, 'loss': 0.17850138430455417, 'val_acc': 0.6180371352785146, 'val_macro_f1': 0.4741770074246856, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 13, 'loss': 0.16459740229219086, 'val_acc': 0.5809018567639257, 'val_macro_f1': 0.48366589290356665, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 14, 'loss': 0.14624084851415264, 'val_acc': 0.4562334217506631, 'val_macro_f1': 0.3913511236962882, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 15, 'loss': 0.15148166512371972, 'val_acc': 0.4907161803713528, 'val_macro_f1': 0.39290717112783047, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 16, 'loss': 0.13230054316580098, 'val_acc': 0.4562334217506631, 'val_macro_f1': 0.37476730543837544, 'val_worst_class': 0.0, 'secs': 362}
+SELECTED epoch 13
+              group  n_cells  macro_f1_common
+  singaporean malay     1131         0.069357
+singaporean chinese     1387         0.086160
+           japanese     3043         0.086575
+ singaporean indian     1248         0.105543
+               thai     1336         0.152277
+             korean     3896         0.216862
+             indian      459         0.298909
+worst group: singaporean malay (0.0694)
+SCGPT ARM COMPLETE
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+train: keep 5,649/5,649 in label space
+eval: keep 12,500/12,500 in label space
+train=5,272 val=377
+loaded 169/169 tensors from /oscar/scratch/fperalta/pilot_repair/runs_scgpt/aida/P/best_model.pt; non-head unloaded: []
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/transformer.py:380: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+{'epoch': 1, 'loss': 0.893150377770265, 'val_acc': 0.4827586206896552, 'val_macro_f1': 0.3091009833188908, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 2, 'loss': 0.5986820069000577, 'val_acc': 0.519893899204244, 'val_macro_f1': 0.420845734684541, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 3, 'loss': 0.46198491744245546, 'val_acc': 0.5782493368700266, 'val_macro_f1': 0.4825426599720074, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 4, 'loss': 0.3824705385800564, 'val_acc': 0.610079575596817, 'val_macro_f1': 0.5154376816064477, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 5, 'loss': 0.3343686280489871, 'val_acc': 0.623342175066313, 'val_macro_f1': 0.5167629028673315, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 6, 'loss': 0.2949466472237625, 'val_acc': 0.6127320954907162, 'val_macro_f1': 0.5501267575887895, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 7, 'loss': 0.2595750084372632, 'val_acc': 0.6286472148541115, 'val_macro_f1': 0.4750604566974025, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 8, 'loss': 0.23071869543019796, 'val_acc': 0.6525198938992043, 'val_macro_f1': 0.49077828247169364, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 9, 'loss': 0.18146540682805193, 'val_acc': 0.6339522546419099, 'val_macro_f1': 0.46391968050737126, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 10, 'loss': 0.1645840025178834, 'val_acc': 0.7214854111405835, 'val_macro_f1': 0.6144868519279414, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 11, 'loss': 0.18341059401052806, 'val_acc': 0.6949602122015915, 'val_macro_f1': 0.5676895113891893, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 12, 'loss': 0.14864615102185672, 'val_acc': 0.6074270557029178, 'val_macro_f1': 0.42129391966130014, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 13, 'loss': 0.14488219761088575, 'val_acc': 0.6578249336870027, 'val_macro_f1': 0.4622628390202142, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 14, 'loss': 0.1374034232534045, 'val_acc': 0.6445623342175066, 'val_macro_f1': 0.48846995478495286, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 15, 'loss': 0.1331154950859138, 'val_acc': 0.5994694960212201, 'val_macro_f1': 0.43561071704548465, 'val_worst_class': 0.0, 'secs': 362}
+{'epoch': 16, 'loss': 0.0951388846039525, 'val_acc': 0.6551724137931034, 'val_macro_f1': 0.4940332240229722, 'val_worst_class': 0.0, 'secs': 362}
+SELECTED epoch 10
+              group  n_cells  macro_f1_common
+singaporean chinese     1387         0.170974
+  singaporean malay     1131         0.173548
+           japanese     3043         0.181871
+             indian      459         0.266351
+ singaporean indian     1248         0.290210
+             korean     3896         0.369994
+               thai     1336         0.438967
+worst group: singaporean chinese (0.1710)
+SCGPT ARM COMPLETE
+SCGPT COHORT aida COMPLETE

@@ -1,0 +1,39 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5185093
+##  Job Name : pilot_scgpt
+##  Nodelist : gpu2114
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Mon Aug 24 02:09:29 PM EDT 2026
+###############################################################################
+=== scGPT cohort aida ===
+/users/fperalta/.local/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_finetune_scgpt.py", line 25, in <module>
+    from scgpt.tokenizer.gene_tokenizer import GeneVocab
+  File "/users/fperalta/.local/lib/python3.9/site-packages/scgpt/__init__.py", line 18, in <module>
+    from . import model, tokenizer, scbank, utils, tasks
+  File "/users/fperalta/.local/lib/python3.9/site-packages/scgpt/model/__init__.py", line 8, in <module>
+    from .generation_model import *
+  File "/users/fperalta/.local/lib/python3.9/site-packages/scgpt/model/generation_model.py", line 21, in <module>
+    from ..utils import map_raw_id_to_vocab_id
+  File "/users/fperalta/.local/lib/python3.9/site-packages/scgpt/utils/__init__.py", line 1, in <module>
+    from .util import *
+  File "/users/fperalta/.local/lib/python3.9/site-packages/scgpt/utils/util.py", line 17, in <module>
+    from IPython import get_ipython
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/IPython/__init__.py", line 54, in <module>
+    from .terminal.embed import embed
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/IPython/terminal/embed.py", line 15, in <module>
+    from IPython.core.interactiveshell import DummyMod, InteractiveShell
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/IPython/core/interactiveshell.py", line 97, in <module>
+    from IPython.core.history import HistoryManager
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/IPython/core/history.py", line 11, in <module>
+    import sqlite3
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/sqlite3/__init__.py", line 57, in <module>
+    from sqlite3.dbapi2 import *
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/sqlite3/dbapi2.py", line 27, in <module>
+    from _sqlite3 import *
+ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.15' not found (required by /users/fperalta/.conda/envs/scgpt310/lib/python3.9/lib-dynload/../.././libicui18n.so.78)
+ERROR conda.cli.main_run:execute(125): `conda run python /users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_finetune_scgpt.py --cohort aida --cond prop --outdir /oscar/scratch/fperalta/pilot_repair/runs_scgpt/aida/P --epochs 8 --seed 0` failed. (See above for error)

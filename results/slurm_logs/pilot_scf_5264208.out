@@ -1,0 +1,61 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5264208
+##  Job Name : pilot_scf
+##  Nodelist : gpu2504
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Tue Aug 25 11:58:35 PM EDT 2026
+###############################################################################
+=== scFoundation aida ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation backbone loaded
+  prop: embedded (2497, 768) -> scf_aida_prop.npz
+  ba: embedded (5649, 768) -> scf_aida_ba.npz
+  bu: embedded (5453, 768) -> scf_aida_bu.npz
+  ds: embedded (637, 768) -> scf_aida_ds.npz
+  eval: embedded (12500, 768) -> scf_aida_eval.npz
+P: worst group japanese = 0.0825
+B: worst group japanese = 0.0597
+P2BA: worst group japanese = 0.0735
+P2BU: worst group japanese = 0.1039
+P2DS: worst group japanese = 0.0956
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation/aida
+SCFOUNDATION COHORT COMPLETE
+=== scFoundation crc ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation backbone loaded
+  prop: embedded (2498, 768) -> scf_crc_prop.npz
+  ba: embedded (7526, 768) -> scf_crc_ba.npz
+  bu: embedded (7520, 768) -> scf_crc_bu.npz
+  ds: embedded (452, 768) -> scf_crc_ds.npz
+  eval: embedded (8572, 768) -> scf_crc_eval.npz
+P: worst group african american = 0.1147
+B: worst group hispanic or latin = 0.0041
+P2BA: worst group hispanic or latin = 0.0041
+P2BU: worst group asian = 0.2195
+P2DS: worst group hispanic or latin = 0.1357
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation/crc
+SCFOUNDATION COHORT COMPLETE
+=== scFoundation ild ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation backbone loaded
+  prop: embedded (2497, 768) -> scf_ild_prop.npz
+  ba: embedded (10762, 768) -> scf_ild_ba.npz
+  bu: embedded (10715, 768) -> scf_ild_bu.npz
+  ds: embedded (240, 768) -> scf_ild_ds.npz
+  eval: embedded (12500, 768) -> scf_ild_eval.npz
+P: worst group native american = 0.0438
+B: worst group african american = 0.0000
+P2BA: worst group african american = 0.0000
+P2BU: worst group native american = 0.0757
+P2DS: worst group native american = 0.0652
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation/ild
+SCFOUNDATION COHORT COMPLETE
+SCFOUNDATION ALL COHORTS COMPLETE

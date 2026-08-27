@@ -1,0 +1,37 @@
+cohort,arm,cell_type,n,probe_recall
+crc,pretrained,BEST4+ colonocyte,79,1.0
+crc,pretrained,colon goblet cell,95,0.9894736842105263
+crc,pretrained,colonocyte,115,0.9130434782608695
+crc,pretrained,early colonocyte,385,0.9246753246753247
+crc,pretrained,enteroendocrine cell of colon,10,1.0
+crc,pretrained,intestinal crypt stem cell of colon,124,0.8145161290322581
+crc,pretrained,malignant cell,1409,0.9943222143364088
+crc,pretrained,secretory cell,310,0.9709677419354839
+crc,pretrained,tuft cell of colon,45,0.9777777777777777
+crc,P,BEST4+ colonocyte,79,1.0
+crc,P,colon goblet cell,95,0.9789473684210527
+crc,P,colonocyte,115,0.9217391304347826
+crc,P,early colonocyte,385,0.9272727272727272
+crc,P,enteroendocrine cell of colon,10,1.0
+crc,P,intestinal crypt stem cell of colon,124,0.8064516129032258
+crc,P,malignant cell,1409,0.9971611071682044
+crc,P,secretory cell,310,0.9870967741935484
+crc,P,tuft cell of colon,45,0.9777777777777777
+crc,B,BEST4+ colonocyte,79,1.0
+crc,B,colon goblet cell,95,0.9789473684210527
+crc,B,colonocyte,115,0.9478260869565217
+crc,B,early colonocyte,385,0.935064935064935
+crc,B,enteroendocrine cell of colon,10,1.0
+crc,B,intestinal crypt stem cell of colon,124,0.8225806451612904
+crc,B,malignant cell,1409,0.9950319375443577
+crc,B,secretory cell,310,0.9838709677419355
+crc,B,tuft cell of colon,45,0.9777777777777777
+crc,P2BA,BEST4+ colonocyte,79,1.0
+crc,P2BA,colon goblet cell,95,0.9789473684210527
+crc,P2BA,colonocyte,115,0.9304347826086956
+crc,P2BA,early colonocyte,385,0.935064935064935
+crc,P2BA,enteroendocrine cell of colon,10,1.0
+crc,P2BA,intestinal crypt stem cell of colon,124,0.8467741935483871
+crc,P2BA,malignant cell,1409,0.9957416607523066
+crc,P2BA,secretory cell,310,0.9903225806451613
+crc,P2BA,tuft cell of colon,45,0.9777777777777777

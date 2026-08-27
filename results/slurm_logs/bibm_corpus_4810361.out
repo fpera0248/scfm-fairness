@@ -1,0 +1,53 @@
+pool: 15,971,669 cells, 2,766 donors
+after cap 10000: 9,693,454 cells
+train floors: balanced=296,151/group  matched=139,055/group (6 tissues)
+                  cells  donors
+group                          
+African          734310     243
+EastSEAsian      820796     678
+European        1501968    1587
+HispanicLatino   582996     138
+SouthAsian       330155     120
+selection: 3,970,225 unique cells -> /oscar/scratch/fperalta/bibm_corpus/selection.parquet
+fetching 3,970,225 cells in 40 parts of 100,000
+part 1/40 done (0.99 GB)
+part 2/40 done (1.27 GB)
+part 3/40 done (1.44 GB)
+part 4/40 done (1.65 GB)
+part 5/40 done (1.39 GB)
+part 6/40 done (0.38 GB)
+part 7/40 done (1.26 GB)
+part 8/40 done (1.63 GB)
+part 9/40 done (1.89 GB)
+part 10/40 done (1.20 GB)
+part 11/40 done (0.90 GB)
+part 12/40 done (0.72 GB)
+part 13/40 done (0.76 GB)
+part 14/40 done (0.85 GB)
+part 15/40 done (1.70 GB)
+part 16/40 done (1.75 GB)
+part 17/40 done (1.53 GB)
+part 18/40 done (1.49 GB)
+part 19/40 done (1.31 GB)
+part 20/40 done (1.39 GB)
+part 21/40 done (1.56 GB)
+part 22/40 done (1.51 GB)
+part 23/40 done (1.58 GB)
+part 24/40 done (1.50 GB)
+part 25/40 done (1.73 GB)
+part 26/40 done (1.50 GB)
+part 27/40 done (1.91 GB)
+part 28/40 done (0.62 GB)
+part 29/40 done (1.07 GB)
+part 30/40 done (1.64 GB)
+part 31/40 done (1.79 GB)
+part 32/40 done (1.56 GB)
+part 33/40 done (1.55 GB)
+part 34/40 done (1.70 GB)
+part 35/40 done (1.98 GB)
+part 36/40 done (1.97 GB)
+part 37/40 done (2.93 GB)
+part 38/40 done (1.77 GB)
+part 39/40 done (1.86 GB)
+part 40/40 done (1.77 GB)
+STAGE B COMPLETE

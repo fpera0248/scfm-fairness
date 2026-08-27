@@ -1,0 +1,9 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4817187
+##  Job Name : scea_adapt
+##  Nodelist : node1808
+##      CPUs : 8
+##  Mem/Node : 102400 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Sun Aug  9 09:08:53 PM EDT 2026
+###############################################################################

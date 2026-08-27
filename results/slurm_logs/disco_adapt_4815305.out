@@ -1,0 +1,9 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4815305
+##  Job Name : disco_adapt
+##  Nodelist : node2323
+##      CPUs : 8
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Sun Aug  9 07:14:07 PM EDT 2026
+###############################################################################

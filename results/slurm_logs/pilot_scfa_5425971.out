@@ -1,0 +1,104 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5425971
+##  Job Name : pilot_scfa
+##  Nodelist : gpu1501
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Thu Aug 27 05:54:10 PM EDT 2026
+###############################################################################
+=== scFoundation-aligned crc ===
+crc: 4 ancestries x 9 cell types = 36 strata; 5 EMPTY (cannot be filled by resampling); target 132 cells/stratum
+  stratum sizes: min 9 median 132 max 1574
+  built 4,092 cells (1,023 per ancestry, balanced within each)
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/anndata/_core/anndata.py:1756: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+  utils.warn_names_duplicates("obs")
+  grid written: 4 x 9, per-cell min 132 max 132
+  h5ad kept for the non-Geneformer models: /oscar/scratch/fperalta/pilot_repair/crc_bj.h5ad
+H5AD ONLY: /oscar/scratch/fperalta/pilot_repair/crc_bj.h5ad
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; reference panel = 19264 genes
+  prop: cached aligned embeddings (2498, 768)
+  [prop] mean pairwise corr 0.704 (bad run was 0.966-0.991)
+  ba: cached aligned embeddings (7526, 768)
+  [ba] mean pairwise corr 0.590 (bad run was 0.966-0.991)
+  bu: cached aligned embeddings (7520, 768)
+  [bu] mean pairwise corr 0.688 (bad run was 0.966-0.991)
+  ds: cached aligned embeddings (452, 768)
+  [ds] mean pairwise corr 0.694 (bad run was 0.966-0.991)
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+  bj: embedded (4092, 768) -> scfa_crc_bj.npz
+  [bj] mean pairwise corr 0.641 (bad run was 0.966-0.991)
+  eval: cached aligned embeddings (8572, 768)
+  [eval] mean pairwise corr 0.693 (bad run was 0.966-0.991)
+P: worst group asian = 0.8114; 9/9 cell types ever predicted
+B: worst group hispanic or latin = 0.8375; 9/9 cell types ever predicted
+P2BA: worst group hispanic or latin = 0.8565; 9/9 cell types ever predicted
+P2BJ: worst group asian = 0.7996; 9/9 cell types ever predicted
+P2BU: worst group asian = 0.9009; 9/9 cell types ever predicted
+P2DS: worst group asian = 0.8314; 9/9 cell types ever predicted
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/crc
+SCFOUNDATION-ALIGNED COHORT COMPLETE
+=== scFoundation-aligned aida ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; reference panel = 19264 genes
+  prop: cached aligned embeddings (2497, 768)
+  [prop] mean pairwise corr 0.732 (bad run was 0.966-0.991)
+  ba: cached aligned embeddings (5649, 768)
+  [ba] mean pairwise corr 0.602 (bad run was 0.966-0.991)
+  bu: cached aligned embeddings (5453, 768)
+  [bu] mean pairwise corr 0.726 (bad run was 0.966-0.991)
+  ds: cached aligned embeddings (637, 768)
+  [ds] mean pairwise corr 0.730 (bad run was 0.966-0.991)
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+  bj: embedded (3700, 768) -> scfa_aida_bj.npz
+  [bj] mean pairwise corr 0.596 (bad run was 0.966-0.991)
+  eval: cached aligned embeddings (12500, 768)
+  [eval] mean pairwise corr 0.732 (bad run was 0.966-0.991)
+P: worst group japanese = 0.5433; 30/32 cell types ever predicted
+B: worst group japanese = 0.5975; 31/32 cell types ever predicted
+P2BA: worst group japanese = 0.5749; 31/32 cell types ever predicted
+P2BJ: worst group japanese = 0.5800; 31/32 cell types ever predicted
+P2BU: worst group japanese = 0.4990; 29/32 cell types ever predicted
+P2DS: worst group japanese = 0.5121; 28/32 cell types ever predicted
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/aida
+SCFOUNDATION-ALIGNED COHORT COMPLETE
+=== scFoundation-aligned ild ===
+ild: 5 ancestries x 32 cell types = 160 strata; 42 EMPTY (cannot be filled by resampling); target 33 cells/stratum
+  stratum sizes: min 1 median 33 max 1228
+  built 3,894 cells (778 per ancestry, balanced within each)
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/anndata/_core/anndata.py:1756: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+  utils.warn_names_duplicates("obs")
+  grid written: 5 x 32, per-cell min 33 max 33
+  h5ad kept for the non-Geneformer models: /oscar/scratch/fperalta/pilot_repair/ild_bj.h5ad
+H5AD ONLY: /oscar/scratch/fperalta/pilot_repair/ild_bj.h5ad
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; reference panel = 19264 genes
+  prop: cached aligned embeddings (2497, 768)
+  [prop] mean pairwise corr 0.601 (bad run was 0.966-0.991)
+  ba: cached aligned embeddings (10762, 768)
+  [ba] mean pairwise corr 0.606 (bad run was 0.966-0.991)
+  bu: cached aligned embeddings (10715, 768)
+  [bu] mean pairwise corr 0.637 (bad run was 0.966-0.991)
+  ds: cached aligned embeddings (240, 768)
+  [ds] mean pairwise corr 0.649 (bad run was 0.966-0.991)
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+  bj: embedded (3894, 768) -> scfa_ild_bj.npz
+  [bj] mean pairwise corr 0.584 (bad run was 0.966-0.991)
+  eval: cached aligned embeddings (12500, 768)
+  [eval] mean pairwise corr 0.625 (bad run was 0.966-0.991)
+P: worst group hispanic or latin = 0.7735; 32/32 cell types ever predicted
+B: worst group native american = 0.7530; 32/32 cell types ever predicted
+P2BA: worst group native american = 0.7653; 32/32 cell types ever predicted
+P2BJ: worst group native american = 0.7040; 32/32 cell types ever predicted
+P2BU: worst group native american = 0.7010; 32/32 cell types ever predicted
+P2DS: worst group native american = 0.5757; 29/32 cell types ever predicted
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/ild
+SCFOUNDATION-ALIGNED COHORT COMPLETE
+SCFOUNDATION-ALIGNED ALL COHORTS COMPLETE

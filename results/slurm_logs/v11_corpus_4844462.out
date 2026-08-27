@@ -1,0 +1,93 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4844462
+##  Job Name : v11_corpus
+##  Nodelist : node1936
+##      CPUs : 8
+##  Mem/Node : 196608 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Mon Aug 10 03:30:54 PM EDT 2026
+###############################################################################
+[build_v11] coarse map /oscar/data/rsingh47/fperalta/celltype_coarse_map.csv: 539 mappable cell_type values
+[build_v11] disco: 88 parts, 541,955 cells scanned -> 3,426 kept (0 dropped without cell_type, 44,607 dropped outside the 5 groups, 493,922 dropped with cell_type unmapped in the coarse map)
+[build_v11] disco: top unmapped cell_type values (coarse-map extension candidates): [('Naive CD4 T cell', 64126), ('CD14 monocyte', 53441), ('CD16 NK cell', 51528), ('Memory CD4 T cell', 40965), ('CD16 monocyte', 29630), ('Naive CD8 T cell', 29136), ('Gamma delta T cell', 23693), ('Naive B cell', 20352), ('NK cell', 17638), ('MHCII high CD14 monocyte', 16719)]
+[build_v11] donor cap 10,000: 0 donors capped, 0 cells dropped -> 3,426 cells
+[build_v11] splits disco/African: 1 donors -> 0 eval_donor
+[build_v11] splits disco/EastSEAsian: 4 donors -> 1 eval_donor
+[build_v11] splits disco/European: 5 donors -> 1 eval_donor
+[build_v11] splits disco/SouthAsian: 1 donors -> 0 eval_donor
+[build_v11] adapter train cells/group: {'African': 260, 'EastSEAsian': 1800, 'European': 667, 'HispanicLatino': 0, 'SouthAsian': 553} -> balanced A=0
+[build_v11] WARNING: at least one group has 0 adapter train cells -> the balanced arm gains nothing from the adapters
+[build_v11] selection fingerprint -> /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/SELECTION_FINGERPRINT
+[build_v11] using V2 dictionaries from /users/fperalta/data/fperalta/Geneformer/geneformer_repo/geneformer
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130228__GSM3734180/disco__GSE130228__GSM3734180.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130228__GSM3734180/disco__GSE130228__GSM3734180.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE130228__GSM3734180: tokenized (124 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130228__GSM3734181/disco__GSE130228__GSM3734181.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130228__GSM3734181/disco__GSE130228__GSM3734181.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE130228__GSM3734181: tokenized (132 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130560__GSM3743501/disco__GSE130560__GSM3743501.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130560__GSM3743501/disco__GSE130560__GSM3743501.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE130560__GSM3743501: tokenized (69 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130560__GSM3743502/disco__GSE130560__GSM3743502.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130560__GSM3743502/disco__GSE130560__GSM3743502.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE130560__GSM3743502: tokenized (102 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130560__GSM3743503/disco__GSE130560__GSM3743503.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE130560__GSM3743503/disco__GSE130560__GSM3743503.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE130560__GSM3743503: tokenized (58 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE132338__GSM3856589/disco__GSE132338__GSM3856589.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE132338__GSM3856589/disco__GSE132338__GSM3856589.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE132338__GSM3856589: tokenized (260 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE132338__GSM3856593/disco__GSE132338__GSM3856593.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE132338__GSM3856593/disco__GSE132338__GSM3856593.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE132338__GSM3856593: tokenized (76 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE132338__GSM4512383/disco__GSE132338__GSM4512383.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE132338__GSM4512383/disco__GSE132338__GSM4512383.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE132338__GSM4512383: tokenized (77 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE132338__GSM4512394/disco__GSE132338__GSM4512394.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE132338__GSM4512394/disco__GSE132338__GSM4512394.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE132338__GSM4512394: tokenized (260 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238902/disco__GSE171964__GSM5238902.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238902/disco__GSE171964__GSM5238902.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE171964__GSM5238902: tokenized (504 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238903/disco__GSE171964__GSM5238903.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238903/disco__GSE171964__GSM5238903.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE171964__GSM5238903: tokenized (294 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238906/disco__GSE171964__GSM5238906.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238906/disco__GSE171964__GSM5238906.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE171964__GSM5238906: tokenized (452 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238907/disco__GSE171964__GSM5238907.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238907/disco__GSE171964__GSM5238907.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE171964__GSM5238907: tokenized (333 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238908/disco__GSE171964__GSM5238908.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238908/disco__GSE171964__GSM5238908.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE171964__GSM5238908: tokenized (57 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238926/disco__GSE171964__GSM5238926.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238926/disco__GSE171964__GSM5238926.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE171964__GSM5238926: tokenized (270 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238927/disco__GSE171964__GSM5238927.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE171964__GSM5238927/disco__GSE171964__GSM5238927.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE171964__GSM5238927: tokenized (283 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE206265__GSE206265--Batch3--HC-28/disco__GSE206265__GSE206265--Batch3--HC-28.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_v11_stage/h5ad/disco__GSE206265__GSE206265--Batch3--HC-28/disco__GSE206265__GSE206265--Batch3--HC-28.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+[build_v11] disco__GSE206265__GSE206265--Batch3--HC-28: tokenized (75 cells)
+[build_v11] census joinid feature is Value('int64') -> casting census joinid to string so adapter cell_id joinids concatenate
+[build_v11] post-concat audit passed: 3,426 adapter cells match the selection df on (group, split, arm_balanced, arm_proportional)
+[build_v11] BUILD COMPLETE: 3,949,268 census + 3,426 adapter = 3,952,694 cells -> /oscar/scratch/fperalta/bibm_corpus/tokenized_v2_1
+[build_v11] report -> /oscar/scratch/fperalta/bibm_corpus/v11_report.json

@@ -1,0 +1,58 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5072622
+##  Job Name : pilot_metrics
+##  Nodelist : gpu1501
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Tue Aug 18 04:02:15 PM EDT 2026
+###############################################################################
+crc: 8,000 eval cells, 4 groups, 9 cell types
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'arm': 'pretrained', 'ethnicity_ilisi': 1.3170731707317072, 'celltype_asw': 0.02812248282134533, 'n_cells': 8000, 'n_groups': 4, 'checkpoint': '/users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'arm': 'P', 'ethnicity_ilisi': 1.3563295378432687, 'celltype_asw': 0.3526088297367096, 'n_cells': 8000, 'n_groups': 4, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/crc/P/checkpoints/checkpoint-360'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'arm': 'B', 'ethnicity_ilisi': 1.4106583072100312, 'celltype_asw': 0.37249553203582764, 'n_cells': 8000, 'n_groups': 4, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/crc/B/checkpoints/checkpoint-600'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'arm': 'P2BA', 'ethnicity_ilisi': 1.3789581205311543, 'celltype_asw': 0.402773380279541, 'n_cells': 8000, 'n_groups': 4, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/crc/P2BA/checkpoints/checkpoint-150'}
+WROTE /oscar/scratch/fperalta/pilot_repair/integration_metrics_crc.csv
+aida: 8,000 eval cells, 7 groups, 32 cell types
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'aida', 'arm': 'pretrained', 'ethnicity_ilisi': 2.5007720815318093, 'celltype_asw': 0.10104800760746002, 'n_cells': 8000, 'n_groups': 7, 'checkpoint': '/users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'aida', 'arm': 'P', 'ethnicity_ilisi': 4.05, 'celltype_asw': 0.2978273928165436, 'n_cells': 8000, 'n_groups': 7, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/aida/P/checkpoints/checkpoint-352'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'aida', 'arm': 'B', 'ethnicity_ilisi': 4.0703517587939695, 'celltype_asw': 0.29306483268737793, 'n_cells': 8000, 'n_groups': 7, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/aida/B/checkpoints/checkpoint-440'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'aida', 'arm': 'P2BA', 'ethnicity_ilisi': 4.166666666666666, 'celltype_asw': 0.3248744010925293, 'n_cells': 8000, 'n_groups': 7, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/aida/P2BA/checkpoints/checkpoint-440'}
+WROTE /oscar/scratch/fperalta/pilot_repair/integration_metrics_aida.csv
+ild: 8,000 eval cells, 5 groups, 33 cell types
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'ild', 'arm': 'pretrained', 'ethnicity_ilisi': 2.013923421183491, 'celltype_asw': 0.17055223882198334, 'n_cells': 8000, 'n_groups': 5, 'checkpoint': '/users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'ild', 'arm': 'P', 'ethnicity_ilisi': 2.9220779220779223, 'celltype_asw': 0.3185760974884033, 'n_cells': 8000, 'n_groups': 5, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/ild/P/checkpoints/checkpoint-376'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'ild', 'arm': 'B', 'ethnicity_ilisi': 2.9136690647482015, 'celltype_asw': 0.3371545374393463, 'n_cells': 8000, 'n_groups': 5, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/ild/B/checkpoints/checkpoint-1533'}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'ild', 'arm': 'P2BA', 'ethnicity_ilisi': 2.984524686809138, 'celltype_asw': 0.3430531919002533, 'n_cells': 8000, 'n_groups': 5, 'checkpoint': '/oscar/scratch/fperalta/pilot_repair/runs/ild/P2BA/checkpoints/checkpoint-1744'}
+WROTE /oscar/scratch/fperalta/pilot_repair/integration_metrics_ild.csv
+METRICS COMPLETE

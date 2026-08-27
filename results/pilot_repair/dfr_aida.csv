@@ -1,0 +1,4 @@
+cohort,backbone,head,worst_group,worst_group_f1
+aida,pretrained,DFR_balanced_on_ba,thai,0.4350250222590648
+aida,P,DFR_balanced_on_ba,japanese,0.5844767873630736
+aida,P,plain_on_prop_control,japanese,0.5801524967883253

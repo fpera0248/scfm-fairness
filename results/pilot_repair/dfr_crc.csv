@@ -1,0 +1,4 @@
+cohort,backbone,head,worst_group,worst_group_f1
+crc,pretrained,DFR_balanced_on_ba,african american,0.8728964983014577
+crc,P,DFR_balanced_on_ba,african american,0.8849462626793595
+crc,P,plain_on_prop_control,african american,0.9032553648306215

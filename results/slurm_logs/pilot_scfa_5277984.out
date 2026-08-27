@@ -1,0 +1,199 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5277984
+##  Job Name : pilot_scfa
+##  Nodelist : gpu3006
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Wed Aug 26 02:44:40 AM EDT 2026
+###############################################################################
+=== scFoundation-aligned crc ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+Traceback (most recent call last):
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 298, in fs
+    return self._fs_cached
+AttributeError: 'S3Path' object has no attribute '_fs_cached'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 261, in get_filesystem_class
+    register_implementation(protocol, _import_class(bit["class"]))
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 296, in _import_class
+    mod = importlib.import_module(mod)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/s3fs/__init__.py", line 1, in <module>
+    from .core import S3FileSystem, S3File, add_retryable_error, set_custom_error_handler
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/s3fs/core.py", line 30, in <module>
+    import aiobotocore.session
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/aiobotocore/session.py", line 3, in <module>
+    from botocore.context import get_context
+ModuleNotFoundError: No module named 'botocore.context'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation_aligned.py", line 235, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation_aligned.py", line 179, in main
+    ref_genes = load_backbone_gene_list(BACKBONE)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/cell/utils.py", line 125, in load_backbone_gene_list
+    gene_map = build_map(gene_symbols)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/cell/utils.py", line 12, in build_map
+    gene_map = bt.base.Gene(organism="human").standardize(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/entities/_gene.py", line 60, in __init__
+    super().__init__(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/_public_ontology.py", line 85, in __init__
+    df = self._load_df()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/entities/_gene.py", line 69, in _load_df
+    df = super()._load_df()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/_public_ontology.py", line 295, in _load_df
+    s3_bionty_assets(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/dev/_io.py", line 123, in s3_bionty_assets
+    remote_stat = remote_path.stat()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 1419, in stat
+    return UPathStatResult.from_info(self.fs.info(self.path))
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 300, in fs
+    fs = self._fs_cached = self._fs_factory(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 399, in _fs_factory
+    fs_cls = get_filesystem_class(protocol)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 263, in get_filesystem_class
+    raise ImportError(bit.get("err")) from e
+ImportError: Install s3fs to access S3
+  crc FAILED, continuing
+=== scFoundation-aligned aida ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+Traceback (most recent call last):
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 298, in fs
+    return self._fs_cached
+AttributeError: 'S3Path' object has no attribute '_fs_cached'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 261, in get_filesystem_class
+    register_implementation(protocol, _import_class(bit["class"]))
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 296, in _import_class
+    mod = importlib.import_module(mod)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/s3fs/__init__.py", line 1, in <module>
+    from .core import S3FileSystem, S3File, add_retryable_error, set_custom_error_handler
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/s3fs/core.py", line 30, in <module>
+    import aiobotocore.session
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/aiobotocore/session.py", line 3, in <module>
+    from botocore.context import get_context
+ModuleNotFoundError: No module named 'botocore.context'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation_aligned.py", line 235, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation_aligned.py", line 179, in main
+    ref_genes = load_backbone_gene_list(BACKBONE)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/cell/utils.py", line 125, in load_backbone_gene_list
+    gene_map = build_map(gene_symbols)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/cell/utils.py", line 12, in build_map
+    gene_map = bt.base.Gene(organism="human").standardize(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/entities/_gene.py", line 60, in __init__
+    super().__init__(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/_public_ontology.py", line 85, in __init__
+    df = self._load_df()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/entities/_gene.py", line 69, in _load_df
+    df = super()._load_df()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/_public_ontology.py", line 295, in _load_df
+    s3_bionty_assets(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/dev/_io.py", line 123, in s3_bionty_assets
+    remote_stat = remote_path.stat()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 1419, in stat
+    return UPathStatResult.from_info(self.fs.info(self.path))
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 300, in fs
+    fs = self._fs_cached = self._fs_factory(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 399, in _fs_factory
+    fs_cls = get_filesystem_class(protocol)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 263, in get_filesystem_class
+    raise ImportError(bit.get("err")) from e
+ImportError: Install s3fs to access S3
+  aida FAILED, continuing
+=== scFoundation-aligned ild ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+Traceback (most recent call last):
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 298, in fs
+    return self._fs_cached
+AttributeError: 'S3Path' object has no attribute '_fs_cached'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 261, in get_filesystem_class
+    register_implementation(protocol, _import_class(bit["class"]))
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 296, in _import_class
+    mod = importlib.import_module(mod)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/s3fs/__init__.py", line 1, in <module>
+    from .core import S3FileSystem, S3File, add_retryable_error, set_custom_error_handler
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/s3fs/core.py", line 30, in <module>
+    import aiobotocore.session
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/aiobotocore/session.py", line 3, in <module>
+    from botocore.context import get_context
+ModuleNotFoundError: No module named 'botocore.context'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation_aligned.py", line 235, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation_aligned.py", line 179, in main
+    ref_genes = load_backbone_gene_list(BACKBONE)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/cell/utils.py", line 125, in load_backbone_gene_list
+    gene_map = build_map(gene_symbols)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/cell/utils.py", line 12, in build_map
+    gene_map = bt.base.Gene(organism="human").standardize(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/entities/_gene.py", line 60, in __init__
+    super().__init__(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/_public_ontology.py", line 85, in __init__
+    df = self._load_df()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/entities/_gene.py", line 69, in _load_df
+    df = super()._load_df()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/_public_ontology.py", line 295, in _load_df
+    s3_bionty_assets(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/bionty/base/dev/_io.py", line 123, in s3_bionty_assets
+    remote_stat = remote_path.stat()
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 1419, in stat
+    return UPathStatResult.from_info(self.fs.info(self.path))
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 300, in fs
+    fs = self._fs_cached = self._fs_factory(
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/upath/core.py", line 399, in _fs_factory
+    fs_cls = get_filesystem_class(protocol)
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/fsspec/registry.py", line 263, in get_filesystem_class
+    raise ImportError(bit.get("err")) from e
+ImportError: Install s3fs to access S3
+  ild FAILED, continuing
+SCFOUNDATION-ALIGNED ALL COHORTS COMPLETE

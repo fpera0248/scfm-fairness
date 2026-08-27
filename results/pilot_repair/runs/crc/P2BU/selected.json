@@ -1,0 +1,4 @@
+{
+  "checkpoint": "checkpoint-93",
+  "rule": "max worst_class_acc on donor-held validation; ties broken by overall macro-F1"
+}

@@ -1,0 +1,55 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5133426
+##  Job Name : pilot_dfr
+##  Nodelist : gpu2111
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Fri Aug 21 04:54:14 PM EDT 2026
+###############################################################################
+crc: ba=7,526 prop=2,498 eval=8,572
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+{'cohort': 'crc', 'backbone': 'pretrained', 'head': 'DFR_balanced_on_ba', 'worst_group': 'african american', 'worst_group_f1': 0.8728964983014577} {'african american': 0.873, 'asian': 0.884, 'european american': 0.918, 'hispanic or latin': 0.895}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'backbone': 'P', 'head': 'DFR_balanced_on_ba', 'worst_group': 'african american', 'worst_group_f1': 0.8849462626793595} {'african american': 0.885, 'asian': 0.914, 'european american': 0.92, 'hispanic or latin': 0.935}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'crc', 'backbone': 'P', 'head': 'plain_on_prop_control', 'worst_group': 'african american', 'worst_group_f1': 0.9032553648306215} {'african american': 0.903, 'asian': 0.913, 'european american': 0.931, 'hispanic or latin': 0.929}
+WROTE dfr_crc.csv
+aida: ba=5,649 prop=2,497 eval=12,500
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+{'cohort': 'aida', 'backbone': 'pretrained', 'head': 'DFR_balanced_on_ba', 'worst_group': 'thai', 'worst_group_f1': 0.4350250222590648} {'indian': 0.899, 'japanese': 0.492, 'korean': 0.662, 'singaporean chinese': 0.576, 'singaporean indian': 0.528, 'singaporean malay': 0.574, 'thai': 0.435}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'aida', 'backbone': 'P', 'head': 'DFR_balanced_on_ba', 'worst_group': 'japanese', 'worst_group_f1': 0.5844767873630736} {'indian': 0.888, 'japanese': 0.584, 'korean': 0.769, 'singaporean chinese': 0.734, 'singaporean indian': 0.695, 'singaporean malay': 0.684, 'thai': 0.785}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'aida', 'backbone': 'P', 'head': 'plain_on_prop_control', 'worst_group': 'japanese', 'worst_group_f1': 0.5801524967883253} {'indian': 0.849, 'japanese': 0.58, 'korean': 0.772, 'singaporean chinese': 0.806, 'singaporean indian': 0.674, 'singaporean malay': 0.61, 'thai': 0.8}
+WROTE dfr_aida.csv
+ild: ba=10,762 prop=2,497 eval=12,500
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+{'cohort': 'ild', 'backbone': 'pretrained', 'head': 'DFR_balanced_on_ba', 'worst_group': 'native american', 'worst_group_f1': 0.77421739432456} {'african american': 0.812, 'asian': 0.852, 'european american': 0.838, 'hispanic or latin': 0.826, 'native american': 0.774}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'ild', 'backbone': 'P', 'head': 'DFR_balanced_on_ba', 'worst_group': 'native american', 'worst_group_f1': 0.7949481437563659} {'african american': 0.836, 'asian': 0.834, 'european american': 0.836, 'hispanic or latin': 0.803, 'native american': 0.795}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+{'cohort': 'ild', 'backbone': 'P', 'head': 'plain_on_prop_control', 'worst_group': 'hispanic or latin', 'worst_group_f1': 0.7844225345698164} {'african american': 0.828, 'asian': 0.836, 'european american': 0.856, 'hispanic or latin': 0.784, 'native american': 0.795}
+WROTE dfr_ild.csv
+DFR COMPLETE

@@ -1,0 +1,5 @@
+cohort,arm,ethnicity_ilisi,celltype_asw,n_cells,n_groups,checkpoint
+ild,pretrained,2.013923421183491,0.17055223882198334,8000,5,/users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M
+ild,P,2.9220779220779223,0.3185760974884033,8000,5,/oscar/scratch/fperalta/pilot_repair/runs/ild/P/checkpoints/checkpoint-376
+ild,B,2.9136690647482015,0.3371545374393463,8000,5,/oscar/scratch/fperalta/pilot_repair/runs/ild/B/checkpoints/checkpoint-1533
+ild,P2BA,2.984524686809138,0.3430531919002533,8000,5,/oscar/scratch/fperalta/pilot_repair/runs/ild/P2BA/checkpoints/checkpoint-1744

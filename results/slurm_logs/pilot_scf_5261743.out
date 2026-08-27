@@ -1,0 +1,145 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5261743
+##  Job Name : pilot_scf
+##  Nodelist : gpu1506
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Tue Aug 25 11:29:15 PM EDT 2026
+###############################################################################
+=== scFoundation aida ===
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py", line 217, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py", line 163, in main
+    from modelgenerator.tasks import Embed
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/tasks/__init__.py", line 1, in <module>
+    from modelgenerator.tasks.base import *
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/tasks/base.py", line 3, in <module>
+    import lightning.pytorch as pl
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/__init__.py", line 20, in <module>
+    from lightning.pytorch.callbacks import Callback  # noqa: E402
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/__init__.py", line 27, in <module>
+    from lightning.pytorch.callbacks import Callback  # noqa: E402
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/__init__.py", line 14, in <module>
+    from lightning.pytorch.callbacks.batch_size_finder import BatchSizeFinder
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/batch_size_finder.py", line 26, in <module>
+    from lightning.pytorch.callbacks.callback import Callback
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/callback.py", line 22, in <module>
+    from lightning.pytorch.utilities.types import STEP_OUTPUT
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/utilities/types.py", line 36, in <module>
+    from torchmetrics import Metric
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/__init__.py", line 37, in <module>
+    from torchmetrics import functional  # noqa: E402
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/__init__.py", line 14, in <module>
+    from torchmetrics.functional.audio._deprecated import _permutation_invariant_training as permutation_invariant_training
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/audio/__init__.py", line 14, in <module>
+    from torchmetrics.functional.audio.pit import permutation_invariant_training, pit_permutate
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/audio/pit.py", line 22, in <module>
+    from torchmetrics.utilities import rank_zero_warn
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/__init__.py", line 14, in <module>
+    from torchmetrics.utilities.checks import check_forward_full_state_property
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/checks.py", line 25, in <module>
+    from torchmetrics.metric import Metric
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/metric.py", line 42, in <module>
+    from torchmetrics.utilities.plot import _AX_TYPE, _PLOT_OUT_TYPE, plot_single_or_multi_val
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/plot.py", line 25, in <module>
+    import matplotlib
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/__init__.py", line 161, in <module>
+    from . import _api, _version, cbook, _docstring, rcsetup
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/cbook.py", line 32, in <module>
+    from matplotlib import _api, _c_internal_utils
+ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.15' not found (required by /users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/_c_internal_utils.cpython-310-x86_64-linux-gnu.so)
+ERROR conda.cli.main_run:execute(125): `conda run python /users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py --cohort aida` failed. (See above for error)
+  aida FAILED, continuing
+=== scFoundation crc ===
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py", line 217, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py", line 163, in main
+    from modelgenerator.tasks import Embed
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/tasks/__init__.py", line 1, in <module>
+    from modelgenerator.tasks.base import *
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/tasks/base.py", line 3, in <module>
+    import lightning.pytorch as pl
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/__init__.py", line 20, in <module>
+    from lightning.pytorch.callbacks import Callback  # noqa: E402
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/__init__.py", line 27, in <module>
+    from lightning.pytorch.callbacks import Callback  # noqa: E402
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/__init__.py", line 14, in <module>
+    from lightning.pytorch.callbacks.batch_size_finder import BatchSizeFinder
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/batch_size_finder.py", line 26, in <module>
+    from lightning.pytorch.callbacks.callback import Callback
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/callback.py", line 22, in <module>
+    from lightning.pytorch.utilities.types import STEP_OUTPUT
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/utilities/types.py", line 36, in <module>
+    from torchmetrics import Metric
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/__init__.py", line 37, in <module>
+    from torchmetrics import functional  # noqa: E402
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/__init__.py", line 14, in <module>
+    from torchmetrics.functional.audio._deprecated import _permutation_invariant_training as permutation_invariant_training
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/audio/__init__.py", line 14, in <module>
+    from torchmetrics.functional.audio.pit import permutation_invariant_training, pit_permutate
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/audio/pit.py", line 22, in <module>
+    from torchmetrics.utilities import rank_zero_warn
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/__init__.py", line 14, in <module>
+    from torchmetrics.utilities.checks import check_forward_full_state_property
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/checks.py", line 25, in <module>
+    from torchmetrics.metric import Metric
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/metric.py", line 42, in <module>
+    from torchmetrics.utilities.plot import _AX_TYPE, _PLOT_OUT_TYPE, plot_single_or_multi_val
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/plot.py", line 25, in <module>
+    import matplotlib
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/__init__.py", line 161, in <module>
+    from . import _api, _version, cbook, _docstring, rcsetup
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/cbook.py", line 32, in <module>
+    from matplotlib import _api, _c_internal_utils
+ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.15' not found (required by /users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/_c_internal_utils.cpython-310-x86_64-linux-gnu.so)
+ERROR conda.cli.main_run:execute(125): `conda run python /users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py --cohort crc` failed. (See above for error)
+  crc FAILED, continuing
+=== scFoundation ild ===
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py", line 217, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py", line 163, in main
+    from modelgenerator.tasks import Embed
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/tasks/__init__.py", line 1, in <module>
+    from modelgenerator.tasks.base import *
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/modelgenerator/tasks/base.py", line 3, in <module>
+    import lightning.pytorch as pl
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/__init__.py", line 20, in <module>
+    from lightning.pytorch.callbacks import Callback  # noqa: E402
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/__init__.py", line 27, in <module>
+    from lightning.pytorch.callbacks import Callback  # noqa: E402
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/__init__.py", line 14, in <module>
+    from lightning.pytorch.callbacks.batch_size_finder import BatchSizeFinder
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/batch_size_finder.py", line 26, in <module>
+    from lightning.pytorch.callbacks.callback import Callback
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/callbacks/callback.py", line 22, in <module>
+    from lightning.pytorch.utilities.types import STEP_OUTPUT
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/lightning/pytorch/utilities/types.py", line 36, in <module>
+    from torchmetrics import Metric
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/__init__.py", line 37, in <module>
+    from torchmetrics import functional  # noqa: E402
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/__init__.py", line 14, in <module>
+    from torchmetrics.functional.audio._deprecated import _permutation_invariant_training as permutation_invariant_training
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/audio/__init__.py", line 14, in <module>
+    from torchmetrics.functional.audio.pit import permutation_invariant_training, pit_permutate
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/functional/audio/pit.py", line 22, in <module>
+    from torchmetrics.utilities import rank_zero_warn
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/__init__.py", line 14, in <module>
+    from torchmetrics.utilities.checks import check_forward_full_state_property
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/checks.py", line 25, in <module>
+    from torchmetrics.metric import Metric
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/metric.py", line 42, in <module>
+    from torchmetrics.utilities.plot import _AX_TYPE, _PLOT_OUT_TYPE, plot_single_or_multi_val
+  File "/users/fperalta/.local/lib/python3.10/site-packages/torchmetrics/utilities/plot.py", line 25, in <module>
+    import matplotlib
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/__init__.py", line 161, in <module>
+    from . import _api, _version, cbook, _docstring, rcsetup
+  File "/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/cbook.py", line 32, in <module>
+    from matplotlib import _api, _c_internal_utils
+ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.15' not found (required by /users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/matplotlib/_c_internal_utils.cpython-310-x86_64-linux-gnu.so)
+ERROR conda.cli.main_run:execute(125): `conda run python /users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_scfoundation.py --cohort ild` failed. (See above for error)
+  ild FAILED, continuing
+SCFOUNDATION ALL COHORTS COMPLETE

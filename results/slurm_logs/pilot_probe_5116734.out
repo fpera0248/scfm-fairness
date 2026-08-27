@@ -1,0 +1,65 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5116734
+##  Job Name : pilot_probe
+##  Nodelist : gpu2108
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Thu Aug 20 08:15:13 PM EDT 2026
+###############################################################################
+crc: 8,572 cells, 9 cell types, 4 groups
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_probe.py", line 158, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_probe.py", line 120, in main
+    X = embed(ckpt, ds, batch=args.batch)
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_probe.py", line 67, in embed
+    h = model(input_ids=ids, attention_mask=mask).hidden_states[-1]
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 1673, in forward
+    outputs = self.bert(
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 1142, in forward
+    encoder_outputs = self.encoder(
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 695, in forward
+    layer_outputs = layer_module(
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 627, in forward
+    layer_output = apply_chunking_to_forward(
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/pytorch_utils.py", line 261, in apply_chunking_to_forward
+    return forward_fn(*input_tensors)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 639, in feed_forward_chunk
+    intermediate_output = self.intermediate(attention_output)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 540, in forward
+    hidden_states = self.intermediate_act_fn(hidden_states)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/activation.py", line 133, in forward
+    return F.relu(input, inplace=self.inplace)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/functional.py", line 1704, in relu
+    result = torch.relu(input)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.38 GiB. GPU 0 has a total capacity of 23.56 GiB of which 1.90 GiB is free. Including non-PyTorch memory, this process has 21.64 GiB memory in use. Of the allocated memory 16.85 GiB is allocated by PyTorch, and 4.49 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+ERROR conda.cli.main_run:execute(125): `conda run python /users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_probe.py --cohort crc --model-dir /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M` failed. (See above for error)

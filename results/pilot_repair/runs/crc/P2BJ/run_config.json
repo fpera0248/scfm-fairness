@@ -1,0 +1,31 @@
+{
+  "tokenized": "/oscar/scratch/fperalta/pilot_repair/crc_bj.dataset",
+  "labels_json": "/oscar/scratch/fperalta/pilot_repair/crc_labels.json",
+  "coarse_map": "/oscar/scratch/fperalta/pilot_repair/crc_identity_map.csv",
+  "model_dir": "/users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M",
+  "init_from": "/oscar/scratch/fperalta/pilot_repair/runs/crc/P/checkpoints/checkpoint-360",
+  "outdir": "/oscar/scratch/fperalta/pilot_repair/runs/crc/P2BJ",
+  "epochs": 8,
+  "lr": 1e-05,
+  "batch": 12,
+  "grad_accum": 4,
+  "freeze_layers": 12,
+  "seed": 0,
+  "val_donor_frac": 0.15,
+  "token_dict": "/users/fperalta/data/fperalta/Geneformer/geneformer_repo/geneformer/token_dictionary_gc104M.pkl",
+  "n_train": 3870,
+  "n_val": 222,
+  "n_labels": 9,
+  "labels": [
+    "BEST4+ colonocyte",
+    "colon goblet cell",
+    "colonocyte",
+    "early colonocyte",
+    "enteroendocrine cell of colon",
+    "intestinal crypt stem cell of colon",
+    "malignant cell",
+    "secretory cell",
+    "tuft cell of colon"
+  ],
+  "n_val_donors": 3
+}

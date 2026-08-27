@@ -1,0 +1,46 @@
+arm,cell_type,n_cells,accuracy
+P,BEST4+ colonocyte,262,0.10687022900763359
+P,colon goblet cell,316,0.27848101265822783
+P,colonocyte,383,0.015665796344647518
+P,early colonocyte,1285,0.3478599221789883
+P,enteroendocrine cell of colon,33,0.0
+P,intestinal crypt stem cell of colon,414,0.0
+P,malignant cell,4696,0.962947189097104
+P,secretory cell,1034,0.0019342359767891683
+P,tuft cell of colon,149,0.03355704697986577
+B,BEST4+ colonocyte,262,1.0
+B,colon goblet cell,316,0.0
+B,colonocyte,383,0.0
+B,early colonocyte,1285,0.0
+B,enteroendocrine cell of colon,33,0.0
+B,intestinal crypt stem cell of colon,414,0.0
+B,malignant cell,4696,0.0
+B,secretory cell,1034,0.0
+B,tuft cell of colon,149,0.0
+P2BA,BEST4+ colonocyte,262,1.0
+P2BA,colon goblet cell,316,0.0
+P2BA,colonocyte,383,0.0
+P2BA,early colonocyte,1285,0.0
+P2BA,enteroendocrine cell of colon,33,0.0
+P2BA,intestinal crypt stem cell of colon,414,0.0
+P2BA,malignant cell,4696,0.0
+P2BA,secretory cell,1034,0.0
+P2BA,tuft cell of colon,149,0.0
+P2BU,BEST4+ colonocyte,262,0.1946564885496183
+P2BU,colon goblet cell,316,0.4462025316455696
+P2BU,colonocyte,383,0.07571801566579635
+P2BU,early colonocyte,1285,0.41867704280155643
+P2BU,enteroendocrine cell of colon,33,0.0
+P2BU,intestinal crypt stem cell of colon,414,0.0
+P2BU,malignant cell,4696,0.854344122657581
+P2BU,secretory cell,1034,0.31237911025145065
+P2BU,tuft cell of colon,149,0.0738255033557047
+P2DS,BEST4+ colonocyte,262,0.36259541984732824
+P2DS,colon goblet cell,316,0.14240506329113925
+P2DS,colonocyte,383,0.0
+P2DS,early colonocyte,1285,0.2933852140077821
+P2DS,enteroendocrine cell of colon,33,0.0
+P2DS,intestinal crypt stem cell of colon,414,0.0
+P2DS,malignant cell,4696,0.9290885860306644
+P2DS,secretory cell,1034,0.13249516441005801
+P2DS,tuft cell of colon,149,0.15436241610738255

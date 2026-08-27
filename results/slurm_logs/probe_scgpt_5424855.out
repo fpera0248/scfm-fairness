@@ -1,0 +1,39 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5424855
+##  Job Name : probe_scgpt
+##  Nodelist : gpu2113
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Thu Aug 27 05:35:58 PM EDT 2026
+###############################################################################
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+ENV_OK 2.1.2+cu121 True
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/model.py:21: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/scgpt/model/multiomic_model.py:19: UserWarning: flash_attn is not installed
+  warnings.warn("flash_attn is not installed")
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Subsetting highly variable genes ...
+scGPT - WARNING - No batch_key is provided, will use all cells for HVG selection.
+scGPT - INFO - Binning data ...
+scGPT - INFO - Normalizing total counts ...
+scGPT - INFO - Log1p transforming ...
+scGPT - INFO - Binning data ...
+aida: probing 6,000 cells, 32 classes
+checkpoint: 163 tensors, 24 Wqkv keys (flash-attn layout, rename REQUIRED)
+pretrained: loaded 159/169
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/probe_scgpt_backbone.py", line 162, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/probe_scgpt_backbone.py", line 154, in main
+    X = embed(model, tok, args.batch, device)
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/probe_scgpt_backbone.py", line 74, in embed
+    h = model._encode(g, v, src_key_padding_mask=g.eq(model.vocab[PAD_TOKEN]))
+  File "/users/fperalta/.conda/envs/scgpt310/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1695, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'TransformerModel' object has no attribute 'vocab'

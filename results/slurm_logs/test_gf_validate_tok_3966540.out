@@ -1,0 +1,30 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 3966540
+##  Job Name : gf_validate_tok
+##  Nodelist : gpu2502
+##      CPUs : 
+##  Mem/Node : 131072 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Tue Jul 14 06:43:53 AM EDT 2026
+###############################################################################
+Collecting tokenizers==0.21.0
+  Downloading tokenizers-0.21.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Downloading tokenizers-0.21.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 25.6 MB/s eta 0:00:00
+Installing collected packages: tokenizers
+  Attempting uninstall: tokenizers
+    Found existing installation: tokenizers 0.22.2
+    Uninstalling tokenizers-0.22.2:
+      Successfully uninstalled tokenizers-0.22.2
+Successfully installed tokenizers-0.21.0
+
+
+########## REPRODUCE  geneformer / ild / ethnicity   (06:44:02) ##########
+  workflow : Geneformer/augmented/ethnicity_Geneformer_workflow
+  env      : geneformer310 (+ scdesign3_env for step0b)
+  work dir : /data/Geneformer/augmented/ethnicity_Geneformer_workflow
+
+########## STEP 2a embed  (step2a_ethnicity_embed_geneformer.py, 06:44:02) ##########
+Python: /opt/conda/envs/geneformer310/bin/python
+Script: STEP 2a ETHNICITY -- Geneformer V2-316M embed
+

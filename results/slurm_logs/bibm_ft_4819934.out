@@ -1,0 +1,11 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4819934
+##  Job Name : bibm_ft
+##  Nodelist : gpu1501
+##      CPUs : 12
+##  Mem/Node : 196608 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Sun Aug  9 11:03:49 PM EDT 2026
+###############################################################################
+re-equalizing groups to 49,377/group (pre: {'African': 50478, 'EastSEAsian': 50785, 'European': 49940, 'HispanicLatino': 49377, 'SouthAsian': 49420})
+arm=balanced train=246,885 val=157,410 labels=45 val_donors=246

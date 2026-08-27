@@ -1,0 +1,193 @@
+arm,cell_type,n_cells,accuracy
+P,B cell,25,0.8
+P,"CD8-positive, alpha-beta cytotoxic T cell",293,0.9419795221843004
+P,adventitial fibroblast,307,0.9641693811074918
+P,alveolar macrophage,176,0.6590909090909091
+P,alveolar type 1 fibroblast cell,74,0.7162162162162162
+P,basal cell,366,0.8852459016393442
+P,ciliated cell,2304,0.9921875
+P,classical monocyte,680,0.6808823529411765
+P,conventional dendritic cell,163,0.8159509202453987
+P,endothelial cell of arteriole,200,0.865
+P,endothelial cell of respiratory system lymphatic vessel,117,0.9829059829059829
+P,epithelial cell of lung,86,0.7790697674418605
+P,granzyme K-associated CD8 T cell,8,0.125
+P,helper T cell,91,0.6593406593406593
+P,hematopoietic cell,107,0.897196261682243
+P,lung interstitial macrophage,140,0.6857142857142857
+P,lung secretory cell,1724,0.9443155452436195
+P,macrophage,1992,0.9086345381526104
+P,mast cell,26,1.0
+P,mesothelial cell of pleura,33,1.0
+P,monocyte,384,0.8567708333333334
+P,"myeloid dendritic cell, human",249,0.44176706827309237
+P,myofibroblast cell,53,0.5471698113207547
+P,natural killer cell,163,0.852760736196319
+P,pericyte,56,0.7142857142857143
+P,plasma cell,26,0.38461538461538464
+P,plasmacytoid dendritic cell,14,1.0
+P,pulmonary alveolar type 1 cell,196,0.9489795918367347
+P,pulmonary alveolar type 2 cell,1521,0.9618671926364234
+P,pulmonary capillary endothelial cell,206,0.8737864077669902
+P,smooth muscle cell,55,0.9272727272727272
+P,vein endothelial cell of respiratory system,663,0.8446455505279035
+B,B cell,25,0.68
+B,"CD8-positive, alpha-beta cytotoxic T cell",293,0.9522184300341296
+B,adventitial fibroblast,307,0.9446254071661238
+B,alveolar macrophage,176,0.6136363636363636
+B,alveolar type 1 fibroblast cell,74,0.8648648648648649
+B,basal cell,366,0.8688524590163934
+B,ciliated cell,2304,0.9809027777777778
+B,classical monocyte,680,0.7132352941176471
+B,conventional dendritic cell,163,0.5766871165644172
+B,endothelial cell of arteriole,200,0.88
+B,endothelial cell of respiratory system lymphatic vessel,117,0.9829059829059829
+B,epithelial cell of lung,86,0.6976744186046512
+B,granzyme K-associated CD8 T cell,8,0.25
+B,helper T cell,91,0.7142857142857143
+B,hematopoietic cell,107,0.9065420560747663
+B,lung interstitial macrophage,140,0.7714285714285715
+B,lung secretory cell,1724,0.9802784222737819
+B,macrophage,1992,0.9131526104417671
+B,mast cell,26,1.0
+B,mesothelial cell of pleura,33,1.0
+B,monocyte,384,0.875
+B,"myeloid dendritic cell, human",249,0.5622489959839357
+B,myofibroblast cell,53,0.49056603773584906
+B,natural killer cell,163,0.803680981595092
+B,pericyte,56,0.7321428571428571
+B,plasma cell,26,0.5769230769230769
+B,plasmacytoid dendritic cell,14,1.0
+B,pulmonary alveolar type 1 cell,196,0.9387755102040817
+B,pulmonary alveolar type 2 cell,1521,0.9506903353057199
+B,pulmonary capillary endothelial cell,206,0.8543689320388349
+B,smooth muscle cell,55,0.9818181818181818
+B,vein endothelial cell of respiratory system,663,0.8386123680241327
+P2BA,B cell,25,0.8
+P2BA,"CD8-positive, alpha-beta cytotoxic T cell",293,0.9419795221843004
+P2BA,adventitial fibroblast,307,0.9381107491856677
+P2BA,alveolar macrophage,176,0.5397727272727273
+P2BA,alveolar type 1 fibroblast cell,74,0.8243243243243243
+P2BA,basal cell,366,0.8306010928961749
+P2BA,ciliated cell,2304,0.9830729166666666
+P2BA,classical monocyte,680,0.7455882352941177
+P2BA,conventional dendritic cell,163,0.5766871165644172
+P2BA,endothelial cell of arteriole,200,0.875
+P2BA,endothelial cell of respiratory system lymphatic vessel,117,0.9658119658119658
+P2BA,epithelial cell of lung,86,0.6976744186046512
+P2BA,granzyme K-associated CD8 T cell,8,0.25
+P2BA,helper T cell,91,0.7142857142857143
+P2BA,hematopoietic cell,107,0.9158878504672897
+P2BA,lung interstitial macrophage,140,0.7214285714285714
+P2BA,lung secretory cell,1724,0.9825986078886311
+P2BA,macrophage,1992,0.9241967871485943
+P2BA,mast cell,26,1.0
+P2BA,mesothelial cell of pleura,33,1.0
+P2BA,monocyte,384,0.84375
+P2BA,"myeloid dendritic cell, human",249,0.5742971887550201
+P2BA,myofibroblast cell,53,0.49056603773584906
+P2BA,natural killer cell,163,0.7852760736196319
+P2BA,pericyte,56,0.7142857142857143
+P2BA,plasma cell,26,0.5384615384615384
+P2BA,plasmacytoid dendritic cell,14,1.0
+P2BA,pulmonary alveolar type 1 cell,196,0.9336734693877551
+P2BA,pulmonary alveolar type 2 cell,1521,0.948060486522025
+P2BA,pulmonary capillary endothelial cell,206,0.8300970873786407
+P2BA,smooth muscle cell,55,0.9818181818181818
+P2BA,vein endothelial cell of respiratory system,663,0.8567119155354449
+P2BJ,B cell,25,0.84
+P2BJ,"CD8-positive, alpha-beta cytotoxic T cell",293,0.9556313993174061
+P2BJ,adventitial fibroblast,307,0.8794788273615635
+P2BJ,alveolar macrophage,176,0.7840909090909091
+P2BJ,alveolar type 1 fibroblast cell,74,0.8918918918918919
+P2BJ,basal cell,366,0.9207650273224044
+P2BJ,ciliated cell,2304,0.9639756944444444
+P2BJ,classical monocyte,680,0.7352941176470589
+P2BJ,conventional dendritic cell,163,0.803680981595092
+P2BJ,endothelial cell of arteriole,200,0.91
+P2BJ,endothelial cell of respiratory system lymphatic vessel,117,0.9658119658119658
+P2BJ,epithelial cell of lung,86,0.9069767441860465
+P2BJ,granzyme K-associated CD8 T cell,8,0.25
+P2BJ,helper T cell,91,0.6923076923076923
+P2BJ,hematopoietic cell,107,0.9252336448598131
+P2BJ,lung interstitial macrophage,140,0.9285714285714286
+P2BJ,lung secretory cell,1724,0.904292343387471
+P2BJ,macrophage,1992,0.7986947791164659
+P2BJ,mast cell,26,1.0
+P2BJ,mesothelial cell of pleura,33,1.0
+P2BJ,monocyte,384,0.8697916666666666
+P2BJ,"myeloid dendritic cell, human",249,0.6184738955823293
+P2BJ,myofibroblast cell,53,0.5283018867924528
+P2BJ,natural killer cell,163,0.8650306748466258
+P2BJ,pericyte,56,0.75
+P2BJ,plasma cell,26,0.6153846153846154
+P2BJ,plasmacytoid dendritic cell,14,1.0
+P2BJ,pulmonary alveolar type 1 cell,196,0.9744897959183674
+P2BJ,pulmonary alveolar type 2 cell,1521,0.9598948060486522
+P2BJ,pulmonary capillary endothelial cell,206,0.8495145631067961
+P2BJ,smooth muscle cell,55,0.9818181818181818
+P2BJ,vein endothelial cell of respiratory system,663,0.799396681749623
+P2BU,B cell,25,0.72
+P2BU,"CD8-positive, alpha-beta cytotoxic T cell",293,0.9283276450511946
+P2BU,adventitial fibroblast,307,0.9413680781758957
+P2BU,alveolar macrophage,176,0.45454545454545453
+P2BU,alveolar type 1 fibroblast cell,74,0.9054054054054054
+P2BU,basal cell,366,0.8333333333333334
+P2BU,ciliated cell,2304,0.9830729166666666
+P2BU,classical monocyte,680,0.6661764705882353
+P2BU,conventional dendritic cell,163,0.7975460122699386
+P2BU,endothelial cell of arteriole,200,0.91
+P2BU,endothelial cell of respiratory system lymphatic vessel,117,0.9658119658119658
+P2BU,epithelial cell of lung,86,0.8023255813953488
+P2BU,granzyme K-associated CD8 T cell,8,0.25
+P2BU,helper T cell,91,0.7032967032967034
+P2BU,hematopoietic cell,107,0.7757009345794392
+P2BU,lung interstitial macrophage,140,0.7928571428571428
+P2BU,lung secretory cell,1724,0.9657772621809745
+P2BU,macrophage,1992,0.9126506024096386
+P2BU,mast cell,26,0.9615384615384616
+P2BU,mesothelial cell of pleura,33,1.0
+P2BU,monocyte,384,0.8177083333333334
+P2BU,"myeloid dendritic cell, human",249,0.5180722891566265
+P2BU,myofibroblast cell,53,0.33962264150943394
+P2BU,natural killer cell,163,0.7730061349693251
+P2BU,pericyte,56,0.6964285714285714
+P2BU,plasma cell,26,0.34615384615384615
+P2BU,plasmacytoid dendritic cell,14,0.9285714285714286
+P2BU,pulmonary alveolar type 1 cell,196,0.9540816326530612
+P2BU,pulmonary alveolar type 2 cell,1521,0.9638395792241946
+P2BU,pulmonary capillary endothelial cell,206,0.8640776699029126
+P2BU,smooth muscle cell,55,0.9272727272727272
+P2BU,vein endothelial cell of respiratory system,663,0.8114630467571644
+P2DS,B cell,25,0.12
+P2DS,"CD8-positive, alpha-beta cytotoxic T cell",293,0.9556313993174061
+P2DS,adventitial fibroblast,307,0.9185667752442996
+P2DS,alveolar macrophage,176,0.48863636363636365
+P2DS,alveolar type 1 fibroblast cell,74,0.9459459459459459
+P2DS,basal cell,366,0.8224043715846995
+P2DS,ciliated cell,2304,0.9891493055555556
+P2DS,classical monocyte,680,0.3
+P2DS,conventional dendritic cell,163,0.24539877300613497
+P2DS,endothelial cell of arteriole,200,0.86
+P2DS,endothelial cell of respiratory system lymphatic vessel,117,0.9743589743589743
+P2DS,epithelial cell of lung,86,0.11627906976744186
+P2DS,granzyme K-associated CD8 T cell,8,0.0
+P2DS,helper T cell,91,0.6813186813186813
+P2DS,hematopoietic cell,107,0.7383177570093458
+P2DS,lung interstitial macrophage,140,0.5142857142857142
+P2DS,lung secretory cell,1724,0.9709976798143851
+P2DS,macrophage,1992,0.9583333333333334
+P2DS,mast cell,26,1.0
+P2DS,mesothelial cell of pleura,33,0.6363636363636364
+P2DS,monocyte,384,0.8723958333333334
+P2DS,"myeloid dendritic cell, human",249,0.4979919678714859
+P2DS,myofibroblast cell,53,0.05660377358490566
+P2DS,natural killer cell,163,0.5214723926380368
+P2DS,pericyte,56,0.0
+P2DS,plasma cell,26,0.0
+P2DS,plasmacytoid dendritic cell,14,0.5
+P2DS,pulmonary alveolar type 1 cell,196,0.9744897959183674
+P2DS,pulmonary alveolar type 2 cell,1521,0.938198553583169
+P2DS,pulmonary capillary endothelial cell,206,0.014563106796116505
+P2DS,smooth muscle cell,55,1.0
+P2DS,vein endothelial cell of respiratory system,663,0.8491704374057315

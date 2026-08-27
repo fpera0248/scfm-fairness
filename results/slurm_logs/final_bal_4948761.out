@@ -1,0 +1,10 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4948761
+##  Job Name : final_bal
+##  Nodelist : gpu1501
+##      CPUs : 4
+##  Mem/Node : 32768 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Sat Aug 15 12:27:13 AM EDT 2026
+###############################################################################
+holdout filter: kept 872,271/3,949,268 eval_donor cells

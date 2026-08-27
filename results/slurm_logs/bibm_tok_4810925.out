@@ -1,0 +1,175 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4810925
+##  Job Name : bibm_tok
+##  Nodelist : node2306
+##      CPUs : 16
+##  Mem/Node : 122880 MB
+## Directory : /oscar/data/rsingh47/fperalta
+##   Job Started : Sun Aug  9 03:12:25 PM EDT 2026
+###############################################################################
+selection: 3,970,225 -> 3,949,268 after ILD exclusion
+using V2 dictionaries from /users/fperalta/data/fperalta/Geneformer/geneformer_repo/geneformer
+40 parts to process
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0000/part_0000.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0000/part_0000.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0000: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0001/part_0001.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0001/part_0001.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0001: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0002/part_0002.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0002/part_0002.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0002: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0003/part_0003.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0003/part_0003.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0003: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0004/part_0004.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0004/part_0004.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0004: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0005/part_0005.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0005/part_0005.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0005: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0006/part_0006.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0006/part_0006.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0006: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0007/part_0007.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0007/part_0007.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0007: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0008/part_0008.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0008/part_0008.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0008: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0009/part_0009.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0009/part_0009.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0009: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0010/part_0010.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0010/part_0010.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0010: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0011/part_0011.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0011/part_0011.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0011: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0012/part_0012.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0012/part_0012.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0012: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0013/part_0013.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0013/part_0013.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0013: tokenized (79,386 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0014/part_0014.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0014/part_0014.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0014: tokenized (99,657 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0015/part_0015.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0015/part_0015.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0015: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0016/part_0016.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0016/part_0016.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0016: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0017/part_0017.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0017/part_0017.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0017: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0018/part_0018.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0018/part_0018.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0018: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0019/part_0019.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0019/part_0019.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0019: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0020/part_0020.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0020/part_0020.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0020: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0021/part_0021.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0021/part_0021.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0021: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0022/part_0022.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0022/part_0022.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0022: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0023/part_0023.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0023/part_0023.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0023: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0024/part_0024.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0024/part_0024.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0024: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0025/part_0025.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0025/part_0025.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0025: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0026/part_0026.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0026/part_0026.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0026: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0027/part_0027.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0027/part_0027.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0027: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0028/part_0028.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0028/part_0028.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0028: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0029/part_0029.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0029/part_0029.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0029: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0030/part_0030.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0030/part_0030.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0030: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0031/part_0031.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0031/part_0031.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0031: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0032/part_0032.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0032/part_0032.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0032: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0033/part_0033.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0033/part_0033.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0033: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0034/part_0034.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0034/part_0034.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0034: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0035/part_0035.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0035/part_0035.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0035: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0036/part_0036.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0036/part_0036.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0036: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0037/part_0037.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0037/part_0037.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0037: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0038/part_0038.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0038/part_0038.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0038: tokenized (100,000 cells)
+Tokenizing /oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0039/part_0039.h5ad
+/oscar/scratch/fperalta/bibm_corpus/tok_stage/part_0039/part_0039.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+part_0039: tokenized (70,225 cells)
+concatenating parts...
+TOKENIZATION COMPLETE: 3,949,268 cells -> /oscar/scratch/fperalta/bibm_corpus/tokenized_v2
+expected (non-ILD selection): 3,949,268

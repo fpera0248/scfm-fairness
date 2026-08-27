@@ -1,0 +1,93 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5259582
+##  Job Name : pilot_joint
+##  Nodelist : gpu2102
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Tue Aug 25 10:44:24 PM EDT 2026
+###############################################################################
+=== crc: build joint-balanced set ===
+crc: 4 ancestries x 9 cell types = 36 strata; 5 EMPTY (cannot be filled by resampling); target 132 cells/stratum
+  stratum sizes: min 9 median 132 max 1574
+  built 4,092 cells (1,023 per ancestry, balanced within each)
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/anndata/_core/anndata.py:1756: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+  utils.warn_names_duplicates("obs")
+  grid written: 4 x 9, per-cell min 132 max 132
+Tokenizing /oscar/scratch/fperalta/pilot_repair/stage_crc_bj/crc_bj.h5ad
+  0%|          | 0/8 [00:00<?, ?it/s] 25%|██▌       | 2/8 [00:00<00:00, 10.99it/s] 50%|█████     | 4/8 [00:00<00:00, 11.24it/s] 75%|███████▌  | 6/8 [00:00<00:00, 11.40it/s]100%|██████████| 8/8 [00:00<00:00, 11.35it/s]100%|██████████| 8/8 [00:00<00:00, 11.32it/s]
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/anndata/_core/anndata.py:787: ImplicitModificationWarning: Trying to modify index of attribute `.obs` of view, initializing view as actual.
+  getattr(self, attr).index = value
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/anndata/_core/anndata.py:1758: UserWarning: Variable names are not unique. To make them unique, call `.var_names_make_unique`.
+  utils.warn_names_duplicates("var")
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/tokenizer.py:544: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  for i in adata.var["ensembl_id_collapsed"][coding_miRNA_loc]
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/tokenizer.py:547: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  coding_miRNA_ids = adata.var["ensembl_id_collapsed"][coding_miRNA_loc]
+/oscar/scratch/fperalta/pilot_repair/stage_crc_bj/crc_bj.h5ad has no column attribute 'filter_pass'; tokenizing all cells.
+Creating dataset.
+JOINT-BALANCED SET READY: /oscar/scratch/fperalta/pilot_repair/crc_bj.dataset
+=== crc: train P2BJ from /oscar/scratch/fperalta/pilot_repair/runs/crc/P/checkpoints/checkpoint-360 ===
+train=3,870 val=222 labels=9 val_donors=3 init=/oscar/scratch/fperalta/pilot_repair/runs/crc/P/checkpoints/checkpoint-360
+  0%|          | 0/648 [00:00<?, ?it/s]/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+Traceback (most recent call last):
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_finetune.py", line 165, in <module>
+    main()
+  File "/users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_finetune.py", line 160, in main
+    trainer.train()
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+    return inner_training_loop(
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/trainer.py", line 3698, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/trainer.py", line 3759, in compute_loss
+    outputs = model(**inputs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/accelerate/utils/operations.py", line 818, in forward
+    return model_forward(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/accelerate/utils/operations.py", line 806, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 1673, in forward
+    outputs = self.bert(
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 1142, in forward
+    encoder_outputs = self.encoder(
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 695, in forward
+    layer_outputs = layer_module(
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 585, in forward
+    self_attention_outputs = self.attention(
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 515, in forward
+    self_outputs = self.self(
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/users/fperalta/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 440, in forward
+    attn_output = torch.nn.functional.scaled_dot_product_attention(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 768.00 MiB. GPU 0 has a total capacity of 23.56 GiB of which 648.50 MiB is free. Including non-PyTorch memory, this process has 22.90 GiB memory in use. Of the allocated memory 22.30 GiB is allocated by PyTorch, and 300.91 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 0/648 [00:02<?, ?it/s]
+ERROR conda.cli.main_run:execute(125): `conda run python /users/fperalta/data/fperalta/scfm-fairness/pipeline/pilot/pilot_finetune.py --tokenized /oscar/scratch/fperalta/pilot_repair/crc_bj.dataset --labels-json /oscar/scratch/fperalta/pilot_repair/crc_labels.json --coarse-map /oscar/scratch/fperalta/pilot_repair/crc_identity_map.csv --model-dir /users/fperalta/data/fperalta/Geneformer/geneformer_repo/Geneformer-V2-316M --init-from /oscar/scratch/fperalta/pilot_repair/runs/crc/P/checkpoints/checkpoint-360 --outdir /oscar/scratch/fperalta/pilot_repair/runs/crc/P2BJ --epochs 8 --lr 1e-5 --batch 24 --grad-accum 2 --seed 0` failed. (See above for error)
