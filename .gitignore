@@ -10,6 +10,15 @@
 !Rpackages_*.csv
 # ...and the scGPT Ensembl->symbol gene map (static asset the scGPT embed needs)
 !scGPT/gene_info.csv
+# ...and the repair-pilot RESULT TABLES. They live on /oscar/scratch, which is
+# purge-eligible and disappears with cluster access, and they are the one artifact
+# that cannot be regenerated without a GPU. Weights, embedding caches, and h5ads
+# stay ignored -- those rebuild from the code in pipeline/pilot/.
+!results/
+!results/**/*.csv
+!results/**/*.json
+!results/**/*.md
+!results/**/*.out
 # ...and the paper's exact scDesign3 BalancedAugmented pilots (stochastic step, shipped
 # for bit-exact reproduction — see reproduce.sh / CONTAINER.md)
 !pilots/
