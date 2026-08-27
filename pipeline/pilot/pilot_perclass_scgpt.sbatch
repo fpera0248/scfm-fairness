@@ -15,10 +15,10 @@ cd /oscar/home/fperalta/data/fperalta
 PIPE=$HOME/data/fperalta/scfm-fairness/pipeline/pilot
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 source "$(dirname $(which conda))/../etc/profile.d/conda.sh"
-conda activate scgpt_gpu
+conda activate scgpt310
 export PYTHONNOUSERSITE=1
 # same CXXABI fix every ASI scGPT slurm script uses: preload the ENV's libstdc++
-export LD_PRELOAD=/users/fperalta/.conda/envs/scgpt_gpu/lib/libstdc++.so.6
+export LD_PRELOAD=/users/fperalta/.conda/envs/scgpt310/lib/libstdc++.so.6
 # pilot_perclass_scgpt imports pilot_finetune_scgpt for the gene space
 export PYTHONPATH="$PIPE:${PYTHONPATH:-}"
 for C in crc aida ild; do
