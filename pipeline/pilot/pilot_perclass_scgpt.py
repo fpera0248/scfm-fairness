@@ -74,6 +74,13 @@ def main():
         eval_a._inplace_subset_obs(keep)
     y = np.array([label2id[t] for t in eval_a.obs["cell_type"].astype(str)])
     tok_eval = tokenize(eval_a, vocab, max_len)
+    # carried per cell so the dumped predictions support donor bootstrapping and
+    # per-group breakdowns, not just per-cell-type accuracy
+    ev_group = eval_a.obs["group"].astype(str).to_numpy()
+    ev_donor = (eval_a.obs["donor_key"].astype(str).to_numpy()
+                if "donor_key" in eval_a.obs.columns
+                else np.full(eval_a.n_obs, "unknown"))
+    ev_ct = eval_a.obs["cell_type"].astype(str).to_numpy()
 
     margs = json.loads((mdir / "args.json").read_text())
     rows = []
@@ -98,6 +105,13 @@ def main():
         del model
         if device == "cuda":
             torch.cuda.empty_cache()
+
+        pd.DataFrame({"group": ev_group, "donor_key": ev_donor,
+                      "cell_type": ev_ct, "label": y, "pred": yhat,
+                      "label_name": [labels[i] for i in y],
+                      "pred_name": [labels[i] for i in yhat]}).to_csv(
+            pathlib.Path(args.runs_root) / c / arm / "final_eval_predictions.csv",
+            index=False)
 
         for lab_id in sorted(set(y)):
             m = y == lab_id

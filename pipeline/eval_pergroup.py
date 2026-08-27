@@ -192,6 +192,18 @@ def main():
                            "label": ds["label"]})
         df["pred"] = predict(str(ck), ds, args.batch,
                              token_dict=cfg.get("token_dict"))
+
+        # Per-cell predictions. The aggregate tables cannot be re-derived into
+        # donor bootstraps, confusion matrices, or per-group x per-cell-type
+        # breakdowns, and re-deriving them needs the checkpoint -- which stays on
+        # scratch and disappears with cluster access. ~1MB per arm; dump it once.
+        preds = df.copy()
+        preds["cell_type"] = ds["cell_type"]
+        preds["label_name"] = [labels[i] for i in preds.label]
+        preds["pred_name"] = [labels[i] for i in preds.pred]
+        preds.to_csv(run / "final_eval_predictions.csv", index=False)
+        print(f"wrote per-cell predictions: {len(preds):,} rows", flush=True)
+
         table = pergroup_table(df)
         cis = donor_bootstrap(df, args.bootstrap)
         table["ci_low"] = table.group.map(lambda g: cis[g][0])

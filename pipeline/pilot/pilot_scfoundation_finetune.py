@@ -175,11 +175,11 @@ def main():
     print(f"scFoundation loaded; panel = {len(panel)} genes", flush=True)
 
     Xtr, gtr, ctr, str_, dtr = load_arm(FILES[c][args.cond], args.cond, panel, id2name)
-    Xev, gev, cev, _, _ = load_arm(FILES[c]["eval"], "eval", panel, id2name)
+    Xev, gev, cev, _, dev = load_arm(FILES[c]["eval"], "eval", panel, id2name)
     ktr = np.array([t in l2i for t in ctr])
     kev = np.array([t in l2i for t in cev])
     Xtr, gtr, ctr, str_, dtr = Xtr[ktr], gtr[ktr], ctr[ktr], str_[ktr], dtr[ktr]
-    Xev, gev, cev = Xev[kev], gev[kev], cev[kev]
+    Xev, gev, cev, dev = Xev[kev], gev[kev], cev[kev], dev[kev]
     ytr = np.array([l2i[t] for t in ctr])
     yev = np.array([l2i[t] for t in cev])
     print(f"train {Xtr.shape[0]:,} cells / eval {Xev.shape[0]:,} cells", flush=True)
@@ -272,6 +272,13 @@ def main():
                    "accuracy": float((p[yev == l] == l).mean())}
                   for l in sorted(set(yev))]).to_csv(
         out / "final_eval_perclass.csv", index=False)
+    # per-cell predictions: donor bootstraps and confusion matrices need these,
+    # and they cannot be recovered once the checkpoints go with cluster access
+    pd.DataFrame({"group": gev, "donor_key": dev, "cell_type": cev,
+                  "label": yev, "pred": p,
+                  "label_name": [labels[i] for i in yev],
+                  "pred_name": [labels[i] for i in p]}).to_csv(
+        out / "final_eval_predictions.csv", index=False)
     print(f"worst group: {w} = {wf1:.4f}; "
           f"{len(set(p))}/{len(labels)} cell types ever predicted", flush=True)
     print("SCFOUNDATION FINETUNE ARM COMPLETE", flush=True)

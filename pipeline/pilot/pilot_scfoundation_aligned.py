@@ -130,13 +130,19 @@ def embed_file(backbone, device, path, tag, cohort, panel, id2name):
     grp = a.obs["self_reported_ethnicity"].astype(str).str.strip().str.lower().to_numpy()
     grp = np.where(src == "synthetic", "synthetic", grp)
     ct = a.obs["cell_type"].astype(str).to_numpy()
+    # donor is needed for donor-bootstrap CIs on the dumped predictions; the
+    # embedding cache holds no obs, so it is always re-read from the h5ad
+    donor = (a.obs["donor_id"].astype(str).to_numpy()
+             if "donor_id" in a.obs.columns else np.full(a.n_obs, "unknown"))
+    donor = np.where(src == "synthetic", "synthetic", donor)
     if tag == "eval":
         keep = ~np.isin(grp, ["synthetic", "unknown", "nan", ""])
-        a, grp, ct, src = a[keep].copy(), grp[keep], ct[keep], src[keep]
+        a, grp, ct, src, donor = (a[keep].copy(), grp[keep], ct[keep],
+                                  src[keep], donor[keep])
     if cache.exists():
         E = np.load(cache)["E"]
         print(f"  {tag}: cached aligned embeddings {E.shape}", flush=True)
-        return E, grp, ct, src
+        return E, grp, ct, src, donor
 
     P = build_projector(a.var_names.to_numpy(), panel, id2name)
     X = sp.csr_matrix(a.X) if not sp.issparse(a.X) else a.X.tocsr()
@@ -159,7 +165,7 @@ def embed_file(backbone, device, path, tag, cohort, panel, id2name):
                 torch.cuda.empty_cache()
     np.savez_compressed(cache, E=E)
     print(f"  {tag}: embedded {E.shape} -> {cache.name}", flush=True)
-    return E, grp, ct, src
+    return E, grp, ct, src, donor
 
 
 def collapse_report(E, tag):
@@ -238,18 +244,19 @@ def main():
               f"with pilot_joint_balance.py --cohort {c} --h5ad-only", flush=True)
         tags.remove("bj")
     for tag in tags:
-        E, grp, ct, src = embed_file(backbone, device, FILES[c][tag], tag, c,
-                                     panel, id2name)
+        E, grp, ct, src, donor = embed_file(backbone, device, FILES[c][tag], tag,
+                                            c, panel, id2name)
         collapse_report(E, tag)
         keep = np.array([t in l2i for t in ct])
         data[tag] = {"E": E[keep], "g": grp[keep], "ct": ct[keep],
+                     "donor": donor[keep],
                      "y": np.array([l2i[t] for t in ct[keep]])}
     del task, backbone
     torch.cuda.empty_cache()
 
     ev = data["eval"]
     Xe = torch.tensor(ev["E"], device=device)
-    rows, per_class = [], []
+    rows, per_class, all_preds = [], [], []
 
     def evaluate(h, arm):
         h.eval()
@@ -264,6 +271,13 @@ def main():
             per_class.append({"arm": arm, "cell_type": labels[l],
                               "n_cells": int(m.sum()),
                               "accuracy": float((p[m] == l).mean())})
+        # per-cell predictions, so CIs and confusion matrices stay computable
+        # after the cluster is gone
+        all_preds.append(pd.DataFrame(
+            {"arm": arm, "group": ev["g"], "donor_key": ev["donor"],
+             "cell_type": ev["ct"], "label": ev["y"], "pred": p,
+             "label_name": [labels[i] for i in ev["y"]],
+             "pred_name": [labels[i] for i in p]}))
         print(f"{arm}: worst group {w} = {wf1:.4f}; "
               f"{len(set(p))}/{len(labels)} cell types ever predicted", flush=True)
 
@@ -283,7 +297,10 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(rows).to_csv(out / "final_eval_pergroup.csv", index=False)
     pd.DataFrame(per_class).to_csv(out / "final_eval_perclass.csv", index=False)
-    print(f"WROTE {out}", flush=True)
+    pc = pd.concat(all_preds, ignore_index=True)
+    pc.to_csv(out / "final_eval_predictions.csv", index=False)
+    print(f"WROTE {out} (predictions: {len(pc):,} rows across "
+          f"{pc.arm.nunique()} arms)", flush=True)
     print("SCFOUNDATION-ALIGNED COHORT COMPLETE", flush=True)
 
 
