@@ -19,8 +19,12 @@ source "$(dirname $(which conda))/../etc/profile.d/conda.sh"
 conda activate scfoundation_gpu
 export PYTHONNOUSERSITE=1
 export LD_PRELOAD=/users/fperalta/.conda/envs/scfoundation_gpu/lib/libstdc++.so.6
+S=/oscar/scratch/fperalta/pilot_repair
 for C in crc aida ild; do
   echo "=== scFoundation-aligned $C ==="
+  # arm P2BJ reads the joint-balanced h5ad; deterministic (seed 0), so this is the
+  # same set Geneformer trained P2BJ on
+  [ -f "$S/${C}_bj.h5ad" ] || python "$PIPE/pilot_joint_balance.py" --cohort $C --h5ad-only
   python "$PIPE/pilot_scfoundation_aligned.py" --cohort $C || echo "  $C FAILED, continuing"
 done
 echo "SCFOUNDATION-ALIGNED ALL COHORTS COMPLETE"

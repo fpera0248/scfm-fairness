@@ -73,6 +73,11 @@ FILES = {
              "ds": AIDA / "AIDA_Ethnicity_Pilot_Downsampled_92Each_ETHNICITY.h5ad",
              "eval": AIDA / "AIDA_Ethnicity_External_Validation_12500.h5ad"},
 }
+# arm P2BJ (ancestry x cell-type joint balance), built by pilot_joint_balance.py.
+# Under Geneformer this is the arm that moves rare cell types, so it has to exist
+# here too or the three models cannot be compared on the arm that matters.
+for _c in FILES:
+    FILES[_c]["bj"] = S / f"{_c}_bj.h5ad"
 
 
 def load_panel():
@@ -226,7 +231,13 @@ def main():
     l2i = {l: i for i, l in enumerate(labels)}
 
     data = {}
-    for tag in ["prop", "ba", "bu", "ds", "eval"]:
+    tags = ["prop", "ba", "bu", "ds", "bj", "eval"]
+    if not FILES[c]["bj"].exists():
+        # say so rather than quietly producing a 5-arm table that looks complete
+        print(f"WARNING: {FILES[c]['bj']} missing; skipping arm P2BJ. Build it "
+              f"with pilot_joint_balance.py --cohort {c} --h5ad-only", flush=True)
+        tags.remove("bj")
+    for tag in tags:
         E, grp, ct, src = embed_file(backbone, device, FILES[c][tag], tag, c,
                                      panel, id2name)
         collapse_report(E, tag)
@@ -263,7 +274,8 @@ def main():
 
     evaluate(train_head(data["ba"]["E"], data["ba"]["y"], len(labels), device,
                         epochs=args.epochs, seed=args.seed), "B")
-    for arm, tag in [("P2BA", "ba"), ("P2BU", "bu"), ("P2DS", "ds")]:
+    stage2 = [("P2BA", "ba"), ("P2BJ", "bj"), ("P2BU", "bu"), ("P2DS", "ds")]
+    for arm, tag in [(a, t) for a, t in stage2 if t in data]:
         evaluate(train_head(data[tag]["E"], data[tag]["y"], len(labels), device,
                             init=base, epochs=args.epochs, seed=args.seed), arm)
 
