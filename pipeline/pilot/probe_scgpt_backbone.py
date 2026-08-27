@@ -63,15 +63,19 @@ def remap(sd, scramble=False, d_model=512):
     return out
 
 
-def embed(model, tok, batch, device):
-    """CLS-token cell embedding straight out of the encoder (cell_emb_style='cls')."""
+def embed(model, tok, batch, device, pad_id):
+    """CLS-token cell embedding straight out of the encoder (cell_emb_style='cls').
+
+    pad_id is passed in, never read off the model: TransformerModel has no `.vocab`,
+    which is exactly how the eval-time mask bug got in.
+    """
     model.eval()
     ds = TensorDataset(tok["genes"], tok["values"])
     outs = []
     with torch.no_grad():
         for g, v in DataLoader(ds, batch_size=batch):
             g, v = g.to(device), v.to(device).float()
-            h = model._encode(g, v, src_key_padding_mask=g.eq(model.vocab[PAD_TOKEN]))
+            h = model._encode(g, v, src_key_padding_mask=g.eq(pad_id))
             outs.append(h[:, 0, :].float().cpu())
     return torch.cat(outs).numpy()
 
@@ -139,8 +143,16 @@ def main():
           f"({'flash-attn layout, rename REQUIRED' if nw else 'already in_proj'})",
           flush=True)
 
-    for tag, scr in [("pretrained", False), ("qkv-scrambled", True),
-                     ("random-init", None)]:
+    pad_id = vocab[PAD_TOKEN]
+    print(f"pad '{PAD_TOKEN}' = id {pad_id}; id 0 = gene "
+          f"'{vocab.lookup_token(0)}'; pad covers "
+          f"{tok['genes'].eq(pad_id).float().mean():.1%} of positions", flush=True)
+
+    # (label, scramble-qkv | None to skip loading, pad id used for the mask)
+    for tag, scr, pid in [("pretrained", False, pad_id),
+                          ("pretrained WRONG-mask", False, 0),
+                          ("qkv-scrambled", True, pad_id),
+                          ("random-init", None, pad_id)]:
         model = build(vocab, margs, len(labels))
         if scr is not None:
             msd = model.state_dict()
@@ -149,9 +161,8 @@ def main():
                         if k in msd and v.shape == msd[k].shape}
             msd.update(loadable)
             model.load_state_dict(msd)
-            print(f"{tag}: loaded {len(loadable)}/{len(msd)}", flush=True)
         model.to(device)
-        X = embed(model, tok, args.batch, device)
+        X = embed(model, tok, args.batch, device, pid)
         score(X, y, tag)
         del model
         if device == "cuda":

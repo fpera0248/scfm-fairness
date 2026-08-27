@@ -28,7 +28,7 @@ from pilot_finetune_scgpt import (FILES, PAD_TOKEN, PAD_VALUE, S, ens2sym_map,
                                   load_pilot, preprocess, tokenize, predict,
                                   DEFAULT_HVG)
 
-ARMS = ["P", "B", "P2BA", "P2BU", "P2DS"]
+ARMS = ["P", "B", "P2BA", "P2BJ", "P2BU", "P2DS"]
 
 
 def main():
@@ -40,6 +40,9 @@ def main():
                                 "data/fperalta/scGPT/scGPT_human"))
     ap.add_argument("--n-hvg", type=int, default=DEFAULT_HVG)
     ap.add_argument("--batch", type=int, default=32)
+    ap.add_argument("--out", default=None,
+                    help="default perclass_scgpt_{cohort}.csv; pass an explicit "
+                         "path to keep the pre-mask-fix numbers for comparison")
     args = ap.parse_args()
     c = args.cohort
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -91,7 +94,7 @@ def main():
         # arm checkpoints are saved post-remap, so they load directly
         model.load_state_dict(torch.load(ckpt, map_location="cpu"))
         model.to(device)
-        yhat = predict(model, tok_eval, args.batch, device)
+        yhat = predict(model, tok_eval, args.batch, device, vocab[PAD_TOKEN])
         del model
         if device == "cuda":
             torch.cuda.empty_cache()
@@ -111,9 +114,14 @@ def main():
               f"worst = {worst['cell_type']} acc {worst['accuracy']:.3f} "
               f"(n={worst['n_cells']})", flush=True)
 
-    out = S / f"perclass_scgpt_{c}.csv"
+    if not rows:
+        # writing a 1-byte csv and exiting 0 reads as success in sacct; it is not
+        raise SystemExit(f"no arm checkpoints found under {args.runs_root}/{c} "
+                         f"(looked for {ARMS}); nothing to evaluate")
+    out = pathlib.Path(args.out) if args.out else S / f"perclass_scgpt_{c}.csv"
     pd.DataFrame(rows).to_csv(out, index=False)
-    print(f"WROTE {out}", flush=True)
+    print(f"WROTE {out} ({len(rows)} rows, "
+          f"{len({r['arm'] for r in rows})} arms)", flush=True)
 
 
 if __name__ == "__main__":

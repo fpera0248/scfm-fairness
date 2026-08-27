@@ -56,6 +56,11 @@ FILES = {
              "ds": AIDA / "AIDA_Ethnicity_Pilot_Downsampled_92Each_ETHNICITY.h5ad",
              "eval": AIDA / "AIDA_Ethnicity_External_Validation_12500.h5ad"},
 }
+# arm P2BJ (ancestry x cell-type joint balance) is built by pilot_joint_balance.py,
+# which keeps an h5ad alongside the Geneformer-tokenized copy. It is the arm that
+# actually moves rare cell types under Geneformer, so scGPT needs it too.
+for _c in FILES:
+    FILES[_c]["bj"] = S / f"{_c}_bj.h5ad"
 
 
 def ens2sym_map():
@@ -122,15 +127,23 @@ def common_label_set(df):
     return common or sorted(df.label.unique())
 
 
-def predict(model, tok, batch, device):
+def predict(model, tok, batch, device, pad_id):
+    """pad_id is REQUIRED and explicit on purpose.
+
+    This used to read `model.vocab[PAD_TOKEN] if hasattr(model, "vocab") else 0`.
+    scGPT's TransformerModel has no `.vocab` attribute, so that silently took the
+    `0` branch on every call -- masking token id 0 (the gene A1BG) and leaving all
+    60694-valued <pad> positions UNMASKED. Training masked correctly, so the model
+    trained fine and was then validated, checkpoint-selected, and finally evaluated
+    through a corrupted mask. Never infer the pad id again.
+    """
     model.eval()
     ds = TensorDataset(tok["genes"], tok["values"])
     preds = []
     with torch.no_grad():
         for g, v in DataLoader(ds, batch_size=batch):
             g, v = g.to(device), v.to(device).float()
-            mask = g.eq(model.vocab[PAD_TOKEN]) if hasattr(model, "vocab") else g.eq(0)
-            out = model(g, v, src_key_padding_mask=mask, CLS=True)
+            out = model(g, v, src_key_padding_mask=g.eq(pad_id), CLS=True)
             preds.append(out["cls_output"].argmax(-1).cpu().numpy())
     return np.concatenate(preds)
 
@@ -138,7 +151,8 @@ def predict(model, tok, batch, device):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cohort", required=True, choices=list(FILES))
-    ap.add_argument("--cond", required=True, choices=["prop", "ba", "bu", "ds"])
+    ap.add_argument("--cond", required=True,
+                    choices=["prop", "ba", "bu", "ds", "bj"])
     ap.add_argument("--init-from", default=None,
                     help="stage-1 outdir; loads its best_model.pt")
     ap.add_argument("--outdir", required=True)
@@ -208,6 +222,17 @@ def main():
 
     tok_all = tokenize(train_a, vocab, max_len)
     tok_eval = tokenize(eval_a, vocab, max_len)
+    # Guard the padding mask. Masking the wrong id is silent -- the model trains
+    # fine and only the eval is wrong -- so state the id and how much of the
+    # sequence it covers, and refuse to run if it covers nothing.
+    _pad = vocab[PAD_TOKEN]
+    _frac = float(tok_eval["genes"].eq(_pad).float().mean())
+    print(f"pad token '{PAD_TOKEN}' = id {_pad}; masks {_frac:.1%} of eval "
+          f"positions (id 0 is the gene '{vocab.lookup_token(0)}', NOT padding)",
+          flush=True)
+    if _frac == 0:
+        raise SystemExit(f"padding mask covers 0% of positions -- pad id {_pad} "
+                         "never appears; tokenization and masking disagree")
     g_t, v_t = tok_all["genes"][is_trn], tok_all["values"][is_trn]
     y_t = torch.tensor(y_all[is_trn], dtype=torch.long)
     g_v, v_v = tok_all["genes"][is_val], tok_all["values"][is_val]
@@ -269,7 +294,8 @@ def main():
             opt.zero_grad(); loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             opt.step(); tot += float(loss)
-        yhat = predict(model, {"genes": g_v, "values": v_v}, args.batch, device)
+        yhat = predict(model, {"genes": g_v, "values": v_v}, args.batch, device,
+                       pad_id)
         per = pd.Series(y_v).groupby(y_v).apply(
             lambda s: (yhat[s.index] == s.values).mean())
         res = {"epoch": ep, "loss": tot / max(len(trn), 1),
@@ -288,7 +314,7 @@ def main():
 
     # final eval on external set with the selected weights
     model.load_state_dict(torch.load(out / "best_model.pt", map_location=device))
-    yhat = predict(model, tok_eval, args.batch, device)
+    yhat = predict(model, tok_eval, args.batch, device, pad_id)
     df = pd.DataFrame({"group": eval_a.obs["group"].to_numpy(),
                        "donor_key": eval_a.obs["donor_key"].to_numpy(),
                        "label": y_eval, "pred": yhat})

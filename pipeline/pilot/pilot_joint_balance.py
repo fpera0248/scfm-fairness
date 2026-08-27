@@ -21,7 +21,6 @@ import shutil
 import anndata as ad
 import numpy as np
 import pandas as pd
-from geneformer import TranscriptomeTokenizer
 
 S = pathlib.Path("/oscar/scratch/fperalta/pilot_repair")
 ROOT = pathlib.Path.home() / "data/fperalta/scfoundation"
@@ -38,6 +37,9 @@ BA = {
 
 
 def make_tokenizer(nproc=4):
+    # imported lazily so --h5ad-only can regenerate the joint-balanced h5ad for
+    # scGPT / scFoundation from an env that has no Geneformer installed
+    from geneformer import TranscriptomeTokenizer
     d = pathlib.Path.home() / "data/fperalta/Geneformer/geneformer_repo/geneformer"
     kw = {}
     if (d / "token_dictionary_gc104M.pkl").exists():
@@ -57,6 +59,9 @@ def main():
     ap.add_argument("--per-stratum", type=int, default=0,
                     help="cells per (ancestry x cell_type) cell; 0 = median non-empty")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--h5ad-only", action="store_true",
+                    help="write the h5ad and stop; the Geneformer .dataset already "
+                         "exists and re-tokenizing it would only burn time")
     args = ap.parse_args()
     c, rng = args.cohort, np.random.default_rng(args.seed)
 
@@ -114,6 +119,16 @@ def main():
     print(f"  grid written: {got.shape[0]} x {got.shape[1]}, "
           f"per-cell min {got.values[got.values>0].min()} max {got.values.max()}",
           flush=True)
+
+    # keep the h5ad: Geneformer trains from the tokenized copy, but scGPT and
+    # scFoundation read h5ad directly, and P2BJ has to exist for all three models
+    # or it cannot appear in a cross-model comparison
+    keep = S / f"{c}_bj.h5ad"
+    b.write_h5ad(keep)
+    print(f"  h5ad kept for the non-Geneformer models: {keep}", flush=True)
+    if args.h5ad_only:
+        print(f"H5AD ONLY: {keep}", flush=True)
+        return
 
     stage = S / f"stage_{c}_bj"
     if stage.exists():
