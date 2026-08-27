@@ -156,7 +156,15 @@ def main():
                     help="-1 = full fine-tune (matches the other two models)")
     ap.add_argument("--val-donor-frac", type=float, default=0.15)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--eval-only", action="store_true",
+                    help="load this outdir's best_model.pt and redo the final "
+                         "eval without training -- for arms that finished before "
+                         "the per-cell prediction dump existed")
     args = ap.parse_args()
+    if args.eval_only:
+        # epochs=0 skips the loop; run_config/selected.json are left alone below
+        # so the original training record is not overwritten with an eval stub
+        args.epochs = 0
 
     c = args.cohort
     out = pathlib.Path(args.outdir)
@@ -216,9 +224,11 @@ def main():
     scaler = torch.cuda.amp.GradScaler(enabled=(device == "cuda"))
     lossf = torch.nn.CrossEntropyLoss()
 
-    (out / "run_config.json").write_text(json.dumps(
-        {**{k: str(v) for k, v in vars(args).items()},
-         "batch_used": batch, "accum": accum, "n_labels": len(labels)}, indent=2))
+    if not args.eval_only:
+        (out / "run_config.json").write_text(json.dumps(
+            {**{k: str(v) for k, v in vars(args).items()},
+             "batch_used": batch, "accum": accum, "n_labels": len(labels)},
+            indent=2))
 
     tr_idx = np.flatnonzero(is_trn)
     Xval, yval = Xtr[is_val], ytr[is_val]
@@ -255,8 +265,12 @@ def main():
                     "epoch": ep}
             torch.save({"backbone": backbone.state_dict(),
                         "head": head.state_dict()}, out / "best_model.pt")
-    (out / "selected.json").write_text(json.dumps(best, indent=2))
-    print(f"SELECTED epoch {best['epoch']}", flush=True)
+    if args.eval_only:
+        print("eval-only: reusing the existing best_model.pt and selected.json",
+              flush=True)
+    else:
+        (out / "selected.json").write_text(json.dumps(best, indent=2))
+        print(f"SELECTED epoch {best['epoch']}", flush=True)
 
     ck = torch.load(out / "best_model.pt", map_location="cpu")
     backbone.load_state_dict(ck["backbone"], strict=False)
