@@ -4,7 +4,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH -n 4
 #SBATCH --mem=64G
-#SBATCH -t 12:00:00
+#SBATCH -t 24:00:00
 #SBATCH -o /oscar/home/fperalta/data/fperalta/dump_preds_%j.out
 # Backfill per-cell predictions for arms that finished BEFORE the eval scripts
 # learned to dump them.
@@ -35,8 +35,13 @@ for C in crc aida ild; do
       echo "skip $C $A (predictions exist)"; continue
     fi
     echo "=== geneformer $C $A ==="
+    # --bootstrap 10, NOT 200. donor_bootstrap runs n_boot x f1_score over ~12k
+    # rows per group in pure Python, which cost ~1h per arm and timed this job
+    # out at 12/18 arms. The CIs it produces are now redundant anyway: the dumped
+    # predictions get bootstrapped offline by analyze_predictions.py, paired and
+    # with 2000 resamples. Here we only need the predictions file.
     $GF "$PIPE/eval_pergroup.py" final --run-dir "$O" \
-      --dataset "$S/${C}_eval.dataset" --bootstrap 200 --batch 64 \
+      --dataset "$S/${C}_eval.dataset" --bootstrap 10 --batch 64 \
       || echo "  $C $A FAILED, continuing"
   done
 done
