@@ -18,8 +18,13 @@ S=${S:-/oscar/scratch/fperalta/pilot_repair}
 REPO=${REPO:-$HOME/data/fperalta/scfm-fairness}
 DEST="$REPO/results/pilot_repair"
 LOGS="$REPO/results/slurm_logs"
-MAXK=4096          # per-file cap (KB); no legitimate table here is near this
-MAXTOTALM=90       # bail out before we get anywhere near a GitHub push limit
+# Per-file cap (KB). Was 4096, which silently dropped the three
+# scFoundation-frozen prediction files (4-10MB): unlike every other model those
+# stack all six arms into ONE file, so they are legitimately large. Losing them
+# would have cost a whole model variant. 16MB still sits far below GitHub's
+# 100MB hard per-file limit.
+MAXK=16384
+MAXTOTALM=250      # bail out before we get anywhere near a GitHub push limit
 
 [ -d "$S" ] || { echo "no such scratch dir: $S" >&2; exit 1; }
 mkdir -p "$DEST" "$LOGS"
@@ -35,6 +40,13 @@ done < <(find . \( -name '*.csv' -o -name '*.json' \) \
               -not -path '*.dataset/*' -not -path './stage_*' \
               -size -${MAXK}k -print0)
 echo "  copied $n tables"
+# A size cap that silently drops files is worse than no cap; say what it skipped.
+over=$(find . \( -name '*.csv' -o -name '*.json' \) -not -path '*.dataset/*' \
+            -not -path './stage_*' -size +${MAXK}k -printf '%s %p\n')
+if [ -n "$over" ]; then
+  echo "  WARNING: skipped as oversized (raise MAXK if these matter):"
+  echo "$over" | sed 's|^|    |'
+fi
 
 echo "=== collecting slurm logs"
 m=0
