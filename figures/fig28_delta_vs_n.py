@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 
 MODEL_COLOR = {"geneformer": "#3B3A6E", "scgpt": "#4C9C8E",
-               "scfoundation_ft": "#E1743B", "scfoundation_frozen": "#B4551F"}
+               "scfoundation_ft": "#E1743B", "scfoundation_frozen": "#FBC79A"}
 MODEL_LABEL = {"geneformer": "Geneformer", "scgpt": "scGPT",
                "scfoundation_ft": "scFoundation (fine-tuned)",
                "scfoundation_frozen": "scFoundation (frozen)"}
