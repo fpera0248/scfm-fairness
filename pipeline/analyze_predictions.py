@@ -64,16 +64,39 @@ def load_all(root):
     return out
 
 
-def _donor_draws(donors, n_boot, rng):
-    """Index arrays for n_boot donor resamples, reused across arms so the
-    comparison is paired."""
-    uniq = np.unique(donors)
-    by = {d: np.flatnonzero(donors == d) for d in uniq}
-    draws = []
-    for _ in range(n_boot):
-        pick = rng.choice(uniq, size=len(uniq), replace=True)
-        draws.append(np.concatenate([by[d] for d in pick]))
-    return draws
+def _multiplicities(donors, n_boot, rng):
+    """(n_donors x n_boot) matrix of how many times each donor is drawn.
+
+    The bootstrap is expressed as counts rather than as index arrays so the whole
+    resample becomes a matrix product (see _acc_matrix). Building 2000 explicit
+    index arrays per file and boolean-masking each one was ~100x slower and made
+    the full 57-file run impractical.
+    """
+    uniq, codes = np.unique(donors, return_inverse=True)
+    picks = rng.integers(0, len(uniq), size=(n_boot, len(uniq)))
+    M = np.zeros((len(uniq), n_boot), dtype=np.float64)
+    for b in range(n_boot):
+        np.add.at(M[:, b], picks[b], 1.0)
+    return uniq, codes, M
+
+
+def _acc_matrix(codes, n_donors, ct_codes, n_types, correct, M):
+    """Bootstrap accuracy per (cell type x resample), vectorised.
+
+    For cell type t and donor d let C[t,d] = correct cells and N[t,d] = total
+    cells. A resample with donor multiplicities m gives
+        acc[t] = (C @ m) / (N @ m)
+    which is exact -- resampling a donor k times counts its cells k times -- and
+    reduces the entire bootstrap to two matrix products.
+    """
+    flat = ct_codes * n_donors + codes
+    N = np.bincount(flat, minlength=n_types * n_donors).reshape(n_types, n_donors)
+    C = np.bincount(flat, weights=correct.astype(np.float64),
+                    minlength=n_types * n_donors).reshape(n_types, n_donors)
+    num, den = C @ M, N @ M
+    with np.errstate(invalid="ignore", divide="ignore"):
+        acc = np.where(den > 0, num / np.where(den == 0, 1, den), np.nan)
+    return acc
 
 
 def per_type_ci(sub, n_boot, seed=0):
@@ -82,22 +105,20 @@ def per_type_ci(sub, n_boot, seed=0):
     donors = sub.donor_key.to_numpy()
     y, p = sub.label.to_numpy(), sub.pred.to_numpy()
     ct = sub.cell_type.to_numpy()
-    draws = _donor_draws(donors, n_boot, rng)
+    uniq_d, codes, M = _multiplicities(donors, n_boot, rng)
+    types, ct_codes = np.unique(ct, return_inverse=True)
+    acc = _acc_matrix(codes, len(uniq_d), ct_codes, len(types), p == y, M)
     rows = []
-    for t in np.unique(ct):
+    for i, t in enumerate(types):
         m = ct == t
-        acc = float((p[m] == y[m]).mean())
-        stats = []
-        for idx in draws:
-            mm = m[idx]
-            if mm.sum() == 0:      # this resample drew no cells of this type
-                continue
-            stats.append((p[idx][mm] == y[idx][mm]).mean())
-        lo, hi = (np.percentile(stats, [2.5, 97.5]) if stats else (np.nan, np.nan))
+        vals = acc[i][~np.isnan(acc[i])]
+        lo, hi = (np.percentile(vals, [2.5, 97.5]) if vals.size
+                  else (np.nan, np.nan))
         rows.append({"cell_type": t, "n_cells": int(m.sum()),
                      "n_donors": int(pd.Series(donors[m]).nunique()),
-                     "accuracy": acc, "ci_low": float(lo), "ci_high": float(hi),
-                     "n_boot_used": len(stats)})
+                     "accuracy": float((p[m] == y[m]).mean()),
+                     "ci_low": float(lo), "ci_high": float(hi),
+                     "n_boot_used": int(vals.size)})
     return pd.DataFrame(rows)
 
 
@@ -119,25 +140,27 @@ def paired_delta(df, model, cohort, arm_a, arm_b, n_boot, seed=0):
     y = a.label.to_numpy()
     pa, pb = a.pred.to_numpy(), b.pred.to_numpy()
     ct = a.cell_type.to_numpy()
-    draws = _donor_draws(donors, n_boot, rng)
+    # ONE multiplicity matrix drives both arms -- that is what makes it paired
+    uniq_d, codes, M = _multiplicities(donors, n_boot, rng)
+    types, ct_codes = np.unique(ct, return_inverse=True)
+    nd, nt = len(uniq_d), len(types)
+    acc_a = _acc_matrix(codes, nd, ct_codes, nt, pa == y, M)
+    acc_b = _acc_matrix(codes, nd, ct_codes, nt, pb == y, M)
+    diff = acc_b - acc_a
     rows = []
-    for t in np.unique(ct):
+    for i, t in enumerate(types):
         m = ct == t
-        d = float((pb[m] == y[m]).mean() - (pa[m] == y[m]).mean())
-        stats = []
-        for idx in draws:
-            mm = m[idx]
-            if mm.sum() == 0:
-                continue
-            yy = y[idx][mm]
-            stats.append((pb[idx][mm] == yy).mean() - (pa[idx][mm] == yy).mean())
-        lo, hi = (np.percentile(stats, [2.5, 97.5]) if stats else (np.nan, np.nan))
+        vals = diff[i][~np.isnan(diff[i])]
+        lo, hi = (np.percentile(vals, [2.5, 97.5]) if vals.size
+                  else (np.nan, np.nan))
         rows.append({"model": model, "cohort": cohort, "cell_type": t,
                      "n_cells": int(m.sum()),
                      f"acc_{arm_a}": float((pa[m] == y[m]).mean()),
                      f"acc_{arm_b}": float((pb[m] == y[m]).mean()),
-                     "delta": d, "ci_low": float(lo), "ci_high": float(hi),
-                     "excludes_zero": bool(stats and (lo > 0 or hi < 0))})
+                     "delta": float((pb[m] == y[m]).mean()
+                                    - (pa[m] == y[m]).mean()),
+                     "ci_low": float(lo), "ci_high": float(hi),
+                     "excludes_zero": bool(vals.size and (lo > 0 or hi < 0))})
     return pd.DataFrame(rows)
 
 
