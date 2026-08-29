@@ -101,13 +101,11 @@ for ax, t in zip(axes, circled):
     # neutral highlight: a warm tint would compete with the scFoundation hues
     ax.axvspan(2.5, 3.5, color="#EDEDED", zorder=0)   # highlight P2BJ
 
-axes[0].set_ylabel("accuracy on the external validation set", fontsize=9.5)
+axes[0].set_ylabel("accuracy", fontsize=10)
 fig.legend(loc="lower center", ncol=4, fontsize=9, frameon=False,
            bbox_to_anchor=(0.5, -0.015))
-fig.suptitle("The cell types circled as \"all model fail\": every foundation model, "
-             "every repair arm  (AIDA)\n"
-             "shaded column = joint ancestry × cell-type balancing (P2BJ);  "
-             "× marks a model that scores exactly 0.000",
+fig.suptitle("All four models on the cell types flagged as failing (AIDA)\n"
+             "shaded = joint balancing (P2BJ);   × = accuracy 0.000",
              fontsize=12)
 fig.tight_layout(rect=[0, 0.075, 1, 0.90])
 out = "/Users/fperaltacastro/Downloads/bibm_figures/fig29_circled_types_all_models.png"

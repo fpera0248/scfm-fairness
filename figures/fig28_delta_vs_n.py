@@ -35,8 +35,8 @@ for m, g in d.groupby("model"):
 ax.set_xscale("log")
 ax.set_xlim(1.4, 6000)
 ax.set_ylim(-0.55, 1.15)
-ax.set_xlabel("cells of that type in the evaluation set (log scale)", fontsize=10)
-ax.set_ylabel("accuracy change: P2BJ − imbalanced baseline", fontsize=10)
+ax.set_xlabel("cells of that type (log scale)", fontsize=10)
+ax.set_ylabel("accuracy change vs baseline", fontsize=10)
 ax.grid(alpha=0.25, lw=0.6)
 ax.set_axisbelow(True)
 
@@ -50,23 +50,22 @@ for lo, hi, lab in [(0, 100, "rare (n ≤ 100)"),
     s = d[(d.n_cells >= lo) & (d.n_cells <= hi)]
     up = (s.excludes_zero & (s.delta > 0)).sum()
     dn = (s.excludes_zero & (s.delta < 0)).sum()
-    lines.append(f"{lab:18} +{up:3} sig gain   −{dn:3} sig loss   "
+    lines.append(f"{lab:18} +{up:3} gain   −{dn:3} loss   "
                  f"median {s.delta.median():+.3f}")
 ax.text(0.015, 0.035, "\n".join(lines), transform=ax.transAxes, fontsize=8.4,
         va="bottom", family="monospace",
         bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="0.6", lw=0.7))
-ax.text(0.055, 0.955, "shaded: rare cell types", transform=ax.transAxes,
+ax.text(0.055, 0.955, "shaded: rare types", transform=ax.transAxes,
         fontsize=8.4, color="#555555", va="top")
 
 h, l = ax.get_legend_handles_labels()
 h.append(plt.Line2D([], [], marker="o", linestyle="None", markerfacecolor="none",
                     markeredgecolor="#555555", markersize=7))
-l.append("CI includes zero (not significant)")
+l.append("not significant")
 ax.legend(h, l, fontsize=8.5, loc="upper right", framealpha=0.96, ncol=1)
 ax.set_title("Joint balancing trades abundant-class accuracy for rare-class "
              "accuracy\n"
-             "gains concentrate below n≈100; losses concentrate above n≈1000. "
-             "4 model variants × 3 cohorts, donor-bootstrap 95% CIs",
+             "4 models × 3 cohorts, 95% CIs",
              fontsize=11.5, pad=11)
 fig.tight_layout()
 out = "/Users/fperaltacastro/Downloads/bibm_figures/fig28_delta_vs_abundance.png"

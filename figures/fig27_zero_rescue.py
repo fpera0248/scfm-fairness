@@ -16,11 +16,11 @@ import numpy as np
 import pandas as pd
 
 MODEL_COLOR = {"geneformer": "#3B3A6E", "scgpt": "#4C9C8E",
-               "scfoundation_ft": "#E1743B", "scfoundation_frozen": "#E1743B"}
+               "scfoundation_ft": "#E1743B", "scfoundation_frozen": "#FBC79A"}
 MODEL_LABEL = {"geneformer": "Geneformer", "scgpt": "scGPT",
                "scfoundation_ft": "scFoundation (fine-tuned)",
                "scfoundation_frozen": "scFoundation (frozen)"}
-HATCH = {"scfoundation_frozen": "///"}
+HATCH = {}
 
 d = pd.read_csv("/Users/fperaltacastro/scfm-fairness/results/delta_P_vs_P2BJ.csv")
 z = d[(d.n_cells <= 100) & (d.acc_P == 0.0)].copy()
@@ -74,9 +74,8 @@ ax.set_yticklabels(ylabels, fontsize=8.6)
 ax.invert_yaxis()
 ax.set_xlim(-0.08, 1.20)
 ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
-ax.set_xlabel("accuracy under joint ancestry × cell-type balancing (P2BJ)\n"
-              "baseline is 0.000 in every case shown; bars carry donor-bootstrap "
-              "95% CI on the change", fontsize=9.5)
+ax.set_xlabel("accuracy after joint balancing   (baseline = 0.000; "
+              "bars show 95% CI)", fontsize=10)
 ax.grid(axis="x", alpha=0.25, lw=0.6)
 ax.set_axisbelow(True)
 
@@ -87,11 +86,10 @@ handles += [plt.Line2D([], [], color="black", marker="*", linestyle="None",
             plt.Line2D([], [], color="#555555", marker="x", linestyle="None",
                        markersize=7, mew=2.0)]
 ax.legend(handles,
-          list(MODEL_LABEL.values()) + ["95% CI excludes zero",
-                                        "model still fails (0.000)"],
+          list(MODEL_LABEL.values()) + ["CI excludes zero", "still 0.000"],
           fontsize=8.4, loc="lower right", framealpha=0.96)
-ax.set_title("Cell types the imbalanced baseline never predicts (accuracy 0.000):\n"
-             "joint balancing rescues 18 of 21, and 10 significantly",
+ax.set_title("Joint balancing rescues 18 of 21 cell types the baseline never "
+             "predicts\n10 with a 95% CI excluding zero",
              fontsize=12, pad=12)
 fig.tight_layout()
 out = "/Users/fperaltacastro/Downloads/bibm_figures/fig27_zero_rescue_ci.png"
