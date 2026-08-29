@@ -1,0 +1,15 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5430756
+##  Job Name : rclone_up
+##  Nodelist : node1952
+##      CPUs : 4
+##  Mem/Node : 16384 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Fri Aug 28 07:41:29 PM EDT 2026
+###############################################################################
+MODE=full EX=
+2026/08/28 19:41:30 NOTICE: gdrive{OgfZc}: This remote uses rclone's shared Google Drive client_id, which is being retired and will stop working during 2026. Create your own client_id to avoid interruption: https://rclone.org/drive/#making-your-own-client-id
+RCLONE EXIT 0
+2026/08/28 21:05:40 NOTICE: gdrive: This remote uses rclone's shared Google Drive client_id, which is being retired and will stop working during 2026. Create your own client_id to avoid interruption: https://rclone.org/drive/#making-your-own-client-id
+Total objects: 1.966k (1966)
+Total size: 288.840 GiB (310140113109 Byte)

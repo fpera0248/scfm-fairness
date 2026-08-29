@@ -1,0 +1,33 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5485627
+##  Job Name : drive_org
+##  Nodelist : node1944
+##      CPUs : 4
+##  Mem/Node : 16384 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Sat Aug 29 01:54:39 AM EDT 2026
+###############################################################################
+=== target: gdrive:Brown oscar Offload Aug 2026
+2026/08/29 01:54:41 NOTICE: gdrive: This remote uses rclone's shared Google Drive client_id, which is being retired and will stop working during 2026. Create your own client_id to avoid interruption: https://rclone.org/drive/#making-your-own-client-id
+=== moving scfm_pilot_repair into the folder (server-side)
+2026/08/29 01:54:47 NOTICE: gdrive: This remote uses rclone's shared Google Drive client_id, which is being retired and will stop working during 2026. Create your own client_id to avoid interruption: https://rclone.org/drive/#making-your-own-client-id
+2026/08/29 01:54:47 NOTICE: gdrive: This remote uses rclone's shared Google Drive client_id, which is being retired and will stop working during 2026. Create your own client_id to avoid interruption: https://rclone.org/drive/#making-your-own-client-id
+2026/08/29 01:54:49 INFO  : Google drive root 'Brown oscar Offload Aug 2026/scfm_pilot_repair': Server side directory move succeeded
+2026/08/29 01:54:49 INFO  : 
+Transferred:   	          0 B / 0 B, -, 0 B/s, ETA -
+Elapsed time:         0.0s
+
+move rc=0
+=== final sweep: anything written since the upload passes began
+2026/08/29 01:54:49 NOTICE: gdrive{OgfZc}: This remote uses rclone's shared Google Drive client_id, which is being retired and will stop working during 2026. Create your own client_id to avoid interruption: https://rclone.org/drive/#making-your-own-client-id
+sweep rc=0
+=== final state
+2026/08/29 01:55:39 NOTICE: gdrive: This remote uses rclone's shared Google Drive client_id, which is being retired and will stop working during 2026. Create your own client_id to avoid interruption: https://rclone.org/drive/#making-your-own-client-id
+2026/08/29 01:55:44 NOTICE: Dangling shortcut "Student Assets" detected
+           0 2026-08-29 01:54:41        -1 Brown oscar Offload Aug 2026
+2026/08/29 01:55:46 NOTICE: gdrive: This remote uses rclone's shared Google Drive client_id, which is being retired and will stop working during 2026. Create your own client_id to avoid interruption: https://rclone.org/drive/#making-your-own-client-id
+Total objects: 1.976k (1976)
+Total size: 288.870 GiB (310171606088 Byte)
+--- source for comparison:
+289G	/oscar/scratch/fperalta/pilot_repair
+DRIVE ORGANIZE COMPLETE

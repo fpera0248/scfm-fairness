@@ -1,0 +1,33 @@
+cell_type,n_cells,accuracy
+B cell,25,0.84
+"CD8-positive, alpha-beta cytotoxic T cell",293,0.9419795221843004
+adventitial fibroblast,307,0.9315960912052117
+alveolar macrophage,176,0.7443181818181818
+alveolar type 1 fibroblast cell,74,0.8243243243243243
+basal cell,366,0.9480874316939891
+ciliated cell,2304,0.9596354166666666
+classical monocyte,680,0.7470588235294118
+conventional dendritic cell,163,0.7852760736196319
+endothelial cell of arteriole,200,0.9
+endothelial cell of respiratory system lymphatic vessel,117,0.9914529914529915
+epithelial cell of lung,86,0.8837209302325582
+granzyme K-associated CD8 T cell,8,0.25
+helper T cell,91,0.6153846153846154
+hematopoietic cell,107,0.9252336448598131
+lung interstitial macrophage,140,0.8785714285714286
+lung secretory cell,1724,0.9303944315545244
+macrophage,1992,0.8343373493975904
+mast cell,26,1.0
+mesothelial cell of pleura,33,1.0
+monocyte,384,0.8411458333333334
+"myeloid dendritic cell, human",249,0.678714859437751
+myofibroblast cell,53,0.7358490566037735
+natural killer cell,163,0.9202453987730062
+pericyte,56,0.8571428571428571
+plasma cell,26,0.8461538461538461
+plasmacytoid dendritic cell,14,1.0
+pulmonary alveolar type 1 cell,196,0.9744897959183674
+pulmonary alveolar type 2 cell,1521,0.9585798816568047
+pulmonary capillary endothelial cell,206,0.8349514563106796
+smooth muscle cell,55,0.9818181818181818
+vein endothelial cell of respiratory system,663,0.8069381598793364

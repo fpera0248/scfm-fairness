@@ -20,3 +20,403 @@ train 2,497 cells / eval 12,500 cells
 train=2,127 val=370 (589 real donors)
   backbone: FULL fine-tune, 99.9M params trainable
 batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 1.2329, 'val_acc': 0.7595, 'val_macro_f1': 0.5038, 'val_worst_class': 0.0, 'secs': 177}
+{'epoch': 2, 'loss': 0.4608, 'val_acc': 0.8405, 'val_macro_f1': 0.6468, 'val_worst_class': 0.0, 'secs': 208}
+{'epoch': 3, 'loss': 0.2966, 'val_acc': 0.8243, 'val_macro_f1': 0.6096, 'val_worst_class': 0.0, 'secs': 216}
+{'epoch': 4, 'loss': 0.2105, 'val_acc': 0.8378, 'val_macro_f1': 0.7727, 'val_worst_class': 0.0, 'secs': 217}
+{'epoch': 5, 'loss': 0.1512, 'val_acc': 0.8243, 'val_macro_f1': 0.7716, 'val_worst_class': 0.0, 'secs': 217}
+{'epoch': 6, 'loss': 0.1043, 'val_acc': 0.8378, 'val_macro_f1': 0.6482, 'val_worst_class': 0.0, 'secs': 215}
+{'epoch': 7, 'loss': 0.0975, 'val_acc': 0.8459, 'val_macro_f1': 0.8039, 'val_worst_class': 0.0, 'secs': 211}
+{'epoch': 8, 'loss': 0.0758, 'val_acc': 0.8486, 'val_macro_f1': 0.7976, 'val_worst_class': 0.0, 'secs': 207}
+SELECTED epoch 7
+worst group: japanese = 0.5283; 30/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== aida B (cond=ba) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+train 5,649 cells / eval 12,500 cells
+train=5,272 val=377 (587 real donors)
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.8071, 'val_acc': 0.8302, 'val_macro_f1': 0.7897, 'val_worst_class': 0.0, 'secs': 366}
+{'epoch': 2, 'loss': 0.2818, 'val_acc': 0.8355, 'val_macro_f1': 0.7654, 'val_worst_class': 0.2308, 'secs': 373}
+{'epoch': 3, 'loss': 0.203, 'val_acc': 0.8435, 'val_macro_f1': 0.8202, 'val_worst_class': 0.1538, 'secs': 371}
+{'epoch': 4, 'loss': 0.1362, 'val_acc': 0.8515, 'val_macro_f1': 0.8376, 'val_worst_class': 0.0769, 'secs': 372}
+{'epoch': 5, 'loss': 0.1109, 'val_acc': 0.8382, 'val_macro_f1': 0.8142, 'val_worst_class': 0.2, 'secs': 371}
+{'epoch': 6, 'loss': 0.0767, 'val_acc': 0.8143, 'val_macro_f1': 0.8034, 'val_worst_class': 0.2308, 'secs': 366}
+{'epoch': 7, 'loss': 0.0529, 'val_acc': 0.8647, 'val_macro_f1': 0.8517, 'val_worst_class': 0.2308, 'secs': 364}
+{'epoch': 8, 'loss': 0.0452, 'val_acc': 0.8515, 'val_macro_f1': 0.837, 'val_worst_class': 0.3846, 'secs': 370}
+SELECTED epoch 8
+worst group: japanese = 0.6295; 32/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== aida P2BA (cond=ba) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+train 5,649 cells / eval 12,500 cells
+train=5,272 val=377 (587 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.3977, 'val_acc': 0.8355, 'val_macro_f1': 0.7903, 'val_worst_class': 0.0769, 'secs': 365}
+{'epoch': 2, 'loss': 0.2227, 'val_acc': 0.8488, 'val_macro_f1': 0.7611, 'val_worst_class': 0.0, 'secs': 371}
+{'epoch': 3, 'loss': 0.1519, 'val_acc': 0.8515, 'val_macro_f1': 0.8302, 'val_worst_class': 0.3077, 'secs': 368}
+{'epoch': 4, 'loss': 0.1092, 'val_acc': 0.8568, 'val_macro_f1': 0.8237, 'val_worst_class': 0.2308, 'secs': 369}
+{'epoch': 5, 'loss': 0.0829, 'val_acc': 0.8408, 'val_macro_f1': 0.8017, 'val_worst_class': 0.2, 'secs': 367}
+{'epoch': 6, 'loss': 0.068, 'val_acc': 0.8515, 'val_macro_f1': 0.8164, 'val_worst_class': 0.1538, 'secs': 369}
+{'epoch': 7, 'loss': 0.0491, 'val_acc': 0.8727, 'val_macro_f1': 0.8569, 'val_worst_class': 0.2308, 'secs': 365}
+{'epoch': 8, 'loss': 0.0405, 'val_acc': 0.8568, 'val_macro_f1': 0.8396, 'val_worst_class': 0.3846, 'secs': 370}
+SELECTED epoch 8
+worst group: japanese = 0.6516; 32/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== aida P2BJ (cond=bj) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+train 3,700 cells / eval 12,500 cells
+train=3,465 val=235 (489 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.4945, 'val_acc': 0.8681, 'val_macro_f1': 0.8421, 'val_worst_class': 0.375, 'secs': 263}
+{'epoch': 2, 'loss': 0.2121, 'val_acc': 0.8213, 'val_macro_f1': 0.7494, 'val_worst_class': 0.0, 'secs': 270}
+{'epoch': 3, 'loss': 0.1435, 'val_acc': 0.8851, 'val_macro_f1': 0.841, 'val_worst_class': 0.0, 'secs': 267}
+{'epoch': 4, 'loss': 0.0906, 'val_acc': 0.834, 'val_macro_f1': 0.7846, 'val_worst_class': 0.0, 'secs': 266}
+{'epoch': 5, 'loss': 0.0627, 'val_acc': 0.8298, 'val_macro_f1': 0.7534, 'val_worst_class': 0.0, 'secs': 266}
+{'epoch': 6, 'loss': 0.0399, 'val_acc': 0.8383, 'val_macro_f1': 0.793, 'val_worst_class': 0.0, 'secs': 264}
+{'epoch': 7, 'loss': 0.0264, 'val_acc': 0.8128, 'val_macro_f1': 0.7645, 'val_worst_class': 0.0, 'secs': 264}
+{'epoch': 8, 'loss': 0.0192, 'val_acc': 0.8383, 'val_macro_f1': 0.7813, 'val_worst_class': 0.0, 'secs': 264}
+SELECTED epoch 1
+worst group: japanese = 0.6113; 32/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== aida P2BU (cond=bu) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+train 5,453 cells / eval 12,500 cells
+train=4,546 val=907 (573 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.2754, 'val_acc': 0.7817, 'val_macro_f1': 0.6978, 'val_worst_class': 0.0, 'secs': 454}
+{'epoch': 2, 'loss': 0.1142, 'val_acc': 0.8258, 'val_macro_f1': 0.7345, 'val_worst_class': 0.0, 'secs': 463}
+{'epoch': 3, 'loss': 0.0555, 'val_acc': 0.8214, 'val_macro_f1': 0.7729, 'val_worst_class': 0.0, 'secs': 463}
+{'epoch': 4, 'loss': 0.0348, 'val_acc': 0.8467, 'val_macro_f1': 0.7317, 'val_worst_class': 0.0, 'secs': 463}
+{'epoch': 5, 'loss': 0.0169, 'val_acc': 0.8423, 'val_macro_f1': 0.7887, 'val_worst_class': 0.0, 'secs': 464}
+{'epoch': 6, 'loss': 0.0126, 'val_acc': 0.8225, 'val_macro_f1': 0.7501, 'val_worst_class': 0.2857, 'secs': 463}
+{'epoch': 7, 'loss': 0.0079, 'val_acc': 0.8644, 'val_macro_f1': 0.7724, 'val_worst_class': 0.2857, 'secs': 452}
+{'epoch': 8, 'loss': 0.0034, 'val_acc': 0.849, 'val_macro_f1': 0.7431, 'val_worst_class': 0.0, 'secs': 453}
+SELECTED epoch 7
+worst group: japanese = 0.6098; 29/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== aida P2DS (cond=ds) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+  gene alignment: 18,986/19,264 panel genes covered (98.6%)
+train 637 cells / eval 12,500 cells
+train=538 val=99 (360 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.6701, 'val_acc': 0.8788, 'val_macro_f1': 0.784, 'val_worst_class': 0.25, 'secs': 50}
+{'epoch': 2, 'loss': 0.2967, 'val_acc': 0.8586, 'val_macro_f1': 0.7659, 'val_worst_class': 0.25, 'secs': 52}
+{'epoch': 3, 'loss': 0.153, 'val_acc': 0.8788, 'val_macro_f1': 0.7869, 'val_worst_class': 0.3333, 'secs': 53}
+{'epoch': 4, 'loss': 0.0942, 'val_acc': 0.8586, 'val_macro_f1': 0.7319, 'val_worst_class': 0.25, 'secs': 53}
+{'epoch': 5, 'loss': 0.1264, 'val_acc': 0.8889, 'val_macro_f1': 0.7849, 'val_worst_class': 0.5, 'secs': 53}
+{'epoch': 6, 'loss': 0.0568, 'val_acc': 0.8586, 'val_macro_f1': 0.7688, 'val_worst_class': 0.3333, 'secs': 53}
+{'epoch': 7, 'loss': 0.0247, 'val_acc': 0.8586, 'val_macro_f1': 0.7317, 'val_worst_class': 0.25, 'secs': 52}
+{'epoch': 8, 'loss': 0.0153, 'val_acc': 0.8788, 'val_macro_f1': 0.7745, 'val_worst_class': 0.3333, 'secs': 53}
+SELECTED epoch 5
+worst group: japanese = 0.6305; 28/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+########## scFoundation full fine-tune: crc ##########
+=== crc P (cond=prop) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+train 2,498 cells / eval 8,572 cells
+train=2,168 val=330 (25 real donors)
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.5494, 'val_acc': 0.9515, 'val_macro_f1': 0.6445, 'val_worst_class': 0.0, 'secs': 735}
+{'epoch': 2, 'loss': 0.1792, 'val_acc': 0.9667, 'val_macro_f1': 0.7556, 'val_worst_class': 0.0, 'secs': 733}
+{'epoch': 3, 'loss': 0.1127, 'val_acc': 0.9364, 'val_macro_f1': 0.739, 'val_worst_class': 0.3333, 'secs': 742}
+{'epoch': 4, 'loss': 0.0852, 'val_acc': 0.9758, 'val_macro_f1': 0.8729, 'val_worst_class': 0.3333, 'secs': 739}
+{'epoch': 5, 'loss': 0.0791, 'val_acc': 0.9606, 'val_macro_f1': 0.7209, 'val_worst_class': 0.3333, 'secs': 720}
+{'epoch': 6, 'loss': 0.0485, 'val_acc': 0.9667, 'val_macro_f1': 0.7215, 'val_worst_class': 0.3333, 'secs': 736}
+{'epoch': 7, 'loss': 0.0356, 'val_acc': 0.9606, 'val_macro_f1': 0.8153, 'val_worst_class': 0.3333, 'secs': 738}
+{'epoch': 8, 'loss': 0.0278, 'val_acc': 0.9576, 'val_macro_f1': 0.7971, 'val_worst_class': 0.3333, 'secs': 726}
+SELECTED epoch 4
+worst group: asian = 0.8435; 9/9 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== crc B (cond=ba) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+train 7,526 cells / eval 8,572 cells
+train=7,181 val=345 (25 real donors)
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.2124, 'val_acc': 0.9739, 'val_macro_f1': 0.7751, 'val_worst_class': 0.2, 'secs': 1180}
+{'epoch': 2, 'loss': 0.0712, 'val_acc': 0.9536, 'val_macro_f1': 0.7526, 'val_worst_class': 0.2, 'secs': 1167}
+{'epoch': 3, 'loss': 0.0509, 'val_acc': 0.9739, 'val_macro_f1': 0.7599, 'val_worst_class': 0.2, 'secs': 1170}
+{'epoch': 4, 'loss': 0.0345, 'val_acc': 0.9681, 'val_macro_f1': 0.8605, 'val_worst_class': 0.2, 'secs': 1161}
+{'epoch': 5, 'loss': 0.0266, 'val_acc': 0.9594, 'val_macro_f1': 0.7725, 'val_worst_class': 0.0, 'secs': 1177}
+{'epoch': 6, 'loss': 0.0208, 'val_acc': 0.971, 'val_macro_f1': 0.8775, 'val_worst_class': 0.4, 'secs': 1161}
+{'epoch': 7, 'loss': 0.015, 'val_acc': 0.9565, 'val_macro_f1': 0.7857, 'val_worst_class': 0.6, 'secs': 1159}
+{'epoch': 8, 'loss': 0.0097, 'val_acc': 0.9739, 'val_macro_f1': 0.9148, 'val_worst_class': 0.8, 'secs': 1161}
+SELECTED epoch 8
+worst group: hispanic or latin = 0.8795; 9/9 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== crc P2BA (cond=ba) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+train 7,526 cells / eval 8,572 cells
+train=7,181 val=345 (25 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.0968, 'val_acc': 0.971, 'val_macro_f1': 0.785, 'val_worst_class': 0.4, 'secs': 1175}
+{'epoch': 2, 'loss': 0.045, 'val_acc': 0.9565, 'val_macro_f1': 0.7696, 'val_worst_class': 0.0, 'secs': 1162}
+{'epoch': 3, 'loss': 0.0438, 'val_acc': 0.9623, 'val_macro_f1': 0.8406, 'val_worst_class': 0.4, 'secs': 1170}
+{'epoch': 4, 'loss': 0.0261, 'val_acc': 0.9681, 'val_macro_f1': 0.7852, 'val_worst_class': 0.6, 'secs': 1139}
+{'epoch': 5, 'loss': 0.0188, 'val_acc': 0.971, 'val_macro_f1': 0.9005, 'val_worst_class': 0.6, 'secs': 1106}
+{'epoch': 6, 'loss': 0.0191, 'val_acc': 0.971, 'val_macro_f1': 0.8778, 'val_worst_class': 0.2, 'secs': 1087}
+{'epoch': 7, 'loss': 0.007, 'val_acc': 0.9681, 'val_macro_f1': 0.8029, 'val_worst_class': 0.8, 'secs': 1087}
+{'epoch': 8, 'loss': 0.013, 'val_acc': 0.9768, 'val_macro_f1': 0.7802, 'val_worst_class': 0.2, 'secs': 1088}
+SELECTED epoch 7
+worst group: hispanic or latin = 0.8226; 9/9 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== crc P2BJ (cond=bj) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+train 4,092 cells / eval 8,572 cells
+train=3,870 val=222 (25 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.145, 'val_acc': 0.7613, 'val_macro_f1': 0.6911, 'val_worst_class': 0.2857, 'secs': 503}
+{'epoch': 2, 'loss': 0.0579, 'val_acc': 0.8468, 'val_macro_f1': 0.8092, 'val_worst_class': 0.6531, 'secs': 502}
+{'epoch': 3, 'loss': 0.0403, 'val_acc': 0.8559, 'val_macro_f1': 0.8126, 'val_worst_class': 0.6122, 'secs': 493}
+{'epoch': 4, 'loss': 0.0238, 'val_acc': 0.8423, 'val_macro_f1': 0.7717, 'val_worst_class': 0.5, 'secs': 502}
+{'epoch': 5, 'loss': 0.0172, 'val_acc': 0.7793, 'val_macro_f1': 0.8184, 'val_worst_class': 0.2857, 'secs': 499}
+{'epoch': 6, 'loss': 0.0212, 'val_acc': 0.7793, 'val_macro_f1': 0.7463, 'val_worst_class': 0.3061, 'secs': 506}
+{'epoch': 7, 'loss': 0.0089, 'val_acc': 0.7793, 'val_macro_f1': 0.7442, 'val_worst_class': 0.2857, 'secs': 496}
+{'epoch': 8, 'loss': 0.0079, 'val_acc': 0.8423, 'val_macro_f1': 0.7669, 'val_worst_class': 0.6531, 'secs': 485}
+SELECTED epoch 2
+worst group: hispanic or latin = 0.8218; 9/9 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== crc P2BU (cond=bu) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+train 7,520 cells / eval 8,572 cells
+train=4,428 val=3,092 (25 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.091, 'val_acc': 0.9641, 'val_macro_f1': 0.8843, 'val_worst_class': 0.2759, 'secs': 1735}
+{'epoch': 2, 'loss': 0.0266, 'val_acc': 0.9586, 'val_macro_f1': 0.7689, 'val_worst_class': 0.2759, 'secs': 1732}
+{'epoch': 3, 'loss': 0.0192, 'val_acc': 0.966, 'val_macro_f1': 0.9053, 'val_worst_class': 0.4655, 'secs': 1746}
+{'epoch': 4, 'loss': 0.0142, 'val_acc': 0.9596, 'val_macro_f1': 0.8618, 'val_worst_class': 0.0862, 'secs': 1722}
+{'epoch': 5, 'loss': 0.0062, 'val_acc': 0.9764, 'val_macro_f1': 0.9103, 'val_worst_class': 0.2759, 'secs': 1733}
+{'epoch': 6, 'loss': 0.0077, 'val_acc': 0.9764, 'val_macro_f1': 0.9021, 'val_worst_class': 0.2759, 'secs': 1716}
+{'epoch': 7, 'loss': 0.0004, 'val_acc': 0.9745, 'val_macro_f1': 0.9092, 'val_worst_class': 0.2759, 'secs': 1704}
+{'epoch': 8, 'loss': 0.0215, 'val_acc': 0.9641, 'val_macro_f1': 0.8911, 'val_worst_class': 0.3621, 'secs': 1703}
+SELECTED epoch 3
+worst group: hispanic or latin = 0.8420; 9/9 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== crc P2DS (cond=ds) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+  gene alignment: 18,422/19,264 panel genes covered (95.6%)
+train 452 cells / eval 8,572 cells
+train=340 val=112 (24 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.1914, 'val_acc': 0.9464, 'val_macro_f1': 0.7742, 'val_worst_class': 0.5, 'secs': 123}
+{'epoch': 2, 'loss': 0.0933, 'val_acc': 0.9464, 'val_macro_f1': 0.8185, 'val_worst_class': 0.0, 'secs': 127}
+{'epoch': 3, 'loss': 0.0664, 'val_acc': 0.9375, 'val_macro_f1': 0.7767, 'val_worst_class': 0.5, 'secs': 128}
+{'epoch': 4, 'loss': 0.0598, 'val_acc': 0.9464, 'val_macro_f1': 0.7742, 'val_worst_class': 0.5, 'secs': 126}
+{'epoch': 5, 'loss': 0.0715, 'val_acc': 0.9732, 'val_macro_f1': 0.7437, 'val_worst_class': 0.0, 'secs': 127}
+{'epoch': 6, 'loss': 0.0305, 'val_acc': 0.9643, 'val_macro_f1': 0.836, 'val_worst_class': 0.0, 'secs': 126}
+{'epoch': 7, 'loss': 0.0266, 'val_acc': 0.9643, 'val_macro_f1': 0.8383, 'val_worst_class': 0.0, 'secs': 125}
+{'epoch': 8, 'loss': 0.0075, 'val_acc': 0.9643, 'val_macro_f1': 0.894, 'val_worst_class': 0.5, 'secs': 125}
+SELECTED epoch 8
+worst group: hispanic or latin = 0.8480; 9/9 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+########## scFoundation full fine-tune: ild ##########
+=== ild P (cond=prop) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+train 2,497 cells / eval 12,498 cells
+train=2,278 val=219 (91 real donors)
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.9784, 'val_acc': 0.7945, 'val_macro_f1': 0.692, 'val_worst_class': 0.0, 'secs': 260}
+{'epoch': 2, 'loss': 0.3161, 'val_acc': 0.8265, 'val_macro_f1': 0.7944, 'val_worst_class': 0.3333, 'secs': 268}
+{'epoch': 3, 'loss': 0.2082, 'val_acc': 0.7763, 'val_macro_f1': 0.6954, 'val_worst_class': 0.0, 'secs': 266}
+{'epoch': 4, 'loss': 0.159, 'val_acc': 0.8402, 'val_macro_f1': 0.7538, 'val_worst_class': 0.0, 'secs': 266}
+{'epoch': 5, 'loss': 0.1008, 'val_acc': 0.8311, 'val_macro_f1': 0.7947, 'val_worst_class': 0.3333, 'secs': 263}
+{'epoch': 6, 'loss': 0.0795, 'val_acc': 0.8082, 'val_macro_f1': 0.7464, 'val_worst_class': 0.0, 'secs': 266}
+{'epoch': 7, 'loss': 0.0494, 'val_acc': 0.8447, 'val_macro_f1': 0.7944, 'val_worst_class': 0.0, 'secs': 267}
+{'epoch': 8, 'loss': 0.0399, 'val_acc': 0.7991, 'val_macro_f1': 0.7636, 'val_worst_class': 0.0, 'secs': 266}
+SELECTED epoch 5
+worst group: native american = 0.7789; 31/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== ild B (cond=ba) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+train 10,762 cells / eval 12,498 cells
+train=10,480 val=282 (92 real donors)
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.3357, 'val_acc': 0.9078, 'val_macro_f1': 0.782, 'val_worst_class': 0.0, 'secs': 557}
+{'epoch': 2, 'loss': 0.1035, 'val_acc': 0.883, 'val_macro_f1': 0.7421, 'val_worst_class': 0.0, 'secs': 560}
+{'epoch': 3, 'loss': 0.0705, 'val_acc': 0.9149, 'val_macro_f1': 0.816, 'val_worst_class': 0.0, 'secs': 555}
+{'epoch': 4, 'loss': 0.0533, 'val_acc': 0.9078, 'val_macro_f1': 0.7682, 'val_worst_class': 0.0, 'secs': 551}
+{'epoch': 5, 'loss': 0.0332, 'val_acc': 0.9043, 'val_macro_f1': 0.7673, 'val_worst_class': 0.0, 'secs': 550}
+{'epoch': 6, 'loss': 0.0235, 'val_acc': 0.9043, 'val_macro_f1': 0.7694, 'val_worst_class': 0.0, 'secs': 544}
+{'epoch': 7, 'loss': 0.0138, 'val_acc': 0.9184, 'val_macro_f1': 0.7896, 'val_worst_class': 0.0, 'secs': 549}
+{'epoch': 8, 'loss': 0.0081, 'val_acc': 0.922, 'val_macro_f1': 0.8785, 'val_worst_class': 0.0, 'secs': 543}
+SELECTED epoch 8
+worst group: native american = 0.7819; 32/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== ild P2BA (cond=ba) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+train 10,762 cells / eval 12,498 cells
+train=10,480 val=282 (92 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.1529, 'val_acc': 0.9291, 'val_macro_f1': 0.892, 'val_worst_class': 0.0, 'secs': 549}
+{'epoch': 2, 'loss': 0.0735, 'val_acc': 0.9326, 'val_macro_f1': 0.8805, 'val_worst_class': 0.0, 'secs': 559}
+{'epoch': 3, 'loss': 0.0514, 'val_acc': 0.922, 'val_macro_f1': 0.8705, 'val_worst_class': 0.0, 'secs': 562}
+{'epoch': 4, 'loss': 0.0257, 'val_acc': 0.9504, 'val_macro_f1': 0.9178, 'val_worst_class': 0.0, 'secs': 559}
+{'epoch': 5, 'loss': 0.018, 'val_acc': 0.9362, 'val_macro_f1': 0.891, 'val_worst_class': 0.0, 'secs': 558}
+{'epoch': 6, 'loss': 0.0179, 'val_acc': 0.9326, 'val_macro_f1': 0.8844, 'val_worst_class': 0.0, 'secs': 553}
+{'epoch': 7, 'loss': 0.0165, 'val_acc': 0.9326, 'val_macro_f1': 0.8793, 'val_worst_class': 0.0, 'secs': 555}
+{'epoch': 8, 'loss': 0.006, 'val_acc': 0.9433, 'val_macro_f1': 0.9024, 'val_worst_class': 0.0, 'secs': 549}
+SELECTED epoch 4
+worst group: native american = 0.7528; 32/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== ild P2BJ (cond=bj) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+train 3,894 cells / eval 12,498 cells
+train=3,723 val=171 (87 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.2428, 'val_acc': 0.9064, 'val_macro_f1': 0.849, 'val_worst_class': 0.0, 'secs': 206}
+{'epoch': 2, 'loss': 0.0746, 'val_acc': 0.9123, 'val_macro_f1': 0.8466, 'val_worst_class': 0.0, 'secs': 207}
+{'epoch': 3, 'loss': 0.0521, 'val_acc': 0.8889, 'val_macro_f1': 0.8251, 'val_worst_class': 0.0, 'secs': 207}
+{'epoch': 4, 'loss': 0.0244, 'val_acc': 0.8889, 'val_macro_f1': 0.8463, 'val_worst_class': 0.3333, 'secs': 205}
+{'epoch': 5, 'loss': 0.0119, 'val_acc': 0.8947, 'val_macro_f1': 0.8551, 'val_worst_class': 0.5, 'secs': 205}
+{'epoch': 6, 'loss': 0.0088, 'val_acc': 0.9123, 'val_macro_f1': 0.8657, 'val_worst_class': 0.5, 'secs': 199}
+{'epoch': 7, 'loss': 0.0037, 'val_acc': 0.8889, 'val_macro_f1': 0.8468, 'val_worst_class': 0.3333, 'secs': 203}
+{'epoch': 8, 'loss': 0.0023, 'val_acc': 0.9006, 'val_macro_f1': 0.8519, 'val_worst_class': 0.5, 'secs': 202}
+SELECTED epoch 6
+worst group: native american = 0.7946; 32/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== ild P2BU (cond=bu) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+train 10,715 cells / eval 12,498 cells
+train=8,230 val=2,485 (92 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.0984, 'val_acc': 0.9473, 'val_macro_f1': 0.8303, 'val_worst_class': 0.0, 'secs': 1101}
+{'epoch': 2, 'loss': 0.0289, 'val_acc': 0.9638, 'val_macro_f1': 0.797, 'val_worst_class': 0.0, 'secs': 1118}
+{'epoch': 3, 'loss': 0.0156, 'val_acc': 0.9662, 'val_macro_f1': 0.8082, 'val_worst_class': 0.0, 'secs': 1100}
+{'epoch': 4, 'loss': 0.0083, 'val_acc': 0.9642, 'val_macro_f1': 0.8264, 'val_worst_class': 0.0, 'secs': 1098}
+{'epoch': 5, 'loss': 0.0042, 'val_acc': 0.9557, 'val_macro_f1': 0.7963, 'val_worst_class': 0.0, 'secs': 1101}
+{'epoch': 6, 'loss': 0.002, 'val_acc': 0.9529, 'val_macro_f1': 0.7959, 'val_worst_class': 0.0, 'secs': 1096}
+{'epoch': 7, 'loss': 0.0025, 'val_acc': 0.938, 'val_macro_f1': 0.8239, 'val_worst_class': 0.0, 'secs': 1097}
+{'epoch': 8, 'loss': 0.0023, 'val_acc': 0.9513, 'val_macro_f1': 0.7939, 'val_worst_class': 0.0, 'secs': 1098}
+SELECTED epoch 1
+worst group: hispanic or latin = 0.7471; 32/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+=== ild P2DS (cond=ds) ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; panel = 19264 genes
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+  gene alignment: 18,541/19,264 panel genes covered (96.2%)
+train 240 cells / eval 12,498 cells
+train=230 val=10 (42 real donors)
+initialized from /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P
+  backbone: FULL fine-tune, 99.9M params trainable
+batch 4 x accum 8 = effective 32
+{'epoch': 1, 'loss': 0.4032, 'val_acc': 1.0, 'val_macro_f1': 1.0, 'val_worst_class': 1.0, 'secs': 26}
+{'epoch': 2, 'loss': 0.2146, 'val_acc': 0.8, 'val_macro_f1': 0.75, 'val_worst_class': 0.0, 'secs': 27}
+{'epoch': 3, 'loss': 0.0926, 'val_acc': 0.9, 'val_macro_f1': 0.9167, 'val_worst_class': 0.5, 'secs': 28}
+{'epoch': 4, 'loss': 0.0287, 'val_acc': 1.0, 'val_macro_f1': 1.0, 'val_worst_class': 1.0, 'secs': 27}
+{'epoch': 5, 'loss': 0.0202, 'val_acc': 1.0, 'val_macro_f1': 1.0, 'val_worst_class': 1.0, 'secs': 28}
+{'epoch': 6, 'loss': 0.0062, 'val_acc': 1.0, 'val_macro_f1': 1.0, 'val_worst_class': 1.0, 'secs': 28}
+{'epoch': 7, 'loss': 0.0038, 'val_acc': 0.8, 'val_macro_f1': 0.6667, 'val_worst_class': 0.0, 'secs': 28}
+{'epoch': 8, 'loss': 0.0018, 'val_acc': 0.8, 'val_macro_f1': 0.6667, 'val_worst_class': 0.0, 'secs': 28}
+SELECTED epoch 1
+worst group: native american = 0.7195; 31/32 cell types ever predicted
+SCFOUNDATION FINETUNE ARM COMPLETE
+SCFA FINETUNE ALL COMPLETE

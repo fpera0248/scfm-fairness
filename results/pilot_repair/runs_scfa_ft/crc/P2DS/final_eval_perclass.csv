@@ -1,0 +1,10 @@
+cell_type,n_cells,accuracy
+BEST4+ colonocyte,262,0.9847328244274809
+colon goblet cell,316,0.9746835443037974
+colonocyte,383,0.835509138381201
+early colonocyte,1285,0.8015564202334631
+enteroendocrine cell of colon,33,0.8484848484848485
+intestinal crypt stem cell of colon,414,0.8671497584541062
+malignant cell,4696,0.9948892674616695
+secretory cell,1034,0.971953578336557
+tuft cell of colon,149,0.9865771812080537

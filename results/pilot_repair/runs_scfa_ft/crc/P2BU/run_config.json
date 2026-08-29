@@ -1,0 +1,18 @@
+{
+  "cohort": "crc",
+  "cond": "bu",
+  "init_from": "/oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P",
+  "outdir": "/oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P2BU",
+  "epochs": "8",
+  "lr": "1e-05",
+  "head_lr": "0.001",
+  "batch": "0",
+  "effective_batch": "32",
+  "unfreeze_last": "-1",
+  "val_donor_frac": "0.15",
+  "seed": "0",
+  "eval_only": "False",
+  "batch_used": 4,
+  "accum": 8,
+  "n_labels": 9
+}

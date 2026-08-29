@@ -1,0 +1,5 @@
+group,n_cells,macro_f1_common
+hispanic or latin,1111,0.8225875767839566
+asian,619,0.8791162543631685
+african american,386,0.8925498480672052
+european american,6456,0.9327325258098949

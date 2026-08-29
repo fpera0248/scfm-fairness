@@ -1,0 +1,295 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 5483179
+##  Job Name : dump_preds
+##  Nodelist : gpu1504
+##      CPUs : 4
+##  Mem/Node : 65536 MB
+## Directory : /oscar/data/rsingh47/fperalta/scfm-fairness
+##   Job Started : Fri Aug 28 05:42:07 PM EDT 2026
+###############################################################################
+########## Geneformer: 3 cohorts x 6 arms ##########
+skip crc P (predictions exist)
+skip crc B (predictions exist)
+skip crc P2BA (predictions exist)
+skip crc P2BJ (predictions exist)
+skip crc P2BU (predictions exist)
+skip crc P2DS (predictions exist)
+skip aida P (predictions exist)
+skip aida B (predictions exist)
+skip aida P2BA (predictions exist)
+skip aida P2BJ (predictions exist)
+skip aida P2BU (predictions exist)
+skip aida P2DS (predictions exist)
+=== geneformer ild P ===
+holdout filter: kept 12,500/12,500 eval_donor cells
+note: dropped 2/12,500 eval cells outside the trained label space
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+wrote per-cell predictions: 12,498 rows
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+            group  n_cells  n_donors  accuracy  macro_f1  macro_f1_common   ci_low  ci_high
+  native american     2500         1  0.894400  0.641875         0.710027 0.710027 0.710027
+hispanic or latin     2500         4  0.860800  0.644197         0.733258 0.565786 0.751539
+ african american     2500        11  0.902800  0.692902         0.748660 0.582492 0.771345
+            asian     2499         1  0.901160  0.717270         0.769313 0.769313 0.769313
+european american     2499        77  0.847139  0.716676         0.771666 0.749733 0.781851
+worst group: native american (common-class macro-F1 0.7100 CI [0.7100,0.7100])
+=== geneformer ild B ===
+holdout filter: kept 12,500/12,500 eval_donor cells
+note: dropped 2/12,500 eval cells outside the trained label space
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+wrote per-cell predictions: 12,498 rows
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+            group  n_cells  n_donors  accuracy  macro_f1  macro_f1_common   ci_low  ci_high
+  native american     2500         1  0.901600  0.817790         0.801946 0.801946 0.801946
+hispanic or latin     2500         4  0.886000  0.787589         0.816619 0.694154 0.833570
+ african american     2500        11  0.928400  0.824376         0.836566 0.725396 0.874630
+european american     2499        77  0.882753  0.858896         0.851122 0.827961 0.862069
+            asian     2499         1  0.921969  0.840539         0.861847 0.861847 0.861847
+worst group: native american (common-class macro-F1 0.8019 CI [0.8019,0.8019])
+=== geneformer ild P2BA ===
+holdout filter: kept 12,500/12,500 eval_donor cells
+note: dropped 2/12,500 eval cells outside the trained label space
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+wrote per-cell predictions: 12,498 rows
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+            group  n_cells  n_donors  accuracy  macro_f1  macro_f1_common   ci_low  ci_high
+  native american     2500         1  0.911200  0.820627         0.805029 0.805029 0.805029
+hispanic or latin     2500         4  0.889600  0.791331         0.813923 0.674043 0.842706
+ african american     2500        11  0.926800  0.822700         0.826825 0.717545 0.864441
+european american     2499        77  0.882753  0.859618         0.856738 0.836027 0.868985
+            asian     2499         1  0.926771  0.854214         0.874550 0.874550 0.874550
+worst group: native american (common-class macro-F1 0.8050 CI [0.8050,0.8050])
+=== geneformer ild P2BJ ===
+holdout filter: kept 12,500/12,500 eval_donor cells
+note: dropped 2/12,500 eval cells outside the trained label space
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+wrote per-cell predictions: 12,498 rows
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+            group  n_cells  n_donors  accuracy  macro_f1  macro_f1_common   ci_low  ci_high
+  native american     2500         1  0.895600  0.771069         0.784687 0.784687 0.784687
+hispanic or latin     2500         4  0.831600  0.739807         0.788756 0.675476 0.807936
+ african american     2500        11  0.890400  0.782566         0.813513 0.698306 0.835814
+european american     2499        77  0.839136  0.796312         0.825838 0.806465 0.834288
+            asian     2499         1  0.881953  0.808845         0.830983 0.830983 0.830983
+worst group: native american (common-class macro-F1 0.7847 CI [0.7847,0.7847])
+=== geneformer ild P2BU ===
+holdout filter: kept 12,500/12,500 eval_donor cells
+note: dropped 2/12,500 eval cells outside the trained label space
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+wrote per-cell predictions: 12,498 rows
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+            group  n_cells  n_donors  accuracy  macro_f1  macro_f1_common   ci_low  ci_high
+hispanic or latin     2500         4  0.872800  0.708920         0.754304 0.598151 0.782153
+  native american     2500         1  0.861200  0.722804         0.773604 0.773604 0.773604
+ african american     2500        11  0.905200  0.740474         0.795235 0.675648 0.841726
+european american     2499        77  0.859944  0.787271         0.818893 0.787717 0.839688
+            asian     2499         1  0.907963  0.793873         0.834923 0.834923 0.834923
+worst group: hispanic or latin (common-class macro-F1 0.7543 CI [0.5982,0.7822])
+=== geneformer ild P2DS ===
+holdout filter: kept 12,500/12,500 eval_donor cells
+note: dropped 2/12,500 eval cells outside the trained label space
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/geneformer/collator_for_classification.py:649: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  batch = {k: torch.tensor(v.clone().detach(), dtype=torch.int64) if isinstance(v, torch.Tensor) else torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
+wrote per-cell predictions: 12,498 rows
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/users/fperalta/.conda/envs/geneformer310/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true nor predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+            group  n_cells  n_donors  accuracy  macro_f1  macro_f1_common   ci_low  ci_high
+hispanic or latin     2500         4  0.857600  0.635325         0.694708 0.550598 0.722739
+  native american     2500         1  0.835600  0.654713         0.696632 0.696632 0.696632
+ african american     2500        11  0.872000  0.634477         0.720462 0.623703 0.739105
+            asian     2499         1  0.878752  0.673997         0.736198 0.736198 0.736198
+european american     2499        77  0.829132  0.690031         0.757176 0.729252 0.784336
+worst group: hispanic or latin (common-class macro-F1 0.6947 CI [0.5506,0.7227])
+########## scFoundation frozen: re-run (embeddings cached, cheap) ##########
+=== scfoundation-frozen crc ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; reference panel = 19264 genes
+  prop: cached aligned embeddings (2498, 768)
+  [prop] mean pairwise corr 0.704 (bad run was 0.966-0.991)
+  ba: cached aligned embeddings (7526, 768)
+  [ba] mean pairwise corr 0.590 (bad run was 0.966-0.991)
+  bu: cached aligned embeddings (7520, 768)
+  [bu] mean pairwise corr 0.688 (bad run was 0.966-0.991)
+  ds: cached aligned embeddings (452, 768)
+  [ds] mean pairwise corr 0.694 (bad run was 0.966-0.991)
+  bj: cached aligned embeddings (4092, 768)
+  [bj] mean pairwise corr 0.641 (bad run was 0.966-0.991)
+  eval: cached aligned embeddings (8572, 768)
+  [eval] mean pairwise corr 0.693 (bad run was 0.966-0.991)
+P: worst group asian = 0.8114; 9/9 cell types ever predicted
+B: worst group hispanic or latin = 0.8375; 9/9 cell types ever predicted
+P2BA: worst group hispanic or latin = 0.8565; 9/9 cell types ever predicted
+P2BJ: worst group asian = 0.7996; 9/9 cell types ever predicted
+P2BU: worst group asian = 0.9009; 9/9 cell types ever predicted
+P2DS: worst group asian = 0.8314; 9/9 cell types ever predicted
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/crc (predictions: 51,432 rows across 6 arms)
+SCFOUNDATION-ALIGNED COHORT COMPLETE
+=== scfoundation-frozen aida ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; reference panel = 19264 genes
+  prop: cached aligned embeddings (2497, 768)
+  [prop] mean pairwise corr 0.732 (bad run was 0.966-0.991)
+  ba: cached aligned embeddings (5649, 768)
+  [ba] mean pairwise corr 0.602 (bad run was 0.966-0.991)
+  bu: cached aligned embeddings (5453, 768)
+  [bu] mean pairwise corr 0.726 (bad run was 0.966-0.991)
+  ds: cached aligned embeddings (637, 768)
+  [ds] mean pairwise corr 0.730 (bad run was 0.966-0.991)
+  bj: cached aligned embeddings (3700, 768)
+  [bj] mean pairwise corr 0.596 (bad run was 0.966-0.991)
+  eval: cached aligned embeddings (12500, 768)
+  [eval] mean pairwise corr 0.732 (bad run was 0.966-0.991)
+P: worst group japanese = 0.5433; 30/32 cell types ever predicted
+B: worst group japanese = 0.5975; 31/32 cell types ever predicted
+P2BA: worst group japanese = 0.5749; 31/32 cell types ever predicted
+P2BJ: worst group japanese = 0.5800; 31/32 cell types ever predicted
+P2BU: worst group japanese = 0.4990; 29/32 cell types ever predicted
+P2DS: worst group japanese = 0.5121; 28/32 cell types ever predicted
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/aida (predictions: 75,000 rows across 6 arms)
+SCFOUNDATION-ALIGNED COHORT COMPLETE
+=== scfoundation-frozen ild ===
+/users/fperalta/.conda/envs/scfoundation_gpu/lib/python3.10/site-packages/huggingface_hub/file_download.py:942: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+{'mask_gene_name': False, 'gene_num': 19266, 'seq_len': 19266, 'encoder': {'hidden_dim': 768, 'depth': 12, 'heads': 12, 'dim_head': 64, 'seq_len': 19266, 'module_type': 'transformer', 'norm_first': False}, 'decoder': {'hidden_dim': 512, 'depth': 6, 'heads': 8, 'dim_head': 64, 'module_type': 'performer', 'seq_len': 19266, 'norm_first': False}, 'n_class': 104, 'pad_token_id': 103, 'mask_token_id': 102, 'bin_num': 100, 'bin_alpha': 1.0, 'rawcount': True, 'model': 'mae_autobin', 'test_valid_train_idx_dict': '/nfs_beijing/minsheng/data/os10000w-new/global_shuffle/meta.csv.train_set_idx_dict.pt', 'valid_data_path': '/nfs_beijing/minsheng/data/valid_count_10w.npz', 'num_tokens': 13, 'train_data_path': None, 'isPanA': False, 'isPlanA1': False, 'max_files_to_load': 5, 'bin_type': 'auto_bin', 'value_mask_prob': 0.3, 'zero_mask_prob': 0.03, 'replace_prob': 0.8, 'random_token_prob': 0.1, 'mask_ignore_token_ids': [0], 'decoder_add_zero': True, 'mae_encoder_max_seq_len': 15000, 'isPlanA': False, 'mask_prob': 0.3, 'model_type': 'mae_autobin', 'pos_embed': False, 'device': 'cuda'}
+scFoundation loaded; reference panel = 19264 genes
+  prop: cached aligned embeddings (2497, 768)
+  [prop] mean pairwise corr 0.601 (bad run was 0.966-0.991)
+  ba: cached aligned embeddings (10762, 768)
+  [ba] mean pairwise corr 0.606 (bad run was 0.966-0.991)
+  bu: cached aligned embeddings (10715, 768)
+  [bu] mean pairwise corr 0.637 (bad run was 0.966-0.991)
+  ds: cached aligned embeddings (240, 768)
+  [ds] mean pairwise corr 0.649 (bad run was 0.966-0.991)
+  bj: cached aligned embeddings (3894, 768)
+  [bj] mean pairwise corr 0.584 (bad run was 0.966-0.991)
+  eval: cached aligned embeddings (12500, 768)
+  [eval] mean pairwise corr 0.625 (bad run was 0.966-0.991)
+P: worst group hispanic or latin = 0.7735; 32/32 cell types ever predicted
+B: worst group native american = 0.7530; 32/32 cell types ever predicted
+P2BA: worst group native american = 0.7653; 32/32 cell types ever predicted
+P2BJ: worst group native american = 0.7040; 32/32 cell types ever predicted
+P2BU: worst group native american = 0.7010; 32/32 cell types ever predicted
+P2DS: worst group native american = 0.5757; 29/32 cell types ever predicted
+WROTE /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/ild (predictions: 74,988 rows across 6 arms)
+SCFOUNDATION-ALIGNED COHORT COMPLETE
+########## inventory ##########
+   1736983 /oscar/scratch/fperalta/pilot_repair/runs/aida/B/final_eval_predictions.csv
+   1734607 /oscar/scratch/fperalta/pilot_repair/runs/aida/P2BA/final_eval_predictions.csv
+   1729078 /oscar/scratch/fperalta/pilot_repair/runs/aida/P2BJ/final_eval_predictions.csv
+   1734308 /oscar/scratch/fperalta/pilot_repair/runs/aida/P2BU/final_eval_predictions.csv
+   1735438 /oscar/scratch/fperalta/pilot_repair/runs/aida/P2DS/final_eval_predictions.csv
+   1746798 /oscar/scratch/fperalta/pilot_repair/runs/aida/P/final_eval_predictions.csv
+    690370 /oscar/scratch/fperalta/pilot_repair/runs/crc/B/final_eval_predictions.csv
+    687309 /oscar/scratch/fperalta/pilot_repair/runs/crc/P2BA/final_eval_predictions.csv
+    690467 /oscar/scratch/fperalta/pilot_repair/runs/crc/P2BJ/final_eval_predictions.csv
+    688974 /oscar/scratch/fperalta/pilot_repair/runs/crc/P2BU/final_eval_predictions.csv
+    689304 /oscar/scratch/fperalta/pilot_repair/runs/crc/P2DS/final_eval_predictions.csv
+    688143 /oscar/scratch/fperalta/pilot_repair/runs/crc/P/final_eval_predictions.csv
+   1156827 /oscar/scratch/fperalta/pilot_repair/runs/ild/B/final_eval_predictions.csv
+   1156169 /oscar/scratch/fperalta/pilot_repair/runs/ild/P2BA/final_eval_predictions.csv
+   1161391 /oscar/scratch/fperalta/pilot_repair/runs/ild/P2BJ/final_eval_predictions.csv
+   1153750 /oscar/scratch/fperalta/pilot_repair/runs/ild/P2BU/final_eval_predictions.csv
+   1154276 /oscar/scratch/fperalta/pilot_repair/runs/ild/P2DS/final_eval_predictions.csv
+   1156155 /oscar/scratch/fperalta/pilot_repair/runs/ild/P/final_eval_predictions.csv
+   1724869 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/B/final_eval_predictions.csv
+   1729449 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P2BA/final_eval_predictions.csv
+   1707701 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P2BJ/final_eval_predictions.csv
+   1732709 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P2BU/final_eval_predictions.csv
+   1733431 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P2DS/final_eval_predictions.csv
+   1736809 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/aida/P/final_eval_predictions.csv
+    690108 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/B/final_eval_predictions.csv
+    690352 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P2BA/final_eval_predictions.csv
+    690293 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P2BJ/final_eval_predictions.csv
+    688701 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P2BU/final_eval_predictions.csv
+    693039 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P2DS/final_eval_predictions.csv
+    687454 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/crc/P/final_eval_predictions.csv
+   1155386 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/B/final_eval_predictions.csv
+   1155686 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P2BA/final_eval_predictions.csv
+   1157801 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P2BJ/final_eval_predictions.csv
+   1153016 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P2BU/final_eval_predictions.csv
+   1152938 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P2DS/final_eval_predictions.csv
+   1157292 /oscar/scratch/fperalta/pilot_repair/runs_scfa_ft/ild/P/final_eval_predictions.csv
+  10675927 /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/aida/final_eval_predictions.csv
+   4343286 /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/crc/final_eval_predictions.csv
+   7229676 /oscar/scratch/fperalta/pilot_repair/runs_scfoundation_aligned/ild/final_eval_predictions.csv
+   1707299 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/aida/B/final_eval_predictions.csv
+   1743904 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/aida/P2BA/final_eval_predictions.csv
+   1712474 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/aida/P2BJ/final_eval_predictions.csv
+   1741699 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/aida/P2BU/final_eval_predictions.csv
+   1736118 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/aida/P2DS/final_eval_predictions.csv
+   1740932 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/aida/P/final_eval_predictions.csv
+    687876 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/crc/B/final_eval_predictions.csv
+    687873 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/crc/P2BA/final_eval_predictions.csv
+    694828 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/crc/P2BJ/final_eval_predictions.csv
+    690476 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/crc/P2BU/final_eval_predictions.csv
+    692553 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/crc/P2DS/final_eval_predictions.csv
+    697448 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/crc/P/final_eval_predictions.csv
+   1155519 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/ild/B/final_eval_predictions.csv
+   1154157 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/ild/P2BA/final_eval_predictions.csv
+   1162863 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/ild/P2BJ/final_eval_predictions.csv
+   1164637 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/ild/P2BU/final_eval_predictions.csv
+   1164446 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/ild/P2DS/final_eval_predictions.csv
+   1166747 /oscar/scratch/fperalta/pilot_repair/runs_scgpt_fixed/ild/P/final_eval_predictions.csv
+DUMP PREDICTIONS COMPLETE
